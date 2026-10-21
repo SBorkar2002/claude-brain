@@ -1,0 +1,491 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>YouTube Format Slate</title>
+<style>
+  :root {
+    --paper:      #EDEFEA;
+    --surface:    #F7F8F4;
+    --ink:        #171A16;
+    --ink-soft:   #5C6359;
+    --rule:       #D5D8CE;
+    --rule-soft:  #E2E5DC;
+    --accent:     #14708F;
+    --accent-bg:  rgba(20, 112, 143, 0.09);
+    --risk:       #A2384E;
+    --risk-bg:    rgba(162, 56, 78, 0.07);
+    --meter-off:  #D3D7CB;
+
+    --f-display: "Helvetica Neue", Inter, system-ui, -apple-system, sans-serif;
+    --f-body:    Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --f-mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #121410;
+      --surface:    #1A1D16;
+      --ink:        #E6E9DF;
+      --ink-soft:   #949A88;
+      --rule:       #2E3327;
+      --rule-soft:  #23271D;
+      --accent:     #56BCDD;
+      --accent-bg:  rgba(86, 188, 221, 0.11);
+      --risk:       #E28A9C;
+      --risk-bg:    rgba(226, 138, 156, 0.10);
+      --meter-off:  #2E3327;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #121410;
+    --surface:    #1A1D16;
+    --ink:        #E6E9DF;
+    --ink-soft:   #949A88;
+    --rule:       #2E3327;
+    --rule-soft:  #23271D;
+    --accent:     #56BCDD;
+    --accent-bg:  rgba(86, 188, 221, 0.11);
+    --risk:       #E28A9C;
+    --risk-bg:    rgba(226, 138, 156, 0.10);
+    --meter-off:  #2E3327;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2rem) 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.1rem, 6vw, 3.1rem);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1.02;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-size: 1.06rem;
+    color: var(--ink-soft);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  .criterion {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.9rem 0;
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-top: 0.6rem;
+  }
+  .criterion b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- section head ---------- */
+
+  .sect-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+  .sect-head h2 {
+    font-family: var(--f-display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+  .sect-head span {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    margin-left: auto;
+  }
+
+  .slate { display: flex; flex-direction: column; gap: 0; }
+
+  /* ---------- format panel ---------- */
+
+  .fmt {
+    border-bottom: 1px solid var(--rule);
+    padding: 2.2rem 0 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .fmt:first-of-type { padding-top: 1.8rem; }
+
+  .fmt-top { display: flex; gap: 1.15rem; align-items: flex-start; }
+
+  .rank {
+    font-family: var(--f-mono);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent);
+    padding-top: 0.28rem;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .rank.layer { color: var(--ink-soft); font-size: 0.86rem; padding-top: 0.62rem; letter-spacing: 0.1em; }
+
+  .fmt-name {
+    font-family: var(--f-display);
+    font-size: clamp(1.35rem, 3.4vw, 1.72rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 0.3rem;
+  }
+  .fmt-what { margin: 0; color: var(--ink-soft); font-size: 1rem; max-width: 56ch; }
+
+  /* ---------- meters ---------- */
+
+  .meters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 0.9rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--rule-soft);
+    padding: 1rem 1.1rem;
+  }
+  .meter { display: flex; flex-direction: column; gap: 0.42rem; }
+  .meter-label {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .bar { display: flex; gap: 3px; }
+  .bar i {
+    display: block;
+    height: 7px;
+    flex: 1;
+    background: var(--meter-off);
+  }
+  .bar i.on { background: var(--accent); }
+
+  /* ---------- dimension rows ---------- */
+
+  .dims { display: flex; flex-direction: column; gap: 0.85rem; }
+  .dim { display: grid; grid-template-columns: 92px 1fr; gap: 0 1.3rem; align-items: baseline; }
+  .dim dt {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 0.32rem;
+  }
+  .dim dd { margin: 0; max-width: 62ch; }
+
+  /* ---------- risk ---------- */
+
+  .risk {
+    background: var(--risk-bg);
+    border-left: 2px solid var(--risk);
+    padding: 0.85rem 1.05rem;
+    font-size: 0.96rem;
+    color: var(--ink);
+  }
+  .risk strong {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--risk);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+
+  /* ---------- layer callout ---------- */
+
+  .layer-note {
+    background: var(--accent-bg);
+    padding: 0.85rem 1.05rem;
+    font-size: 0.96rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ---------- ship order ---------- */
+
+  .ship { display: flex; flex-direction: column; gap: 0; margin-top: 0.4rem; }
+  .ship-row {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    gap: 0 1.3rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .ship-row:last-child { border-bottom: none; }
+  .ship-when {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .ship-row p { margin: 0; }
+  .ship-row b { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.01em; }
+
+  .watch {
+    border: 1px solid var(--rule);
+    padding: 1.2rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.6rem;
+  }
+  .watch h3 {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+    font-weight: 600;
+  }
+  .watch p { margin: 0; max-width: 64ch; }
+
+  @media (max-width: 560px) {
+    .dim, .ship-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .dim dt { padding-top: 0; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Employer-brand channel &nbsp;/&nbsp; format decision</p>
+    <h1>YouTube Format Slate</h1>
+    <p class="standfirst">Four recurring formats to carry whatever content we're handed, plus one layer that sits on top of any of them. For the engineer who feels left behind and doesn't know where to start.</p>
+    <p class="criterion">Ranked on <b>durable impact</b> — how hard the format is still working at video 50, not how well video 1 lands. Supply, fatigue and brand depth outweigh raw hook.</p>
+  </header>
+
+  <section>
+    <div class="sect-head">
+      <h2>The four formats</h2>
+      <span>ranked</span>
+    </div>
+
+    <div class="slate">
+
+      <!-- 1 -->
+      <article class="fmt">
+        <div class="fmt-top">
+          <div class="rank">01</div>
+          <div>
+            <h3 class="fmt-name">The Ladder</h3>
+            <p class="fmt-what">One term, explained three times — to a 10-year-old, a new grad, then a staff engineer.</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter"><span class="meter-label">Hook</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Scale</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Brand</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Durability</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+        </div>
+
+        <dl class="dims">
+          <div class="dim"><dt>Works</dt><dd>Three passes at the same term, each one deeper. Every glossary entry becomes exactly one video.</dd></div>
+          <div class="dim"><dt>Hook</dt><dd>Two hooks in one video. The 10-year-old pass is the part that gets shared; the staff pass is why people who already know the term keep watching.</dd></div>
+          <div class="dim"><dt>Scale</dt><dd>One-to-one with the glossary we're building anyway. Topic generation costs nothing, permanently.</dd></div>
+          <div class="dim"><dt>Brand</dt><dd>The only format where we demonstrate real depth. That third rung <em>is</em> the employer-branding argument.</dd></div>
+        </dl>
+
+        <div class="risk"><strong>Watch</strong>Rung three can't be written alone. Lock a staff engineer as a standing input before committing — without one, the video looks junior and the format's whole advantage disappears.</div>
+      </article>
+
+      <!-- 2 -->
+      <article class="fmt">
+        <div class="fmt-top">
+          <div class="rank">02</div>
+          <div>
+            <h3 class="fmt-name">Question Compilation</h3>
+            <p class="fmt-what">Real, anonymised questions from engineers too senior to ask — answered plainly.</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter"><span class="meter-label">Hook</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Scale</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Brand</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Durability</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+        </div>
+
+        <dl class="dims">
+          <div class="dim"><dt>Works</dt><dd>Three to five anonymised question cards per video, each answered without a trace of condescension.</dd></div>
+          <div class="dim"><dt>Hook</dt><dd>Recognition. The viewer sees their own unasked question on screen — the highest emotional hit of the four.</dd></div>
+          <div class="dim"><dt>Scale</dt><dd>Infinite, and it compounds: the longer the anonymous form runs, the better the supply gets.</dd></div>
+          <div class="dim"><dt>Brand</dt><dd>The most on-thesis format we have. It says the fear out loud, then says it's fine.</dd></div>
+        </dl>
+
+        <div class="risk"><strong>Watch</strong>Never fabricate a screenshot. Anonymise fully — no username, no avatar, no pixel-accurate platform mock. This audience cross-checks for sport, and one fake ends the channel's credibility permanently.</div>
+      </article>
+
+      <!-- 3 -->
+      <article class="fmt">
+        <div class="fmt-top">
+          <div class="rank">03</div>
+          <div>
+            <h3 class="fmt-name">Two Voices</h3>
+            <p class="fmt-what">An impatient sceptic asks; a calm voice answers. No faces — two type treatments.</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter"><span class="meter-label">Hook</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Scale</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Brand</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Durability</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        </div>
+
+        <dl class="dims">
+          <div class="dim"><dt>Works</dt><dd>Two audibly distinct voices, two type treatments, nothing else required. The script <em>is</em> the video.</dd></div>
+          <div class="dim"><dt>Hook</dt><dd>The asker says what the viewer is thinking about two seconds before they think it. That timing is the entire craft.</dd></div>
+          <div class="dim"><dt>Scale</dt><dd>Cheapest here by a wide margin. Four to five a week once templated.</dd></div>
+          <div class="dim"><dt>Brand</dt><dd>Says: we explain things without making you feel small.</dd></div>
+        </dl>
+
+        <div class="risk"><strong>Watch</strong>The asker is sceptical, never slow. A strawman insults an audience that already feels small. Also confirm the two TTS voices are clearly distinguishable before building anything on this — it's a hard blocker.</div>
+      </article>
+
+      <!-- 4 -->
+      <article class="fmt">
+        <div class="fmt-top">
+          <div class="rank">04</div>
+          <div>
+            <h3 class="fmt-name">Wrong Answer First</h3>
+            <p class="fmt-what">State an engineering myth confidently, as though it were true. Then take it apart.</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter"><span class="meter-label">Hook</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Scale</span><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Brand</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Durability</span><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+        </div>
+
+        <dl class="dims">
+          <div class="dim"><dt>Works</dt><dd>Ten to fifteen seconds of confident, plausible, wrong. Then the demolition.</dd></div>
+          <div class="dim"><dt>Hook</dt><dd>The strongest structure of the four. Believed it? That's tension. Didn't? That's superiority. Both retain.</dd></div>
+          <div class="dim"><dt>Scale</dt><dd>Supply-limited. Roughly thirty genuine myths exist in this space right now — a seam, not a well.</dd></div>
+          <div class="dim"><dt>Brand</dt><dd>Positions us as the correction layer. Authority without arrogance.</dd></div>
+        </dl>
+
+        <div class="risk"><strong>Watch</strong>A myth nobody actually believes reads as condescending, and the debunk has to land clean — "well, it's complicated" kills the format. Spend this seam once there's an audience to spend it on.</div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <h2>The layer</h2>
+      <span>not ranked</span>
+    </div>
+
+    <div class="slate">
+      <article class="fmt">
+        <p class="layer-note">Sits on top of any of the four above — so it isn't ranked against them. It's a presentation layer, not a bucket, and every format still works if we drop it.</p>
+
+        <div class="fmt-top">
+          <div class="rank layer">LYR</div>
+          <div>
+            <h3 class="fmt-name">Illustrated Character</h3>
+            <p class="fmt-what">A static character with a small pose library, anchored in one bottom corner.</p>
+          </div>
+        </div>
+
+        <div class="meters">
+          <div class="meter"><span class="meter-label">Hook</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Scale</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+          <div class="meter"><span class="meter-label">Brand</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="meter"><span class="meter-label">Durability</span><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+        </div>
+
+        <dl class="dims">
+          <div class="dim"><dt>Works</dt><dd>Fronts any format. The top of frame carries the content; the character reacts from a reserved corner.</dd></div>
+          <div class="dim"><dt>Hook</dt><dd>Mostly the thumbnail. A face is the click — in-video it's ambient, not the draw.</dd></div>
+          <div class="dim"><dt>Scale</dt><dd>Front-loaded. Build six poses once, then near-zero cost per video. Cap it at six.</dd></div>
+          <div class="dim"><dt>Brand</dt><dd>The strongest recall asset available to us. A character <em>is</em> a brand.</dd></div>
+        </dl>
+
+        <div class="risk"><strong>Watch</strong>A bottom-anchored character collides with the bottom-centre caption band. Reserve a corner in the templates now, not at render time. And if the character reads cute, it undercuts the whole anxiety wedge.</div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sect-head">
+      <h2>Ship order</h2>
+      <span>impact rank &ne; build order</span>
+    </div>
+
+    <div class="ship">
+      <div class="ship-row">
+        <span class="ship-when">Now</span>
+        <p><b>Two Voices</b> and <b>The Ladder</b>, in parallel. Two Voices is the cheapest thing we can ship and it teaches us the channel's voice fast. The Ladder rides the glossary we're building regardless.</p>
+      </div>
+      <div class="ship-row">
+        <span class="ship-when">Next</span>
+        <p><b>Question Compilation</b>, once the anonymous form has run a few weeks and there's real supply to draw from.</p>
+      </div>
+      <div class="ship-row">
+        <span class="ship-when">Hold</span>
+        <p><b>Wrong Answer First</b>. The supply is finite — spend it when there's an audience to spend it on, not on video three.</p>
+      </div>
+      <div class="ship-row">
+        <span class="ship-when">Layer on</span>
+        <p><b>Illustrated Character</b>, added to whichever format is already working. Not before.</p>
+      </div>
+    </div>
+
+    <div class="watch">
+      <h3>One structural risk</h3>
+      <p>Question Compilation and Two Voices are the same underlying shape — someone asks, someone answers. Individually they're fine; back to back they'll make the channel feel monotonous somewhere around video 25, and it'll be hard to diagnose because nothing is obviously wrong. Never schedule them consecutively, or swap one for a structurally different device.</p>
+    </div>
+  </section>
+
+</div>
+
+</body></html>

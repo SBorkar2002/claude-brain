@@ -1,0 +1,392 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cat v2 in Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Rethink+Sans:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap">
+<style>
+/* Layout: one review sheet. Header + controls, then a 3-column grid of stage cards (1 column on phones).
+   Tokens are the portfolio's own "Portfolio · Color" variables, so the page and the cat swap together. */
+:root {
+  --bg: #F3F0FA; --raised: #FFFFFF; --sunken: #E7E2F2; --line: #D4CDE4;
+  --text: #17141F; --muted: #5D5770; --ink: #5B47D6; --on-pastel: #17141F;
+  --peach: #FFB99A; --butter: #FFE58A;
+  --cat-body: #17141F; --cat-body-far: #423B54; --cat-eye: #FFD43B; --cat-pupil: #17141F; --cat-shine: #FFFFFF;
+  --cat-mouth: #FF8FB1; --cat-mouth-inner: #C4456E; --cat-zzz: #8F7BFF; --cat-heart: #FF6F9C;
+  --display: "Jersey 15", "Silkscreen", ui-monospace, monospace;
+  --label: "Silkscreen", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --body: "Rethink Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15131C; --raised: #1E1B28; --sunken: #0F0D15; --line: #34304A;
+    --text: #F2EFFA; --muted: #A7A1BC; --ink: #C3B5FF;
+    --cat-body: #F2EFFA; --cat-body-far: #BEB7D2; --cat-pupil: #15131C; --cat-zzz: #C3B5FF; --cat-heart: #FF8FB1;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15131C; --raised: #1E1B28; --sunken: #0F0D15; --line: #34304A;
+  --text: #F2EFFA; --muted: #A7A1BC; --ink: #C3B5FF;
+  --cat-body: #F2EFFA; --cat-body-far: #BEB7D2; --cat-pupil: #15131C; --cat-zzz: #C3B5FF; --cat-heart: #FF8FB1;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: 48px 72px; display: grid; gap: 32px; }
+header { display: grid; gap: 12px; }
+.eyebrow { font-family: var(--label); font-size: 11px; letter-spacing: .08em; color: var(--ink); text-transform: uppercase; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 7vw, 72px); line-height: .95; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+.lede { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; max-width: 62ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 12px 16px; background: var(--raised); border: 2px solid var(--line); }
+.group { display: flex; align-items: center; gap: 8px; }
+.group > span { font-family: var(--label); font-size: 10px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.seg { display: inline-flex; border: 2px solid var(--text); }
+.seg button, .btn { font-family: var(--label); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: var(--text); border: 0; padding: 8px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--butter); color: var(--on-pastel); }
+.btn { border: 2px solid var(--text); }
+.btn:disabled { opacity: .4; cursor: default; }
+button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 32px 28px; }
+.card { display: grid; gap: 10px; min-width: 0; }
+.card.wide { grid-column: 1 / -1; }
+.stage { position: relative; background: var(--sunken); border: 2px solid var(--line); overflow: hidden; }
+.stage canvas { display: block; width: 100%; }
+.stage.clickable { cursor: pointer; }
+.meta { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.meta b { font-family: var(--label); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.meta .count { font-family: var(--label); font-size: 10px; letter-spacing: .06em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.desc { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.strip { display: flex; flex-wrap: wrap; gap: 6px; }
+.strip canvas { width: 48px; height: 48px; image-rendering: pixelated; background: var(--bg); outline: 2px solid transparent; outline-offset: 1px; }
+.strip canvas.on { outline-color: var(--ink); }
+footer { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 70ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Cat v2 · animation review</div>
+    <h1>Cat v2 in Motion</h1>
+    <p class="lede">Every state playing at its real hold times: the same frames and the same order as the Figma prototype. Light mode shows the black cat, dark mode the white one. The page load runs first.</p>
+  </header>
+
+  <div class="controls" role="toolbar" aria-label="Playback">
+    <div class="group"><span>Mode</span>
+      <div class="seg" id="theme">
+        <button type="button" id="th-light" data-v="light">Light</button>
+        <button type="button" id="th-dark" data-v="dark">Dark</button>
+      </div>
+    </div>
+    <div class="group"><span>Size</span>
+      <div class="seg" id="size">
+        <button type="button" id="sz-3" data-v="3">3x</button>
+        <button type="button" id="sz-4" data-v="4">4x</button>
+        <button type="button" id="sz-6" data-v="6">6x</button>
+      </div>
+    </div>
+    <div class="group"><span>Speed</span>
+      <div class="seg" id="speed">
+        <button type="button" id="sp-1" data-v="1">1x</button>
+        <button type="button" id="sp-05" data-v="0.5">Half</button>
+        <button type="button" id="sp-025" data-v="0.25">Quarter</button>
+      </div>
+    </div>
+    <div class="group">
+      <button type="button" class="btn" id="play">Pause</button>
+      <button type="button" class="btn" id="step" disabled>Next frame</button>
+    </div>
+  </div>
+  <p class="note" id="motion-note" hidden>Paused because your system asks for reduced motion. Press Play to watch.</p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>The small squares under each stage are every frame of that state at true size (1 px per sprite pixel), with the one playing now outlined. Source: Documents/career/portfolio-pixel/cat-v2/sprites.py.</footer>
+</div>
+
+<script>
+const D = {"Sit":["#de11ye11df21xf21dg31wg31dh51uh51dim3dl41ll61vl41dm31mm41wm31dn22nn24xn22ap51xp51dq21xq21br51mr41wr51ds41ls61vs41dtm26v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yhl41rl41gm11lm11qm11vm11fn14mn14pn14wn14gr11lr11qr11vr11hs41rs41|phm41rm41gn11in41qn11sn41go63qo63hr41rr41|whn11rn11","#dd11yd11de21xe21df31wf31dg51ug51dhm3dk41lk61vk41dl31ml41wl31dm22nm24xm22ao51xo51dp21xp21bq51mq41wq51dr41lr61vr41dsm2euk16v41fvi15w62hwe1fxi24y614z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yhk41rk41gl11ll11ql11vl11fm14mm14pm14wm14gq11lq11qq11vq11hr41rr41|phl41rl41gm11im41qm11sm41gn63qn63hq41rq41|whm11rm11","#de11ye11df21xf21dg31wg31dh51uh51dim7aps1dq31mq41wq31brq1dsm36v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Ygq61qq61","#de11ye11df21xf21dg31wg31dh51uh51dim7ap51np22xp51dq21xq21br51mr41wr51ds41ls61vs41dtm26v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yfp81pp81fq11mq11pq11wq11gr11lr11qr11vr11hs41rs41|pgq61qq61hr41rr41"],"Idle":["fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj11rj11wj11Bj11lk14sk14vk14Ck14mo11ro11wo11Bo11np41xp41|pnj41xj41mk11ok41wk11yk41ml63wl63no41xo41|wnk11xk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21ao81jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj11rj11wj11Bj11lk14sk14vk14Ck14mo11ro11wo11Bo11np41xp41|pnj41xj41mk11ok41wk11yk41ml63wl63no41xo41|wnk11xk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#6a415b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm35g514h54ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj21rj11wj21Bj11lk24sk14vk24Ck14mo21ro11wo21Bo11np41xp41|poj31yj31nk11pk31xk11zk31nl53xl53oo31yo31|wok11yk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm74g553l55jmp1jn31sn41Cn31joo19p91jpm33qf24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Ymn61wn61","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm74g553l55jm22tm22Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Ylm81vm81ln11sn11vn11Cn11mo11ro11wo11Bo11np41xp41|pmn61wn61no41xo41"],"Walk":["fcD41tD42cE51cF61tF32dG31dH42uH22eJ41uJ11eK61|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD523F61oF523G512H43pH531K52rK52|Yni41xi41mj11rj11wj11Bj11lk14sk14vk14Ck14mo11ro11wo11Bo11np41xp41|pnj41xj41mk11ok41wk11yk41ml63wl63no41xo41|wnk11xk11","fcC42tC43cE51bF61tF51cG31uG41bH43bK61|#59414a65ja11la11Ea11jb41Db21jc51Cc31jd71Ad51jem34f55jh41rh61Bh41ji31si41Ci31jj24tj24Dj223k55Dl51Dm21jn31sn41Cn519o91jo41ro61Bo413pf2jpm24rf2krk1lsi15tg15ut44yu14zt34C83nC584F614G42oK52|Ynh41xh41mi11ri11wi11Bi11lj14sj14vj14Cj14mn11rn11wn11Bn11no41xo41|pni41xi41mj11oj41wj11yj41mk63wk63nn41xn41|wnj11xj11","fcD41tD42cE51bF51uF42bG31aH32wH42aJ21xJ41cK21yK31|#6a415b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm35g514h54ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD525F61mF525G516H43lH557K52|Yni41xi41mj11rj11wj11Bj11lk14sk14vk14Ck14mo11ro11wo11Bo11np41xp41|pnj41xj41mk11ok41wk11yk41ml63wl63no41xo41|wnk11xk11","fcC42tC45cE51bF61bG41uH43vK31|#69415a65ja11la11Ea11jb41Db21jc51Cc31jd71Ad51jem35f514g54jh41rh61Bh41ji31si41Ci31jj24tj24Dj223k55Dl51Dm21jn31sn41Cn519o91jo41ro61Bo413pf2jpm24rf2krk1lsi15tg15ut44yu14zt34C83nC564F614G514H434K52|Ynh41xh41mi11ri11wi11Bi11lj14sj14vj14Cj14mn11rn11wn11Bn11no41xo41|pni41xi41mj11oj41wj11yj41mk63wk63nn41xn41|wnj11xj11"],"Look":["fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj11qj21wj11Aj21lk14rk24vk14Bk24mo11qo21wo11Ao21np41xp41|pnj31xj31mk11ok31wk11yk31ml53wl53no31xo31|wnk11xk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj21rj11wj21Bj11lk24sk14vk24Ck14mo21ro11wo21Bo11np41xp41|poj31yj31nk11pk31xk11zk31nl53xl53oo31yo31|wok11yk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj11rj11wj11Bj11lk13sk13vk13Ck13ln21rn21vn21Bn21mo61wo61np41xp41|pnj41xj41mk11ok41wk11yk41ml62wl62nn41xn41|wnk11xk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj61wj61lk21rk21vk21Bk21ll13sl13vl13Cl13mo11ro11wo11Bo11np41xp41|pnk41xk41ml11ol41wl11yl41mm62wm62no41xo41|wnl11xl11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj11qj21wj11Aj21lk13rk23vk13Bk23ln21qn31vn21An31mo61wo61np41xp41|pnj31xj31mk11ok31wk11yk31ml52wl52nn31xn31|wnk11xk11","fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj61wj61lk31rk21vk31Bk21ll23sl13vl23Cl13mo21ro11wo21Bo11np41xp41|pok31yk31nl11pl31xl11zl31nm52xm52oo31yo31|wol11yl11"],"Inspect":["fcD41tD44cE51bF61cG31bH43uH43bK61vK31|#5a414b65jb11lb11Eb11jc41Dc21jd51Cd31je71Ae51jfm34g55ji41ri61Bi41jj31sj41Cj31jk24tk24Dk223l55Dm51Dn21jo31so41Co519p91jp41rp61Bp413qf2jqm24sf2ksk1lti15ug15vt44zu14At34D82nD574F614G514H434K52oK52|Yni41xi41mj21rj11wj21Bj11lk24sk14vk24Ck14mo21ro11wo21Bo11np41xp41|poj31yj31nk11pk31xk11zk31nl53xl53oo31yo31|wok11yk11","fcD48xD48|#6a415b6gmh11Hh11mi21Gi21mj31Fj31mk51Dk51mlm3mo41uo61Eo41ip71vp41Fp31eqa1wq24Gq225rj3Gs51Gt215uk1vu41Fu515vl1uv61Ev415wD25yC15zB15Ax35D78sD486L71sL61|Yqo41Ao41pp21up11zp21Ep11oq24vq14yq24Fq14pu21uu11zu21Eu11qv41Av41|prp31Bp31qq11sq31Aq11Cq31qr53Ar53ru31Bu31|wrq11Bq11","fcH44xH44|#6e415f6gnl11Il11nm21Hm21nn31Gn31no51Eo51npm3ns41vs61Fs41it81wt41Gt31eub1xu24Hu225vk3Hw51Hx215yl1wy41Gy515zm1vz61Fz415AE25CD15DC15Ex35H74sH446L71sL61|Yrs41Bs41qt21vt11At21Ft11pu24wu14zu24Gu14qy21vy11Ay21Fy11rz41Bz41|pst31Ct31ru11tu31Bu11Du31rv53Bv53sy31Cy31|wsu11Cu11","fcH43xH44dK31|#5d414e645i6cnl11Il11nm21Hm21nn31Gn31no51Eo51npm3ns41vs61Fs41it81wt41Gt315uk4xu24Hu22Hw51Hx215yl1wy41Gy515zm1vz61Fz415AE25CD15DC15Ex35H73sH446K71sL61|Yrs41Bs41qt21vt11At21Ft11pu24wu14zu24Gu14qy21vy11Ay21Fy11rz41Bz41|pst31Ct31ru11tu31Bu11Du31rv53Bv53sy31Cy31|wsu11Cu11","fcH43xH44|#7e416f645j6cnl11Il11nm21Hm21nn31Gn31no51Eo51npm3ns41vs61Fs41it81wt41Gt31eub1xu24Hu225vk3Hw51Hx215yl1wy41Gy515zm1vz61Fz415AE25CD15DC15Ex35H74sH446L71sL61|Yrs41Bs41qt21vt11At21Ft11pu24wu14zu24Gu14qy21vy11Ay21Fy11rz41Bz41|pst31Ct31ru11tu31Bu11Du31rv53Bv53sy31Cy31|wsu11Cu11","fcH43xH44dK31|#5d414e645i6cnl11Il11nm21Hm21nn31Gn31no51Eo51npm3ns41vs61Fs41it81wt41Gt315uk4xu24Hu22Hw51Hx215yl1wy41Gy515zm1vz61Fz415AE25CD15DC15Ex35H73sH446K71sL61|Yrs41Bs41qt21vt11At21Ft11pu24wu14zu24Gu14qy21vy11Ay21Fy11rz41Bz41|pst31Ct31ru11tu31Bu11Du31rv53Bv53sy31Cy31|wsu11Cu11","fcH43xH44|#7e416f645j6cnl11Il11nm21Hm21nn31Gn31no51Eo51npm3ns41vs61Fs41it81wt41Gt31eub1xu24Hu225vk3Hw51Hx215yl1wy41Gy515zm1vz61Fz415AE25CD15DC15Ex35H74sH446L71sL61|Yrs41Bs41qt21vt11At21Ft11pu24wu14zu24Gu14qy21vy11Ay21Fy11rz41Bz41|pst31Ct31ru11tu31Bu11Du31rv53Bv53sy31Cy31|wsu11Cu11","fcD48xD48|#6a415b6gmh11Hh11mi21Gi21mj31Fj31mk51Dk51mlm3mo41uo61Eo41ip71vp41Fp31eqa1wq24Gq225rj3Gs51Gt215uk1vu41Fu515vl1uv61Ev415wD25yC15zB15Ax35D78sD486L71sL61|Yqo41Ao41pp21up11zp21Ep11oq24vq14yq24Fq14pu21uu11zu21Eu11qv41Av41|prp31Bp31qq11sq31Aq11Cq31qr53Ar53ru31Bu31|wrq11Bq11"],"Yawn":["#de11ye11df21xf21dg31wg31dh51uh51dim7ap51np22xp51dq21xq21br51mr41wr51ds41ls61vs41dtm26v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yfp81pp81fq11mq11pq11wq11gr11lr11qr11vr11hs41rs41|pgq61qq61hr41rr41","#dd11yd11de21xe21df31wf31dg51ug51dhm7aos1dp31mp41wp31bqq1drm1ds91qs91dta1pta1euk16v41fvi15w62hwe1fxi24y614z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Ygp61qp61|wms11ps11|Mns22","#dd21xd21de31we31df51uf51dgm6dm21nm21xm21ans1dom1bpq1dq81rq81dr92qr92et91pt91fui16v41hve15w62fwi34y614z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|YEf11Dg11Bi31Dk11El11fm81pm81|wlq11qq11|mns21|Mmq42ms11ps11nt21","#dd11yd11de21xe21df31wf31dg51ug51dhm7aos1dp31mp41wp31bqq1drm1ds91qs91dta1pta1euk16v41fvi15w62hwe1fxi24y614z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Ygp61qp61|wms11ps11|Mns22","#de11ye11df21xf21dg31wg31dh51uh51dim7ap51gp61np21qp61xp51dq31hq41mq41rq41wq31br61lr61vr61dsm36v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yfp11mp11pp11wp11gq11lq11qq11vq11hr41rr41"],"Sleep":["#dr11yr11ds21xs21dt31wt31du51uu51dvm3byo19zs18Au17Bw17C81gC61nC21qC61xC616Da1hD41mD41rD41wD816Eb1lE61vE916Fy4GG31FH527Jw1GJ417KC19Lz1|YfC11mC11pC11wC11gD11lD11qD11vD11hE41rE41","#dq11yq11dr21xr21ds31ws31dt51ut51dum4byo19zs18Au17B81gB61nB21qB61xB617C91hC41mC41rC41wC716Db1lD61vD916Ey5GG31FH527Jw1GJ417KC19Lz1|YfB11mB11pB11wB11gC11lC11qC11vC11hD41rD41|zBm41Dn11Co11Bp41","#dr11yr11ds21xs21dt31wt31du51uu51dvm3byo19zs18Au17Bw17C81gC61nC21qC61xC616Da1hD41mD41rD41wD816Eb1lE61vE916Fy4GG31FH527Jw1GJ417KC19Lz1|YfC11mC11pC11wC11gD11lD11qD11vD11hE41rE41|zGc51Jd11Ie11Hf11Gg51Cj41Ek11Dl11Cm41","#dq11yq11dr21xr21ds31ws31dt51ut51dum4byo19zs18Au17B81gB61nB21qB61xB617C91hC41mC41rC41wC716Db1lD61vD916Ey5GG31FH527Jw1GJ417KC19Lz1|YfB11mB11pB11wB11gC11lC11qC11vC11hD41rD41|zH951Ka11Jb11Ic11Hd51"],"Peek":["#dI11yI11dJ21xJ21dK31wK31dL51uL51","#dC11yC11dD21xD21dE31wE31dF51uF51dGm3dJ41lJ61vJ41dK31mK41wK31dL21nL21xL21|YhJ41rJ41gK11lK11qK11vK11fL11mL11pL11wL11|phK41rK41gL11iL41qL11sL41|whL11rL11","#dr11yr11ds21xs21dt31wt31du51uu51dvm3dy41ly61vy41dz31mz41wz31dA22nA24xA22aC51xC51dD21xD21bE51mE41wE51dF41lF61vF41dGm2eIk17J41fJi1BJ416K62AK62|Yhy41ry41gz11lz11qz11vz11fA14mA14pA14wA14gE11lE11qE11vE11hF41rF41|phz41rz41gA11iA41qA11sA41gB63qB63hE41rE41|whA11rA11","#du11yu11dv21xv21dw31ww31dx51ux51dym3dB41lB61vB41dC31mC41wC31dD22nD24xD22aF51xF51dG21xG21bH51mH41wH51dI41lI61vI417J41dJm2BJ416K62AK62eLk1|YhB41rB41gC11lC11qC11vC11fD14mD14pD14wD14gH11lH11qH11vH11hI41rI41|phC41rC41gD11iD41qD11sD41gE63qE63hH41rH41|whD11rD11","#dt11yt11du21xu21dv31wv31dw51uw51dxm3dA41lA61vA41dB31mB41wB31dC22nC24xC22aE51xE51dF21xF21bG51mG41wG51dH41lH61vH41dIm27J41BJ416K62eKk1AK62fLi1|YhA41rA41gB11lB11qB11vB11fC14mC14pC14wC14gG11lG11qG11vG11hH41rH41|phB41rB41gC11iC41qC11sC41gD63qD63hG41rG41|whC11rC11","#dt11yt11du21xu21dv31wv31dw51uw51dxm3dA41lA61vA41dB31mB41wB31dC22nC24xC22aE51xE51dF21xF21bG51mG41wG51dH41lH61vH41dIm27J41BJ416K62eKk1AK62fLi1|YhA41rA41gB11kB21qB11uB21fC14lC24pC14vC24gG11kG21qG11uG21hH41rH41|phB31rB31gC11iC31qC11sC31gD53qD53hG31rG31|whC11rC11","#dt11yt11du21xu21dv31wv31dw51uw51dxm3dA41lA61vA41dB31mB41wB31dC22nC24xC22aE51xE51dF21xF21bG51mG41wG51dH41lH61vH41dIm27J41BJ416K62eKk1AK62fLi1|YhA41rA41gB21lB11qB21vB11fC24mC14pC24wC14gG21lG11qG21vG11hH41rH41|piB31sB31hC11jC31rC11tC31hD53rD53iG31sG31|wiC11sC11"],"React":["#dg11yg11dh21xh21di31wi31dj51uj51dkm6dq41lq61vq41ar61hr41mr41rr41wr61ds21gs61ns21qs61xs21btq1dum34x41exk13y62fyi1hze12A61dAm12B53bBq1aCs23E529Eu24Gz25Iy19Ju2aLs1|Yhq41rq41gr11lr11qr11vr11fs11ms11ps11ws11","#5b314c525e52de11ye11df21xf216g52dg31wg31dh51uh517i52dim28kr18l91ll61vl419m71mm41wm31an51nn24xn22do21ap51xp51dq21xq21br51mr41wr51ds41ls61vs41dtm2evk1dwm9eF41jF44oF44vF41kJ31pJ31|Yhl41rl41gm61qm61fn31kn31pn31un31fo22lo22po22vo22fq31kq31pq31uq31gr61qr61hs41rs41|pin21sn21ho42ro42iq21sq21","#563147525952d911y911da21xa216b52db31wb31dc51uc517d52ddm28fr18g91lg61vg419h71mh41wh31ai51ni24xi22dj21ak51xk51dl21xl21bm51mm41wm51dn41ln61vn41dom2eqk1drm9eA41jA44oA44vA41kE31pE31|YEb11Dc11Be31hg41rg41Dg11gh61qh61Eh11fi31ki31pi31ui31fj22lj22pj22vj22fl31kl31pl31ul31gm61qm61hn41rn41|pii21si21hj42rj42il21sl21","#5c314d525f52df11yf11dg21xg216h52dh31wh31di51ui517j52djm28lr18m91lm61vm419n71mn41wn31ao51no24xo22dp21aq51xq51dr21xr21bs51ms41ws51dt41lt61vt41dum2ewk1dxm9eG41jG44oG44vG41kK31pK31|Yhm41rm41gn61qn61fo21lo21po21vo21fp13mp13pp13wp13gs11ls11qs11vs11ht41rt41|pho41ro41gp11ip41qp11sp41gq62qq62hs41rs41|whp11rp11","#df11yf11dg21xg21dh31wh31di51ui51djm3dm41lm61vm41dn31mn41wn31do22no24xo22aq51xq51dr21xr21bs51ms41ws51dt41lt61vt41dum25w41ewk14x62fxi1hye13z61ezk13A53cAo2bCq24D52aEs15Fx26Hw1aIs3bLq1|Yhm41rm41gn11ln11qn11vn11fo14mo14po14wo14gs11ls11qs11vs11ht41rt41|phn41rn41go11io41qo11so41gp63qp63hs41rs41|who11ro11"],"Fall":["#553146525852d811y811d921x9216a52da31wa31db51ub517c52dcm28er18f91lf61vf419g71mg41wg31ah51nh24xh22di21aj51xj51dk21xk21bl51ml41wl51dm41lm61vm41dnm2epk1bqq1ars29tu28v52evk1zv52fwi38x41Bx41ez52tz52eB41vB41|Yhf41rf41gg61qg61fh21lh21ph21vh21fi13mi13pi13wi13gl11ll11ql11vl11hm41rm41|phh41rh41gi11ii41qi11si41gj62qj62hl41rl41|whi11ri11","#76316752f811A8117952f921z921fa31ya318b52fb51wb51fcm39d52afb1pf51yf31aga1qg31zg23ch71rh24fi41cj71zj51fk41zk21dl71ql31zl41fm61pm51ym31fnm1doo1cpo1bqo1arn19so19tp18ur27wt17x41ex11gxk1gyd1wy52oz51pA41yA41|Ylf41uf41kg61tg61jh31ph21th21xh21ji23qi13ti13yi13kl21pl11tl21xl21lm41um41|pmh31vh21li11ni31ui43lj52ml31vl21|wmi11","#r811y811r921x931qa31wa51qb41vb71qcf1pdh11e41pec1Fe210f71ofc1Gf240g91egm11ha1cho13ix15jv1Gj517kt1Gk21blq1Fl21Il21bmv1bnu1bot1bps1aqr1arh1sr529s52gs51ms52ft52tt528u52nu52ev52uv528w41pw41ex41wx41|YBe41Af61Ag21Eg21Ah13Fh13Ak21Ek21Bl41|pCg21Bh11Dh21Bi42Ck21|wCh11","#76316752f811A8117952f921z921fa31ya318b52fb51wb51fcm39d52afr2chp1fim1fjp1fkm1flo1fmm2doo1cpo1bqo1arn19so19tp18ur27wt17x41ex11gxk1gyd1wy52oz51pA41yA41","#E531D652d811y811C852d921x921da31wa31Ba52db51ub51dcm2Ac52der2dgq1dhp1dim1ajs1dkm1blq1dmm3epk1bqq1ars29tu28v52evk1zv52fwi37x41Ax41ez52tz52dB41uB41","#C631B752b811w811b921v921A952ba31ua31bb51sb51zb52bcm3yd52bfr2bhp1bim18jp1bkm19lo1bmm2boo1cpo1dqo1frn1fso1etp1dur2cwt1cxk1xx11Bx41by52jyd1jz51aA41jA41","#d811k811c931j921ba51ja31ab71ib417cf16dh15e21bec1He414f24cfc1Ff71cgm1Dg91cho1Bha1cix11j51cjv14k21ckt12l215l21blq16mv17nu18ot19ps1bqr1fr52lrh1ls52rs51ys52et52st52ku52zu52dv52tv52jw41Aw41cx41ux41|Y7e416f616g21ag216h13bh136k21ak217l41|p8g217h21ah117i428k21|w9h11","#C631B752b811w811b921v921A952ba31ua31bb51sb51zb52bcm3yd52bf31if51rfb1bg23jg31sga1jh24th71ti418j51tj71bk21tk419l41jl31sl71bm31im51rm61bnm1boo1cpo1dqo1frn1fso1etp1dur2cwt1cxk1xx11Bx41by52jyd1jz51aA41jA41|Yef41nf41dg61mg61dh21hh21lh21qh31di13ii13li13ri23dl21hl21ml11ql21em41nm41|pfh21nh31ei43mi31qi11mj52fl21nl31|wpi11"],"Land":["#5d314e525g52dg11yg11dh21xh216i52di31wi31dj51uj517k52dkm28mr18n91ln61vn419o71mo41wo31ap51np24xp22dq21ar51xr51ds21xs21bt51mt41wt51du41lu61vu41dvm2exk1dym9dH53jH44oH44uH53eK41vK41kL31pL31|Yhn41rn41go61qo61fp21lp21pp21vp21fq13mq13pq13wq13gt11lt11qt11vt11hu41ru41|php41rp41gq11iq41qq11sq41gr62qr62ht41rt41|whq11rq11","#5i314j525l52dl11yl11dm21xm216n52dn31wn31do51uo517p52dpm28rr29tq1aup1dv41lv61vv41aw61hw41mw41rw41ww61dx21gx61nx21qx61xx21byq1dzm8cHo3dKi1wK41hL11jL61qL51|Yhv41rv41gw11lw11qw11vw11fx11mx11px11wx11","#5i314j525l52dl11yl11dm21xm216n52dn31wn31do51uo517p52dpm28rr29tq1aup1dvm1aws1dx31mx41wx31byq1dzm8cHo3dKi1wK41hL11jL61qL51|Ygx61qx61","#5h314i525k52dk11yk11dl21xl216m52dm31wm31dn51un517o52dom28qr18r91lr61vr419s71ms41ws31at51nt24xt22du21av51xv51dw21xw21bx51mx41wx51dy41ly61vy41dzm8cHo3dKi1wK41jL31qL31|Yhr41rr41gs61qs61ft21lt21pt21vt21fu13mu13pu13wu13gx11lx11qx11vx11hy41ry41|pht41rt41gu11iu41qu11su41gv62qv62hx41rx41|whu11ru11","#5e314f525h52dh11yh11di21xi216j52dj31wj31dk51uk517l52dlm28nr18o91lo61vo419p71mp41wp31aq51nq24xq22dr21as51xs51dt21xt21bu51mu41wu51dv41lv61vv41dwm2eyk1dzm9dI52jI43oI43uI52eK41vK41kL31pL31|Yho41ro41gp11lp11qp11vp11fq14mq14pq14wq14gu11lu11qu11vu11hv41rv41|php41rp41gq11iq41qq11sq41gr63qr63hu41ru41|whq11rq11","#df11yf11dg21xg21dh31wh31di51ui51djm3dm41lm61vm41dn31mn41wn31do22no24xo22aq51xq51dr21xr21bs51ms41ws51dt41lt61vt41dum26w41ewk15x62fxi1hye14z61fzi14A53dAm2cCo25D52bEq16Fv27Hu1bIq3cLo1|Yhm41rm41gn11ln11qn11vn11fo14mo14po14wo14gs11ls11qs11vs11ht41rt41|phn41rn41go11io41qo11so41gp63qp63hs41rs41|who11ro11","#de11ye11df21xf21dg31wg31dh51uh51dim3dl41ll61vl41dm31mm41wm31dn22nn24xn22ap51xp51dq21xq21br51mr41wr51ds41ls61vs41dtm26v41evk15w62fwi1hxe14y61fyi14z53ezk1dAm25C52cCo26Ev27Gu1bHq4cLo1|Yhl41rl41gm11lm11qm11vm11fn14mn14pn14wn14gr11lr11qr11vr11hs41rs41|phm41rm41gn11in41qn11sn41go63qo63hr41rr41|whn11rn11"]};
+const T = {"Sit":[1.2,1.4,0.15,0.08],"Idle":[1.0,0.9,1.2,0.15,0.08],"Walk":[0.14,0.14,0.14,0.14],"Look":[0.6,0.6,0.6,0.6,0.6,0.6],"Inspect":[0.8,0.12,0.6,0.12,0.12,0.12,0.12,0.15],"Yawn":[1.2,0.25,0.9,0.25,0.5],"Sleep":[0.7,0.7,0.7,0.7],"Peek":[1.0,0.06,0.08,0.08,0.5,1.0,1.0],"React":[0.08,0.1,0.3,0.08,0.15],"Fall":[0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09],"Land":[0.08,0.14,0.5,0.4,0.16,0.12,0.6]};
+const A = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+const KEYS = { f: '--cat-body-far', '#': '--cat-body', Y: '--cat-eye', p: '--cat-pupil', w: '--cat-shine', m: '--cat-mouth', M: '--cat-mouth-inner', z: '--cat-zzz', h: '--cat-heart' };
+const ORDER = 'f#YpwmMzh';
+const N = 48;
+
+// decode run data: frame = [[key, x, y, w, h], ...]
+const F = {};
+for (const [st, frames] of Object.entries(D)) {
+  F[st] = frames.map(enc => {
+    const rects = [];
+    for (const part of enc.split('|')) {
+      const k = part[0], s = part.slice(1);
+      for (let i = 0; i < s.length; i += 4) rects.push([k, A.indexOf(s[i]), A.indexOf(s[i + 1]), A.indexOf(s[i + 2]), A.indexOf(s[i + 3])]);
+    }
+    rects.sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+    return rects;
+  });
+}
+
+// playback order per card: [state, frameIndex, hold] steps, matching the Figma After-delay chain
+const seq = st => F[st].map((_, i) => [st, i, T[st][i]]);
+const LOOK_ORDER = [0, 4, 2, 1, 5, 3];
+const CARDS = [
+  { id: 'load', name: 'Page load', wide: true, load: true, steps: seq('Fall'),
+    desc: 'While the page loads, the cat falls upright in the landing pose and spins. The page rises from below and speeds up, like a fall. The spin finishes facing you, the paws reach, and it lands on the hero divider, stays bent down to recover, then sits. Then it replays.' },
+  { id: 'sit', name: 'Sit', steps: seq('Sit'), click: true,
+    desc: 'Breathes (head and chest rise 1 px), then blinks: closed, nearly open, open. Click the cat to make it hop.' },
+  { id: 'idle', name: 'Idle', steps: seq('Idle'),
+    desc: 'Stands and breathes, glances right with a flick of the tail, then blinks.' },
+  { id: 'walk', name: 'Walk', steps: seq('Walk'), walk: true,
+    desc: 'A stride like the reference: the near front leg and far back leg reach together, then the other pair. White near legs pass over the lilac far legs. The head sits on the front of the body and juts forward past the chest. The body moves 3 px a frame.' },
+  { id: 'look', name: 'Look', steps: LOOK_ORDER.map(i => ['Look', i, T.Look[i]]),
+    desc: 'Standing, the eyes sweep left, up-left, up, right, down-right, down. The black fill moves; the ring never breaks.' },
+  { id: 'inspect', name: 'Inspect', steps: seq('Inspect'), art: true,
+    desc: 'Spots the artwork and sinks into a low stalking crouch like the reference: head forward, body long and low, tail straight up. The rump bobs, the tail tip twitches and the back paws tread, then it rises.' },
+  { id: 'peek', name: 'Peek', steps: seq('Peek'), edge: true,
+    desc: 'Ears first, then it pops up fast, overshoots 2 px, dips back and settles, then looks left and right slowly.' },
+  { id: 'yawn', name: 'Yawn', steps: seq('Yawn'),
+    desc: 'Sleepy eyes, a small mouth, then a big stretch with the ears back, a little V mouth with two fangs and yellow yawn marks.' },
+  { id: 'react', name: 'React', steps: [...seq('React'), ['Sit', 0, 1.4]],
+    desc: 'Squash, then a hop with all four legs straight down and the tail up, yellow surprise marks at the top, and a soft landing. On the site it plays when you click the cat; here it repeats.' },
+  { id: 'sleep', name: 'Sleep', steps: seq('Sleep'),
+    desc: 'A slow breath in a soft loaf. A small z, then a z and a big Z drift up, then it starts again.' },
+  { id: 'fall', name: 'Fall', steps: seq('Fall'), air: true,
+    desc: 'The page-load loop on its own: front, three-quarter, side, back, and round again.' },
+  { id: 'land', name: 'Land', steps: [...seq('Land'), ['Sit', 0, 1.6]],
+    desc: 'Legs straight down to meet the divider, knees bend on impact (eyes squeezed), it stays low to recover (eyes shut, then open and looking down), rises and sits once.' },
+];
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+let scale = +(store.get('catv2-scale') || 4);
+let speed = 1;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let playing = !reduce;
+let colors = {};
+
+function readColors() {
+  const cs = getComputedStyle(document.documentElement);
+  for (const [k, v] of Object.entries(KEYS)) colors[k] = cs.getPropertyValue(v).trim();
+  colors.line = cs.getPropertyValue('--line').trim();
+  colors.raised = cs.getPropertyValue('--raised').trim();
+  colors.peach = cs.getPropertyValue('--peach').trim();
+  colors.onPastel = cs.getPropertyValue('--on-pastel').trim();
+  colors.text = cs.getPropertyValue('--text').trim();
+}
+
+function drawSprite(ctx, rects, ox, oy, px) {
+  for (const [k, x, y, w, h] of rects) {
+    ctx.fillStyle = colors[k];
+    ctx.fillRect(ox + x * px, oy + y * px, w * px, h * px);
+  }
+}
+
+// ---- build cards ----
+const grid = document.getElementById('grid');
+for (const c of CARDS) {
+  const card = document.createElement('section');
+  card.className = 'card' + (c.wide ? ' wide' : '');
+  card.innerHTML = `<div class="stage${c.click ? ' clickable' : ''}"><canvas aria-label="${c.name} animation" role="img"></canvas></div>
+    <div class="meta"><b>${c.name.toUpperCase()}</b><span class="count"></span></div>
+    <p class="desc">${c.desc}</p><div class="strip"></div>`;
+  grid.appendChild(card);
+  c.canvas = card.querySelector('.stage canvas');
+  c.stage = card.querySelector('.stage');
+  c.count = card.querySelector('.count');
+  c.strip = card.querySelector('.strip');
+  const st = c.id === 'react' ? 'React' : c.id === 'land' ? 'Land' : c.steps[0][0];
+  c.thumbs = F[st].map((_, i) => {
+    const t = document.createElement('canvas');
+    t.width = N; t.height = N; t.title = `${st} frame ${i + 1}`;
+    c.strip.appendChild(t);
+    return { el: t, st, i };
+  });
+  c.pos = 0; c.t = 0; c.x = null; c.override = null; c.clock = 0;
+  if (c.click) c.stage.addEventListener('click', () => { c.override = { steps: [...seq('React')], pos: 0, t: 0 }; draw(c); });
+}
+
+function layout(c) {
+  const dpr = Math.max(1, Math.round(window.devicePixelRatio || 1));
+  const w = c.stage.clientWidth - 4;
+  const px = scale * dpr;
+  const cssH = c.load ? N * scale + 200 : N * scale + 24;
+  c.canvas.style.height = cssH + 'px';
+  c.canvas.width = Math.max(1, Math.round(w * dpr));
+  c.canvas.height = Math.round(cssH * dpr);
+  c.px = px; c.dpr = dpr;
+  c.floor = c.canvas.height - 12 * dpr;   // sprite bottom sits here
+}
+
+function current(c) {
+  const o = c.override;
+  return o ? o.steps[o.pos] : c.steps[c.pos];
+}
+
+function draw(c) {
+  const ctx = c.canvas.getContext('2d');
+  const W = c.canvas.width, H = c.canvas.height, px = c.px, dpr = c.dpr;
+  ctx.clearRect(0, 0, W, H);
+  if (c.load) { drawLoad(c, ctx, W, H, px, dpr); return; }
+  const [st, fi, hold] = current(c);
+  const size = N * px;
+  let ox = Math.round((W - size) / 2 / px) * px;
+  if (c.art) ox = Math.max(0, Math.round((W / 2 - size * 0.62) / px) * px);
+  if (c.walk) {
+    if (c.x === null) c.x = Math.round((W - size) / 2 / px) * px;
+    ox = c.x;
+  }
+  const oy = c.air ? Math.round((H - size) / 2 / px) * px : c.floor - size;
+  if (!c.edge && !c.air) {   // floor line
+    ctx.fillStyle = colors.line;
+    ctx.fillRect(0, c.floor, W, 2 * dpr);
+  }
+  if (c.art) {     // the artwork the cat studies
+    const aw = 30 * px, ah = 36 * px, ax = ox + size - 4 * px;
+    ctx.fillStyle = colors.peach;
+    ctx.fillRect(ax, c.floor - ah, Math.min(aw, W - ax - 8 * dpr), ah);
+    ctx.fillStyle = colors.onPastel;
+    ctx.font = `${10 * dpr}px Silkscreen, monospace`;
+    ctx.fillText('ARTWORK', ax + 8 * dpr, c.floor - 10 * dpr);
+  }
+  drawSprite(ctx, F[st][fi], ox, oy, px);
+  if (c.walk && c.x + size < 0) {}         // wrap handled in tick
+  if (c.edge) {    // section edge the cat peeks over
+    ctx.fillStyle = colors.raised;
+    ctx.fillRect(0, c.floor, W, H - c.floor);
+    ctx.fillStyle = colors.line;
+    ctx.fillRect(0, c.floor, W, 2 * dpr);
+  }
+  c.count.textContent = `${st.toUpperCase()} ${fi + 1} / ${F[st].length} · ${hold.toFixed(2)} S`;
+  for (const t of c.thumbs) t.el.classList.toggle('on', t.st === st && t.i === fi);
+}
+
+
+// ---- page-load demo: the page rises from below while the cat spins, then it lands on the hero divider ----
+const LAND_N = T.Land.length - 1;   // the last Land frame is the sit itself
+// The page rises with ease-in (it speeds up, like a fall), so the landing is an impact, not a slow stop.
+// The spin is timed to finish on the front view 0.3 s before touchdown; the paws reach in the last 0.1 s.
+const SPIN = 0.1;
+const LOAD = { fall: 2.0, land: T.Land.slice(1, LAND_N).reduce((a, b) => a + b, 0), sit: 2.6 };
+function loadFrame(c) {
+  const t = c.clock, fall = LOAD.fall;
+  if (t < fall) {
+    const rise = 1 - Math.pow(t / fall, 2);
+    if (t < fall - 0.3) return { st: 'Fall', fi: Math.floor(t / SPIN) % F.Fall.length, hold: SPIN, rise };
+    if (t < fall - 0.1) return { st: 'Fall', fi: 0, hold: 0.2, rise };
+    return { st: 'Land', fi: 0, hold: 0.1, rise };
+  }
+  let u = t - fall;
+  for (let i = 1; i < LAND_N; i++) { if (u < T.Land[i]) return { st: 'Land', fi: i, hold: T.Land[i], rise: 0 }; u -= T.Land[i]; }
+  return { st: 'Sit', fi: u > 1.2 && u < 1.35 ? 2 : 0, hold: 0.6, rise: 0 };
+}
+function easeOut(x) { return 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3); }
+function drawLoad(c, ctx, W, H, px, dpr) {
+  const f = loadFrame(c);
+  const size = N * px;
+  const divider = H - 100 * dpr;                            // final line, the cat's feet rest here
+  const offset = Math.round(f.rise * (H + 40 * dpr));       // page still below, rising
+  const y0 = divider + offset;
+  // mock hero: heading bars above the divider, content bars below
+  ctx.fillStyle = colors.line;
+  const bar = (x, y, w, h) => ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+  const left = 16 * dpr;
+  bar(left, y0 - 110 * dpr, Math.min(W * 0.42, 360 * dpr), 22 * dpr);
+  bar(left, y0 - 78 * dpr, Math.min(W * 0.3, 260 * dpr), 22 * dpr);
+  bar(left, y0 - 40 * dpr, Math.min(W * 0.36, 300 * dpr), 8 * dpr);
+  ctx.fillStyle = colors.text;
+  bar(0, y0, W, 2 * dpr);                                   // the hero divider
+  ctx.fillStyle = colors.line;
+  for (let i = 0; i < 3; i++) bar(left + i * (W - 2 * left) / 3, y0 + 18 * dpr, (W - 2 * left) / 3 - 16 * dpr, 60 * dpr);
+  // the cat: fall frames keep the paws (sprite row 37) at the divider line; land and sit frames stand on it
+  const ox = Math.round((W * 0.68 - size / 2) / px) * px;
+  const paws = f.st === 'Fall' ? 38 : 48;
+  const oy = divider - paws * px;
+  drawSprite(ctx, F[f.st][f.fi], ox, oy, px);
+  c.count.textContent = `${f.st.toUpperCase()} ${f.fi + 1} / ${F[f.st].length} · ${f.hold.toFixed(2)} S`;
+  for (const t of c.thumbs) t.el.classList.toggle('on', t.st === f.st && t.i === f.fi);
+}
+
+function drawThumbs() {
+  for (const c of CARDS) for (const t of c.thumbs) {
+    const ctx = t.el.getContext('2d');
+    ctx.clearRect(0, 0, N, N);
+    drawSprite(ctx, F[t.st][t.i], 0, 0, 1);
+  }
+}
+
+function loadKey(c) { const f = loadFrame(c); return f.st + f.fi + ':' + Math.round(f.rise * 400); }
+function advance(c) {
+  if (c.load) { c.clock += 0.1; if (c.clock > LOAD.fall + LOAD.land + LOAD.sit) c.clock = 0; draw(c); return; }
+  const o = c.override;
+  if (o) {
+    o.pos++; o.t = 0;
+    if (o.pos >= o.steps.length) c.override = null;
+  } else {
+    c.pos = (c.pos + 1) % c.steps.length; c.t = 0;
+  }
+  if (c.walk) {   // 3 sprite px per frame, wrap around the lane
+    c.x += 2 * c.px;
+    if (c.x > c.canvas.width) c.x = -N * c.px;
+  }
+  draw(c);
+}
+
+let last = performance.now();
+function tick(now) {
+  const dt = Math.min(0.1, (now - last) / 1000) * speed;
+  last = now;
+  if (playing) for (const c of CARDS) {
+    if (c.load) {
+      const before = loadKey(c);
+      c.clock += dt;
+      if (c.clock > LOAD.fall + LOAD.land + LOAD.sit) c.clock = 0;
+      if (loadKey(c) !== before) draw(c);
+      continue;
+    }
+    const o = c.override;
+    const holder = o || c;
+    holder.t += dt;
+    if (holder.t >= current(c)[2]) advance(c);
+  }
+  requestAnimationFrame(tick);
+}
+
+function relayout() { readColors(); for (const c of CARDS) { layout(c); c.x = null; draw(c); } drawThumbs(); }
+
+// ---- controls ----
+function setPressed(groupId, v) {
+  for (const b of document.querySelectorAll(`#${groupId} button`)) b.setAttribute('aria-pressed', String(b.dataset.v === String(v)));
+}
+function effectiveTheme() {
+  const t = document.documentElement.dataset.theme;
+  if (t) return t;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+document.getElementById('theme').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.documentElement.dataset.theme = b.dataset.v;
+});
+document.getElementById('size').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  scale = +b.dataset.v; store.set('catv2-scale', String(scale)); setPressed('size', scale); relayout();
+});
+document.getElementById('speed').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  speed = +b.dataset.v; setPressed('speed', b.dataset.v);
+});
+const playBtn = document.getElementById('play'), stepBtn = document.getElementById('step');
+function syncPlay() {
+  playBtn.textContent = playing ? 'Pause' : 'Play';
+  stepBtn.disabled = playing;
+  document.getElementById('motion-note').hidden = !(reduce && !playing);
+}
+playBtn.addEventListener('click', () => { playing = !playing; last = performance.now(); syncPlay(); });
+stepBtn.addEventListener('click', () => { for (const c of CARDS) advance(c); });
+
+new MutationObserver(() => { setPressed('theme', effectiveTheme()); relayout(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setPressed('theme', effectiveTheme()); relayout(); });
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(relayout, 120); });
+
+setPressed('theme', effectiveTheme()); setPressed('size', scale); setPressed('speed', '1'); syncPlay();
+relayout();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+requestAnimationFrame(tick);
+</script>
+
+</body></html>

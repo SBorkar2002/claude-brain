@@ -1,0 +1,76 @@
+- [Sejal — Role & Context](user-sejal.md) — GenAI Product Design Intern at Epifi/Fi Money, making AI videos to sell Tetriz (B2B eng intelligence platform)
+- [Feedback — Working Style](feedback-working-style.md) — how Sejal likes to collaborate
+- [Feedback — Push Back](feedback-push-back.md) — form a view and defend it; never just endorse whoever spoke last; act as her senior ADVISOR, not assistant (16 Oct)
+- [Feedback — Animation Preferences](feedback-animation-prefs.md) — DORA video animation rules (Page 2 only, Remotion, typewriter terminals, random scatter dots, etc.)
+- [Feedback — Caption Placement](feedback-caption-placement.md) — Captions must stay fully within their scene's clean/white area, never overlapping UI elements; grow vertically if needed
+- [Feedback — No Tilting](feedback-no-tilt.md) — never rotate/tilt cards or any elements; asymmetry via position/size/opacity only
+- [Feedback — No Overlapping Elements](feedback-no-overlap.md) — Never overlap UI elements unless explicitly asked; always check bounding boxes of absolutely-positioned elements
+- [Feedback — Graph Annotations](feedback-graph-annotations.md) — In-graph labels must never overlap the plotted curve NOR leave the plot area; verify bbox vs curve (getPointAtLength) + plot bounds before presenting
+- [Feedback — Hero No CTA Extras](feedback-hero-no-cta-extras.md) — Never add chips/badges/proof rows below the hero CTA buttons on feature pages; a reference showing them does NOT override this standing rule
+- [Feedback — Short Subtexts](feedback-short-subtexts.md) — Keep every subtext/lede under a title short & fast to read (~1 short sentence); trim long reference ledes, applies across all feature pages
+- [Feedback — PR Creation](feedback-pr-creation.md) — Claude MAY create PRs without asking (never merge to master/main); every PR needs a Conventional-Commits title + full description (summary/changes/files/notes), follow any given format/template
+- [Feedback — Caption Position Continuity](feedback-caption-position-continuity.md) — same shot across consecutive panels = same caption position; don't inherit Figma's per-frame boxes
+- [Feedback — Caption Meta Rules](feedback-caption-meta-rules.md) — emphasis word-by-word (wordDelay=4); bottom CC = full line in ONE GO (wordDelay=0, Aug 14); capitalize first letter, no overlapping sequential captions
+- [Feedback — Typography System](feedback-typography-system.md) — 3 fonts (Mona Sans/Plus Jakarta Sans/Geist Mono), full type scale, color tokens (#0d0d0d, TEAL #03A6CF, CORAL #FF6B6B, etc.)
+- [Feedback — Layout Meta Rules](feedback-layout-meta-rules.md) — comparisons side-by-side; stat card vertical if left/right, horizontal if top/bottom; key words in TEAL
+- [Feedback — Spine Before Script](feedback-spine-before-script.md) — Anandhi: nail story beats + which real product screen proves each feature before polishing VO prose; visuals can carry depth VO doesn't need to spell out
+- [Feedback — PR Description Format](feedback-pr-description-format.md) — existing branch → Before/After/Why tables per PR #6800; new branch → lead with what & why
+- [Feedback — Chart Fidelity Bar](feedback-chart-fidelity-bar.md) — chart/dashboard scenes need real product-prototype polish (shadows, icons, smooth curves, pill chips), not wireframe sketches, per manager's reference mockup
+- [Feedback — Continuation Scenes](feedback-continuation-scenes.md) — META RULE: consecutive frames that continue the same layout get NO fade in/out; hard cut with matched positions, only per-element animation bridges
+- [Feedback — Caption System](feedback-caption-system.md) — two tiers: closed captions (small, bottom-center, full VO, always) vs baked-in emphasis (large, anywhere, always ABOVE the CC band)
+- [Feedback — Object Identity](feedback-object-identity.md) — icon carries identity, color carries state; skill=⚡/skill.md, plugin=🧩, dashboard=chrome, screenshot=image; dark bookends + light middle; reusable across scripts
+- [Feedback — VO Cut Tails](feedback-vo-cut-tails.md) — never cut VO mid-word; whisper ends undershoot, leave ≥0.4s decay tail at segment splits
+- [Feedback — VO Interruptions](feedback-vo-interruptions.md) — an interruption is a CUT not a duck; 4ms fade; find the cut by transcribing candidates
+- [Feedback — Tempo vs Pace](feedback-tempo-vs-pace.md) — same atempo ≠ same delivery; measure syllables/sec per segment
+- [Feedback — Ambience Bed](feedback-ambience-bed.md) — an audible bed must duck under every voice; presence is measurable, audibility is not; check spectrum + VO coverage, not just level
+- [Feedback — Diff Before Rewrite](feedback-diff-before-rewrite.md) — when a beat doesn't land, diff the frames before treating it as a writing problem
+- [Feedback — Panel Screen Time](feedback-panel-screen-time.md) — STANDING: hold each panel ~1s after its VO line (segmented-audio gaps; 1.5-2s felt too long); 2:30 budget, repeat in all scenes
+- [Feedback — Pop Reveal Rule](feedback-pop-reveal-rule.md) — META: grids/dots reveal with one staggered spring pop-in, landing on the VO words they illustrate; everything else in the panel arrives earlier
+- [YouTube Employer-Brand Channel](project-youtube-employer-brand.md) — spine DECIDED 19 Aug: "the Phrasebook" (channel = surface of a public reference, every video is one entry); 4 formats, character deferred, page-as-visual, commercial bridge rules
+- [Comic Pipeline](project-comic-pipeline.md) — 9-step comic production flow, Drive-vs-repo canonical rule, review gates, Drive folder IDs + tested Drive-tool limits
+- [Generated Art Keying](project-comic-generated-art-keying.md) — ChatGPT art arrives on a solid bg; key it + measure the head (keying.py, sleephead.py) before compositing
+- [Comic Cast Lock](project-comic-cast-lock.md) — art direction DECIDED 4 Sep: neat comic register (crude rejected), greyscale+teal, AI = one six-petal mark with an eye
+- [Feedback — Artifact Stays Lean](feedback-artifact-stays-lean.md) — the series artifact is a script review surface; production history goes in the repo, not on the page
+- [Feedback — Comic Hard Cuts](feedback-comic-hard-cuts.md) — comic episode videos are cut-cut-cut; every panel hard-cuts, never a crossfade, even on scene changes
+- [Feedback — AI Mark on Screen](feedback-ai-mark-on-screen.md) — composite the teal six-petal AI mark onto every AI monitor when building the video; plates ship blank on purpose
+- [Reference — ffmpeg VO Cut](reference-ffmpeg-vo-cut.md) — put -ss BEFORE -i when cutting VO with afade or the fade silences the clip; verify with volumedetect
+- [Feedback — Lip Sync From Real Frames](feedback-lip-sync-real-frames.md) — flap = swap between real storyboard frames only (diff frames to find pairs); never paint/patch mouths onto the art
+- [Feedback — SFX Text Pops](feedback-sfx-text-pops.md) — every SFX word (click/swipe/ding/AH) animates on its sound; never baked flat. Skill update pending until graph video locks
+- [Feedback — Motion Easing](feedback-motion-easing.md) — a pulse must ease out, never stop dead; fade by opacity, never by scaling geometry
+- [EP003 Remote Control](project-ep003-remote-control.md) — full build state of the date/phone episode: file map, locked decisions, and the 9 traps that cost hours
+- [Feedback — No End Cards](feedback-no-end-cards.md) — STANDING 5 Oct: comic scripts end on the story; no CLEARED stamp, no bucket outro, no bucket in header
+- [Feedback — AJ's AI Voice](feedback-aj-ai-voice.md) — STANDING 6 Oct: AJ's AI = graph-engineering register (plain, dry, blameless); no sir/Certainly/formal
+- [Instahyre Assessment](project-instahyre-assessment.md) — webinar landing page take-home; v4 "The Call" direction (cobalt/lime, Funnel Display) in file z263yFoeKFoWhY7Ocb3WqK page 5:2
+- [Feedback — No Em Dashes](feedback-no-em-dashes.md) — STANDING 6 Oct: no em dashes in any design copy, Figma text or layer names; verify after every build
+- [Feedback — No Paid Tools](feedback-no-paid-tools.md) — STANDING 7 Oct: never spend credits (Figma AI images etc.); build premium/3D feel natively with grain, glass, shadows
+- [Feedback — Motion Quality Bar](feedback-motion-quality-bar.md) — STANDING 7 Oct: After Effects-grade motion (mask reveals, draw-ons, wipes, expo easing), no fade/bounce; graphics must come from the page's own system
+- [AlterOffice Design Test](project-alteroffice-design-test.md) — "The Last Over" cricket comic take-home: brief, deliverables, art direction (drums motif, 10-panel plan, helmet-as-identity)
+- [System One Model Episode](project-system-one-model-episode.md) — Prashasti/Mohit/v3 versions, Slack thread, Figma page 761:2, Jev limits from docs, open fixes 8 Oct
+- [Portfolio Figma](project-portfolio-figma.md) — personal portfolio home in Figma HYNlpUpZ9Qt58sdSfOlOI4, "Design / Ship" switch concept, node ids, open flags
+- [Portfolio v3 · Signature](project-portfolio-v3.md) — 16 Oct: from-scratch build in Documents/Github/portfolio-v3, 3D nib-calligraphy hero, six section worlds, dev-server + GSAP gotchas, open flags
+- [Portfolio · Pixel (v4)](project-portfolio-pixel.md) — 17 Oct: pixel chrome + HD work, faceless cat mascot, Figma hfj2locm0N5bssdEU6NaoH, plan/research/inventory in Documents/career/portfolio-pixel
+- [Feedback — Cat Agent Routing](feedback-cat-agent-routing.md) — STANDING: every portfolio pixel-cat tweak goes to the dedicated cat-studio session, not the main one
+- [Shorts Experiment](project-shorts-experiment.md) — 14 Oct: 7-15s looping Reels/Shorts test with AJ; `make it better` script, reuses graph plates, palette-break question open
+- [Sourced Redesign](project-sourced-redesign.md) — human vs AI art + Art Buddy app; 17 hi-fi screens, Lilac/Vermilion dark system, Figma 72tXrfMYH64v0hkxDF1m2n page 8:414
+- [Green Gallery](project-green-gallery.md) — plant adoption revamp (site desktop+mobile, case study); P2P+trust, India, cute/bubbly Fredoka/Nunito, same palette; style tile 92:141 pending
+- [Feedback — AI-Generic Look](feedback-ai-generic-look.md) — STANDING 17 Oct: editorial serif+mono labels+hairlines reads AI-made; act as senior advisor, gate builds with a style tile
+- [Cat v2](project-cat-v2.md) — 48px mascot, APPROVED and live in Cat 8:159 (17 Oct): files, Figma ids (35:564 compare, 34:731 playground, 31:706 set), why 48px, swap caveats; cat tweaks go to the cat session
+- [Studio Plugin](project-personal-skill-kit.md) — 20 Oct: her own /studio plugin (code/figma/flow doctors, shared rules, proof scripts, hooks) in ~/Documents/Github/studio; installed locally, not pushed
+- [Feedback — Studio Push](feedback-studio-push.md) — STANDING 20 Oct: push SBorkar2002/studio commits without asking; other repos keep their own rules
+- [Prompt Engineering Episode](project-prompt-engineering-episode.md) — Script A "Wait, What?" Remotion build PromptEng (20 Oct): files, card re-record splice, flap pairs, open flags
+
+## Archived: Tetriz / Epifi work context (not loaded by default)
+Lessons from these are folded into playbooks/. Read only if the old work comes up.
+- [Video Pipeline — Project State](_epifi/project-video-pipeline.md) — current pipeline status, tools, gaps, next steps
+- [Launch Storyboard — v4.2](_epifi/project-launch-storyboard.md) — Transform Launch script v4.2 spine + the 10-frame Figma storyboard built from it (file 30sryhNZr624S6zxJMf6Xz), decisions, node ids, open flags
+- [Landing Page Rebuild](_epifi/project-landing-page-rebuild.md) — tetriz.ai rebuild: problem-first narrative direction, "reads every session" differentiator, quiz mid-scroll, 3 low-fi wireframe options in Figma (file 86MmIR4gywvxRaobJMAhGf)
+- [Feedback — Anandhi Website Review](_epifi/feedback-anandhi-website-review.md) — Aug 4 review of v1.5 feature pages: flat/no-story; fix narrative arc, graph axis+interactivity, compare-table categories, visual finesse, contextual interlinking
+- [AI Adoption Page](_epifi/project-ai-adoption-page.md) — local build of /features/ai-adoption in the Next.js site (Documents/Github/core), route/files/tokens/decisions + deep-dives-grid TODO; humanizing skill = plain-english
+- [Quiz Wireframes](_epifi/project-quiz-wireframes.md) — AI-Native Index lead-gen quiz redesign (Anandhi handed to Sejal); 5-screen low-fi wireframes in Figma nyj8rbPsYnRozDmtHJgQzq for the GTM call; strip Tetriz, add email capture, define CTA
+- [Quiz App Dev](_epifi/project-quiz-app-dev.md) — shipped quiz-app PRs #6611/#6649 in workloom-dev/core, LCI merge-gate workflow, backend toolchain now on her Mac
+- [Feedback — Sumit's Messaging Rules](_epifi/feedback-sumit-messaging-rules.md) — CEO rules: no "Tetriz Transform" as a name, center "AI-native, faster," don't frame coaching as extracting from top performers, AI-native claims need Mohit's input
+- [Reference — Product Brain Repo](_epifi/reference-product-brain-repo.md) — where Tetriz product ground truth lives (PRDs, sales docs), key files for Harness/Coaching features, and the git-clone workaround for repo access
+- [Feedback — Anandhi Storyboard Review](_epifi/feedback-anandhi-storyboard-review.md) — July 2026: script depth first, persistent 3-pillar map (emphasize current), individual+org framing per feature, attention hierarchy, before/after must visually differ; animate coaching section first as the test
+- [Feedback — Anandhi Cut Review](_epifi/feedback-anandhi-cut-review.md) — 2026-07-16 review of first full animated cut: fix caption/subtitle clash, vary transition monotony (rules fly in all directions, harness cue), Memory grid must SPREAD (affects everyone), Stack must show compounding; keep DECISIONS.md log across sessions
+- [Feedback — Anandhi VO-Cut Review](_epifi/feedback-anandhi-vo-cut-review.md) — 2026-07-17, NOT yet actioned: P0s = S2b curve must bend ON the VO word, bridge Prompts→Harness & Loops→Memory transitions, fix Stack repeat+layout, emphasize PERSONALISED COACHING; heart shape may not land for CXOs; ask Sejal before any skill-file update
+- [Feedback — Dashboard Split Rule](_epifi/feedback-dashboard-split-rule.md) — mobile scrollytelling: split lens into per-panel dashboards only if the full hero overflows the stage; measure first, never split by default

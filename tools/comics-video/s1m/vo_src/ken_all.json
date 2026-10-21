@@ -1,0 +1,287 @@
+{
+ "text": " 80,000 support tickets in the backlog, sorted by stand-up. Using system one model, not the big one. Don't mess anything up. That was the team's AI budget. For the whole month, I said a system one model. I added $20. Demo's at 10. Done? The what? Yeah, something's definitely wrong.",
+ "segments": [
+  {
+   "s": 0.0,
+   "e": 4.48,
+   "t": " 80,000 support tickets in the backlog, sorted by stand-up."
+  },
+  {
+   "s": 6.28,
+   "e": 13.24,
+   "t": " Using system one model, not the big one. Don't mess anything up. That was the team's AI budget."
+  },
+  {
+   "s": 13.68,
+   "e": 24.38,
+   "t": " For the whole month, I said a system one model. I added $20. Demo's at 10. Done? The what?"
+  },
+  {
+   "s": 26.14,
+   "e": 28.46,
+   "t": " Yeah, something's definitely wrong."
+  }
+ ],
+ "words": [
+  {
+   "w": "80",
+   "s": 0.0,
+   "e": 0.56
+  },
+  {
+   "w": ",000",
+   "s": 0.56,
+   "e": 1.08
+  },
+  {
+   "w": "support",
+   "s": 1.08,
+   "e": 1.46
+  },
+  {
+   "w": "tickets",
+   "s": 1.46,
+   "e": 1.8
+  },
+  {
+   "w": "in",
+   "s": 1.8,
+   "e": 1.98
+  },
+  {
+   "w": "the",
+   "s": 1.98,
+   "e": 2.18
+  },
+  {
+   "w": "backlog,",
+   "s": 2.18,
+   "e": 2.7
+  },
+  {
+   "w": "sorted",
+   "s": 3.54,
+   "e": 3.76
+  },
+  {
+   "w": "by",
+   "s": 3.76,
+   "e": 4.14
+  },
+  {
+   "w": "stand",
+   "s": 4.14,
+   "e": 4.44
+  },
+  {
+   "w": "-up.",
+   "s": 4.44,
+   "e": 4.78
+  },
+  {
+   "w": "Using",
+   "s": 6.28,
+   "e": 6.48
+  },
+  {
+   "w": "system",
+   "s": 6.48,
+   "e": 6.8
+  },
+  {
+   "w": "one",
+   "s": 6.8,
+   "e": 7.04
+  },
+  {
+   "w": "model,",
+   "s": 7.04,
+   "e": 7.38
+  },
+  {
+   "w": "not",
+   "s": 7.5,
+   "e": 7.66
+  },
+  {
+   "w": "the",
+   "s": 7.66,
+   "e": 7.86
+  },
+  {
+   "w": "big",
+   "s": 7.86,
+   "e": 8.02
+  },
+  {
+   "w": "one.",
+   "s": 8.02,
+   "e": 8.38
+  },
+  {
+   "w": "Don't",
+   "s": 9.2,
+   "e": 9.44
+  },
+  {
+   "w": "mess",
+   "s": 9.44,
+   "e": 9.68
+  },
+  {
+   "w": "anything",
+   "s": 9.68,
+   "e": 9.98
+  },
+  {
+   "w": "up.",
+   "s": 9.98,
+   "e": 10.42
+  },
+  {
+   "w": "That",
+   "s": 11.62,
+   "e": 11.82
+  },
+  {
+   "w": "was",
+   "s": 11.82,
+   "e": 12.04
+  },
+  {
+   "w": "the",
+   "s": 12.04,
+   "e": 12.22
+  },
+  {
+   "w": "team's",
+   "s": 12.22,
+   "e": 12.58
+  },
+  {
+   "w": "AI",
+   "s": 12.58,
+   "e": 12.78
+  },
+  {
+   "w": "budget.",
+   "s": 12.78,
+   "e": 13.24
+  },
+  {
+   "w": "For",
+   "s": 13.68,
+   "e": 13.86
+  },
+  {
+   "w": "the",
+   "s": 13.86,
+   "e": 14.0
+  },
+  {
+   "w": "whole",
+   "s": 14.0,
+   "e": 14.26
+  },
+  {
+   "w": "month,",
+   "s": 14.26,
+   "e": 14.74
+  },
+  {
+   "w": "I",
+   "s": 15.42,
+   "e": 15.76
+  },
+  {
+   "w": "said",
+   "s": 15.76,
+   "e": 16.04
+  },
+  {
+   "w": "a",
+   "s": 16.04,
+   "e": 16.38
+  },
+  {
+   "w": "system",
+   "s": 16.38,
+   "e": 16.68
+  },
+  {
+   "w": "one",
+   "s": 16.68,
+   "e": 17.02
+  },
+  {
+   "w": "model.",
+   "s": 17.02,
+   "e": 17.4
+  },
+  {
+   "w": "I",
+   "s": 18.62,
+   "e": 18.9
+  },
+  {
+   "w": "added",
+   "s": 18.9,
+   "e": 19.08
+  },
+  {
+   "w": "$20.",
+   "s": 19.08,
+   "e": 19.64
+  },
+  {
+   "w": "Demo's",
+   "s": 20.26,
+   "e": 20.68
+  },
+  {
+   "w": "at",
+   "s": 20.68,
+   "e": 20.82
+  },
+  {
+   "w": "10.",
+   "s": 20.82,
+   "e": 21.2
+  },
+  {
+   "w": "Done?",
+   "s": 22.3,
+   "e": 22.66
+  },
+  {
+   "w": "The",
+   "s": 23.8,
+   "e": 24.14
+  },
+  {
+   "w": "what?",
+   "s": 24.14,
+   "e": 24.38
+  },
+  {
+   "w": "Yeah,",
+   "s": 26.14,
+   "e": 26.82
+  },
+  {
+   "w": "something's",
+   "s": 26.82,
+   "e": 27.5
+  },
+  {
+   "w": "definitely",
+   "s": 27.5,
+   "e": 27.98
+  },
+  {
+   "w": "wrong.",
+   "s": 27.98,
+   "e": 28.46
+  }
+ ]
+}

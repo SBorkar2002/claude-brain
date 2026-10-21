@@ -1,0 +1,317 @@
+{
+ "frame1": [
+  {
+   "t": "hope your AI was less brutal than mine with /insights.",
+   "x": 79,
+   "y": 174,
+   "w": 299
+  }
+ ],
+ "frame2": [
+  {
+   "t": "hope your AI was less brutal than mine with /insights.",
+   "x": 79,
+   "y": 174,
+   "w": 299
+  }
+ ],
+ "frame3": [
+  {
+   "t": "ohh /insights? nah nah, bet mine was worse",
+   "x": 348,
+   "y": 501,
+   "w": 299
+  }
+ ],
+ "frame4": [
+  {
+   "t": "I have no idea what that means.",
+   "x": 384,
+   "y": 342,
+   "w": 212,
+   "italic": true
+  }
+ ],
+ "frame5": [
+  {
+   "t": "yo what's /insights?",
+   "x": 29,
+   "y": 192,
+   "w": 370
+  }
+ ],
+ "frame6": [
+  {
+   "t": "It reads a month of our sessions, finds what keeps going wrong, then hands you the fix.",
+   "x": 111,
+   "y": 299,
+   "w": 498
+  }
+ ],
+ "frame7": [
+  {
+   "t": "cool. show me mine",
+   "x": -13,
+   "y": 235,
+   "w": 498
+  }
+ ],
+ "frame9": [
+  {
+   "t": "You opened three parts of this codebase you had never seen,",
+   "x": 111,
+   "y": 269,
+   "w": 498
+  }
+ ],
+ "frame10": [
+  {
+   "t": "and shipped in all of them in your first month.",
+   "x": 359,
+   "y": 295,
+   "w": 313
+  }
+ ],
+ "frame11": [
+  {
+   "t": "fair fair i know-",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame13": [
+  {
+   "t": "You ask me to summarise the documents you are sent. You do not read the summary either.",
+   "x": 111,
+   "y": 299,
+   "w": 498
+  }
+ ],
+ "frame14": [
+  {
+   "t": "I then read the document a second time to answer what it already said.",
+   "x": 324,
+   "y": 304,
+   "w": 313
+  }
+ ],
+ "frame15": [
+  {
+   "t": "hey i don't do that-",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame17": [],
+ "frame18": [],
+ "frame19": [
+  {
+   "t": "yo yo you need to calm dow-",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame20": [
+  {
+   "t": "yo yo you need to calm dow-",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame21": [
+  {
+   "t": "Sessions most often go wrong after this instruction.",
+   "x": 111,
+   "y": 587,
+   "w": 498,
+   "size": 24
+  },
+  {
+   "t": "“whatever.”",
+   "x": 111,
+   "y": 717,
+   "w": 498,
+   "at": "aj_whatever.wav"
+  },
+  {
+   "t": "used in 41 sessions",
+   "x": 111,
+   "y": 812,
+   "w": 498,
+   "size": 24,
+   "after": "ding"
+  }
+ ],
+ "frame22": [
+  {
+   "t": "i thought you were supposed to know all that and pick for me",
+   "x": 80,
+   "y": 84,
+   "w": 370
+  }
+ ],
+ "frame23": [
+  {
+   "t": "i thought you were supposed to know all that and pick for me",
+   "x": 80,
+   "y": 84,
+   "w": 370
+  }
+ ],
+ "frame24": [
+  {
+   "t": "I can't pick for you. I can remember for you.",
+   "x": 175,
+   "y": 214,
+   "w": 370
+  }
+ ],
+ "frame26": [
+  {
+   "t": "…so next time you just ask me?",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame27": [
+  {
+   "t": "Every time. Press copy.",
+   "x": 175,
+   "y": 343,
+   "w": 370
+  }
+ ],
+ "frame29": [
+  {
+   "t": "Install this as a hook. Tests run after every edit.",
+   "x": 111,
+   "y": 269,
+   "w": 498
+  }
+ ],
+ "frame31": [
+  {
+   "t": "Save this as a skill. Five steps, one command.",
+   "x": 111,
+   "y": 269,
+   "w": 498
+  }
+ ],
+ "frame33": [
+  {
+   "t": "And next month, if you want it: a loop that runs your tests,",
+   "x": 111,
+   "y": 269,
+   "w": 498
+  }
+ ],
+ "frame34": [
+  {
+   "t": "fixes what fails, and only comes back when it's green.",
+   "x": 341,
+   "y": 298,
+   "w": 311
+  }
+ ],
+ "frame35": [
+  {
+   "t": "WAIT. YOU CAN DO THAT??",
+   "x": 40,
+   "y": 153,
+   "w": 370
+  }
+ ],
+ "frame37": [
+  {
+   "t": "Something funny from your month.",
+   "x": 114,
+   "y": 740,
+   "w": 491
+  }
+ ],
+ "frame38": [
+  {
+   "t": "A user was asked if his four tasks depended on each other.",
+   "x": 289,
+   "y": 156,
+   "w": 370
+  }
+ ],
+ "frame39": [
+  {
+   "t": "He said ‘whatever’",
+   "x": 350,
+   "y": 195,
+   "w": 370
+  }
+ ],
+ "frame40": [
+  {
+   "t": "It ran all nigh-",
+   "x": 350,
+   "y": 195,
+   "w": 370
+  }
+ ],
+ "frame41": [
+  {
+   "t": "OKAY OKAY THAT'S ENOUGH",
+   "x": 21,
+   "y": 170,
+   "w": 370
+  }
+ ],
+ "frame42": [
+  {
+   "t": "why is he freaking out?",
+   "x": 59,
+   "y": 280,
+   "w": 179
+  }
+ ],
+ "frame43": [
+  {
+   "t": "he ran /insights. first time.",
+   "x": 431,
+   "y": 296,
+   "w": 179
+  }
+ ],
+ "frame45": [
+  {
+   "t": "hang on. let me actually ask him.",
+   "x": 431,
+   "y": 296,
+   "w": 179
+  }
+ ],
+ "frame46": [
+  {
+   "t": "Hey AJ,",
+   "x": 105,
+   "y": 244,
+   "w": 299
+  }
+ ],
+ "ha": [
+  {
+   "t": "ha. see. it's y-",
+   "x": 87,
+   "y": 236,
+   "w": 313
+  }
+ ],
+ "frame28": [
+  {
+   "t": "...",
+   "x": 29,
+   "y": 192,
+   "w": 370
+  }
+ ]
+}

@@ -1,0 +1,389 @@
+<title>Cat v2 in Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Rethink+Sans:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap">
+<style>
+/* Layout: one review sheet. Header + controls, then a 3-column grid of stage cards (1 column on phones).
+   Tokens are the portfolio's own "Portfolio · Color" variables, so the page and the cat swap together. */
+:root {
+  --bg: #F3F0FA; --raised: #FFFFFF; --sunken: #E7E2F2; --line: #D4CDE4;
+  --text: #17141F; --muted: #5D5770; --ink: #5B47D6; --on-pastel: #17141F;
+  --peach: #FFB99A; --butter: #FFE58A;
+  --cat-body: #17141F; --cat-body-far: #423B54; --cat-bell: #d9f860; --cat-eye: #FFD43B; --cat-pupil: #17141F; --cat-shine: #FFFFFF;
+  --cat-mouth: #FF8FB1; --cat-mouth-inner: #C4456E; --cat-zzz: #8F7BFF; --cat-heart: #FF6F9C;
+  --display: "Jersey 15", "Silkscreen", ui-monospace, monospace;
+  --label: "Silkscreen", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --body: "Rethink Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15131C; --raised: #1E1B28; --sunken: #0F0D15; --line: #34304A;
+    --text: #F2EFFA; --muted: #A7A1BC; --ink: #C3B5FF;
+    --cat-body: #F2EFFA; --cat-body-far: #BEB7D2; --cat-bell: #d9f860; --cat-pupil: #15131C; --cat-zzz: #C3B5FF; --cat-heart: #FF8FB1;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15131C; --raised: #1E1B28; --sunken: #0F0D15; --line: #34304A;
+  --text: #F2EFFA; --muted: #A7A1BC; --ink: #C3B5FF;
+  --cat-body: #F2EFFA; --cat-body-far: #BEB7D2; --cat-bell: #d9f860; --cat-pupil: #15131C; --cat-zzz: #C3B5FF; --cat-heart: #FF8FB1;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--text); font-family: var(--body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: 48px 72px; display: grid; gap: 32px; }
+header { display: grid; gap: 12px; }
+.eyebrow { font-family: var(--label); font-size: 11px; letter-spacing: .08em; color: var(--ink); text-transform: uppercase; }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(44px, 7vw, 72px); line-height: .95; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+.lede { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; max-width: 62ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 12px 16px; background: var(--raised); border: 2px solid var(--line); }
+.group { display: flex; align-items: center; gap: 8px; }
+.group > span { font-family: var(--label); font-size: 10px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.seg { display: inline-flex; border: 2px solid var(--text); }
+.seg button, .btn { font-family: var(--label); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: var(--text); border: 0; padding: 8px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--butter); color: var(--on-pastel); }
+.btn { border: 2px solid var(--text); }
+.btn:disabled { opacity: .4; cursor: default; }
+button:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 32px 28px; }
+.card { display: grid; gap: 10px; min-width: 0; }
+.card.wide { grid-column: 1 / -1; }
+.stage { position: relative; background: var(--sunken); border: 2px solid var(--line); overflow: hidden; }
+.stage canvas { display: block; width: 100%; }
+.stage.clickable { cursor: pointer; }
+.meta { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.meta b { font-family: var(--label); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.meta .count { font-family: var(--label); font-size: 10px; letter-spacing: .06em; color: var(--muted); font-variant-numeric: tabular-nums; }
+.desc { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.strip { display: flex; flex-wrap: wrap; gap: 6px; }
+.strip canvas { width: 48px; height: 48px; image-rendering: pixelated; background: var(--bg); outline: 2px solid transparent; outline-offset: 1px; }
+.strip canvas.on { outline-color: var(--ink); }
+footer { font-size: 13px; color: var(--muted); line-height: 1.5; max-width: 70ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Cat v2 · animation review</div>
+    <h1>Cat v2 in Motion</h1>
+    <p class="lede">Every state playing at its real hold times: the same frames and the same order as the Figma prototype. Light mode shows the black cat, dark mode the white one. The page load runs first.</p>
+  </header>
+
+  <div class="controls" role="toolbar" aria-label="Playback">
+    <div class="group"><span>Mode</span>
+      <div class="seg" id="theme">
+        <button type="button" id="th-light" data-v="light">Light</button>
+        <button type="button" id="th-dark" data-v="dark">Dark</button>
+      </div>
+    </div>
+    <div class="group"><span>Size</span>
+      <div class="seg" id="size">
+        <button type="button" id="sz-3" data-v="3">3x</button>
+        <button type="button" id="sz-4" data-v="4">4x</button>
+        <button type="button" id="sz-6" data-v="6">6x</button>
+      </div>
+    </div>
+    <div class="group"><span>Speed</span>
+      <div class="seg" id="speed">
+        <button type="button" id="sp-1" data-v="1">1x</button>
+        <button type="button" id="sp-05" data-v="0.5">Half</button>
+        <button type="button" id="sp-025" data-v="0.25">Quarter</button>
+      </div>
+    </div>
+    <div class="group">
+      <button type="button" class="btn" id="play">Pause</button>
+      <button type="button" class="btn" id="step" disabled>Next frame</button>
+    </div>
+  </div>
+  <p class="note" id="motion-note" hidden>Paused because your system asks for reduced motion. Press Play to watch.</p>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>The small squares under each stage are every frame of that state at true size (1 px per sprite pixel), with the one playing now outlined. Source: Documents/career/portfolio-pixel/cat-v2/sprites.py.</footer>
+</div>
+
+<script>
+const D = __DATA__;
+const T = __TIMINGS__;
+const A = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+const KEYS = { f: '--cat-body-far', '#': '--cat-body', Y: '--cat-eye', g: '--cat-bell', p: '--cat-pupil', w: '--cat-shine', m: '--cat-mouth', M: '--cat-mouth-inner', z: '--cat-zzz', h: '--cat-heart' };
+const ORDER = 'f#YgpwmMzh';
+const N = 48;
+
+// decode run data: frame = [[key, x, y, w, h], ...]
+const F = {};
+for (const [st, frames] of Object.entries(D)) {
+  F[st] = frames.map(enc => {
+    const rects = [];
+    for (const part of enc.split('|')) {
+      const k = part[0], s = part.slice(1);
+      for (let i = 0; i < s.length; i += 4) rects.push([k, A.indexOf(s[i]), A.indexOf(s[i + 1]), A.indexOf(s[i + 2]), A.indexOf(s[i + 3])]);
+    }
+    rects.sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+    return rects;
+  });
+}
+
+// playback order per card: [state, frameIndex, hold] steps, matching the Figma After-delay chain
+const seq = st => F[st].map((_, i) => [st, i, T[st][i]]);
+const LOOK_ORDER = [0, 4, 2, 1, 5, 3];
+const CARDS = [
+  { id: 'load', name: 'Page load', wide: true, load: true, steps: seq('Fall'),
+    desc: 'While the page loads, the cat falls upright in the landing pose and spins. The page rises from below and speeds up, like a fall. The spin finishes facing you, the paws reach, and it lands on the hero divider, stays bent down to recover, then sits. Then it replays.' },
+  { id: 'sit', name: 'Sit', steps: seq('Sit'), click: true,
+    desc: 'Breathes (head and chest rise 1 px), then blinks: closed, nearly open, open. Click the cat to make it hop.' },
+  { id: 'idle', name: 'Idle', steps: seq('Idle'),
+    desc: 'Stands and breathes, glances right with a flick of the tail, then blinks.' },
+  { id: 'walk', name: 'Walk', steps: seq('Walk'), walk: true,
+    desc: 'A stride like the reference: the near front leg and far back leg reach together, then the other pair. White near legs pass over the lilac far legs. The head sits on the front of the body and juts forward past the chest. The body moves 3 px a frame.' },
+  { id: 'look', name: 'Look', steps: LOOK_ORDER.map(i => ['Look', i, T.Look[i]]),
+    desc: 'Standing, the eyes sweep left, up-left, up, right, down-right, down. The black fill moves; the ring never breaks.' },
+  { id: 'inspect', name: 'Inspect', steps: seq('Inspect'), art: true,
+    desc: 'Spots the artwork and sinks into a low stalking crouch like the reference: head forward, body long and low, tail straight up. The rump bobs, the tail tip twitches and the back paws tread, then it rises.' },
+  { id: 'peek', name: 'Peek', steps: seq('Peek'), edge: true,
+    desc: 'Ears first, then it pops up fast, overshoots 2 px, dips back and settles, then looks left and right slowly.' },
+  { id: 'yawn', name: 'Yawn', steps: seq('Yawn'),
+    desc: 'Sleepy eyes, a small mouth, then a big stretch with the ears back, a little V mouth with two fangs and yellow yawn marks.' },
+  { id: 'react', name: 'React', steps: [...seq('React'), ['Sit', 0, 1.4]],
+    desc: 'Squash, then a hop with all four legs straight down and the tail up, yellow surprise marks at the top, and a soft landing. On the site it plays when you click the cat; here it repeats.' },
+  { id: 'sleep', name: 'Sleep', steps: seq('Sleep'),
+    desc: 'A slow breath in a soft loaf. A small z, then a z and a big Z drift up, then it starts again.' },
+  { id: 'fall', name: 'Fall', steps: seq('Fall'), air: true,
+    desc: 'The page-load loop on its own: front, three-quarter, side, back, and round again.' },
+  { id: 'land', name: 'Land', steps: [...seq('Land'), ['Sit', 0, 1.6]],
+    desc: 'Legs straight down to meet the divider, knees bend on impact (eyes squeezed), it stays low to recover (eyes shut, then open and looking down), rises and sits once.' },
+];
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+let scale = +(store.get('catv2-scale') || 4);
+let speed = 1;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let playing = !reduce;
+let colors = {};
+
+function readColors() {
+  const cs = getComputedStyle(document.documentElement);
+  for (const [k, v] of Object.entries(KEYS)) colors[k] = cs.getPropertyValue(v).trim();
+  colors.line = cs.getPropertyValue('--line').trim();
+  colors.raised = cs.getPropertyValue('--raised').trim();
+  colors.peach = cs.getPropertyValue('--peach').trim();
+  colors.onPastel = cs.getPropertyValue('--on-pastel').trim();
+  colors.text = cs.getPropertyValue('--text').trim();
+}
+
+function drawSprite(ctx, rects, ox, oy, px) {
+  for (const [k, x, y, w, h] of rects) {
+    ctx.fillStyle = colors[k];
+    ctx.fillRect(ox + x * px, oy + y * px, w * px, h * px);
+  }
+}
+
+// ---- build cards ----
+const grid = document.getElementById('grid');
+for (const c of CARDS) {
+  const card = document.createElement('section');
+  card.className = 'card' + (c.wide ? ' wide' : '');
+  card.innerHTML = `<div class="stage${c.click ? ' clickable' : ''}"><canvas aria-label="${c.name} animation" role="img"></canvas></div>
+    <div class="meta"><b>${c.name.toUpperCase()}</b><span class="count"></span></div>
+    <p class="desc">${c.desc}</p><div class="strip"></div>`;
+  grid.appendChild(card);
+  c.canvas = card.querySelector('.stage canvas');
+  c.stage = card.querySelector('.stage');
+  c.count = card.querySelector('.count');
+  c.strip = card.querySelector('.strip');
+  const st = c.id === 'react' ? 'React' : c.id === 'land' ? 'Land' : c.steps[0][0];
+  c.thumbs = F[st].map((_, i) => {
+    const t = document.createElement('canvas');
+    t.width = N; t.height = N; t.title = `${st} frame ${i + 1}`;
+    c.strip.appendChild(t);
+    return { el: t, st, i };
+  });
+  c.pos = 0; c.t = 0; c.x = null; c.override = null; c.clock = 0;
+  if (c.click) c.stage.addEventListener('click', () => { c.override = { steps: [...seq('React')], pos: 0, t: 0 }; draw(c); });
+}
+
+function layout(c) {
+  const dpr = Math.max(1, Math.round(window.devicePixelRatio || 1));
+  const w = c.stage.clientWidth - 4;
+  const px = scale * dpr;
+  const cssH = c.load ? N * scale + 200 : N * scale + 24;
+  c.canvas.style.height = cssH + 'px';
+  c.canvas.width = Math.max(1, Math.round(w * dpr));
+  c.canvas.height = Math.round(cssH * dpr);
+  c.px = px; c.dpr = dpr;
+  c.floor = c.canvas.height - 12 * dpr;   // sprite bottom sits here
+}
+
+function current(c) {
+  const o = c.override;
+  return o ? o.steps[o.pos] : c.steps[c.pos];
+}
+
+function draw(c) {
+  const ctx = c.canvas.getContext('2d');
+  const W = c.canvas.width, H = c.canvas.height, px = c.px, dpr = c.dpr;
+  ctx.clearRect(0, 0, W, H);
+  if (c.load) { drawLoad(c, ctx, W, H, px, dpr); return; }
+  const [st, fi, hold] = current(c);
+  const size = N * px;
+  let ox = Math.round((W - size) / 2 / px) * px;
+  if (c.art) ox = Math.max(0, Math.round((W / 2 - size * 0.62) / px) * px);
+  if (c.walk) {
+    if (c.x === null) c.x = Math.round((W - size) / 2 / px) * px;
+    ox = c.x;
+  }
+  const oy = c.air ? Math.round((H - size) / 2 / px) * px : c.floor - size;
+  if (!c.edge && !c.air) {   // floor line
+    ctx.fillStyle = colors.line;
+    ctx.fillRect(0, c.floor, W, 2 * dpr);
+  }
+  if (c.art) {     // the artwork the cat studies
+    const aw = 30 * px, ah = 36 * px, ax = ox + size - 4 * px;
+    ctx.fillStyle = colors.peach;
+    ctx.fillRect(ax, c.floor - ah, Math.min(aw, W - ax - 8 * dpr), ah);
+    ctx.fillStyle = colors.onPastel;
+    ctx.font = `${10 * dpr}px Silkscreen, monospace`;
+    ctx.fillText('ARTWORK', ax + 8 * dpr, c.floor - 10 * dpr);
+  }
+  drawSprite(ctx, F[st][fi], ox, oy, px);
+  if (c.walk && c.x + size < 0) {}         // wrap handled in tick
+  if (c.edge) {    // section edge the cat peeks over
+    ctx.fillStyle = colors.raised;
+    ctx.fillRect(0, c.floor, W, H - c.floor);
+    ctx.fillStyle = colors.line;
+    ctx.fillRect(0, c.floor, W, 2 * dpr);
+  }
+  c.count.textContent = `${st.toUpperCase()} ${fi + 1} / ${F[st].length} · ${hold.toFixed(2)} S`;
+  for (const t of c.thumbs) t.el.classList.toggle('on', t.st === st && t.i === fi);
+}
+
+
+// ---- page-load demo: the page rises from below while the cat spins, then it lands on the hero divider ----
+const LAND_N = T.Land.length - 1;   // the last Land frame is the sit itself
+// The page rises with ease-in (it speeds up, like a fall), so the landing is an impact, not a slow stop.
+// The spin is timed to finish on the front view 0.3 s before touchdown; the paws reach in the last 0.1 s.
+const SPIN = 0.1;
+const LOAD = { fall: 2.0, land: T.Land.slice(1, LAND_N).reduce((a, b) => a + b, 0), sit: 2.6 };
+function loadFrame(c) {
+  const t = c.clock, fall = LOAD.fall;
+  if (t < fall) {
+    const rise = 1 - Math.pow(t / fall, 2);
+    if (t < fall - 0.3) return { st: 'Fall', fi: Math.floor(t / SPIN) % F.Fall.length, hold: SPIN, rise };
+    if (t < fall - 0.1) return { st: 'Fall', fi: 0, hold: 0.2, rise };
+    return { st: 'Land', fi: 0, hold: 0.1, rise };
+  }
+  let u = t - fall;
+  for (let i = 1; i < LAND_N; i++) { if (u < T.Land[i]) return { st: 'Land', fi: i, hold: T.Land[i], rise: 0 }; u -= T.Land[i]; }
+  return { st: 'Sit', fi: u > 1.2 && u < 1.35 ? 2 : 0, hold: 0.6, rise: 0 };
+}
+function easeOut(x) { return 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3); }
+function drawLoad(c, ctx, W, H, px, dpr) {
+  const f = loadFrame(c);
+  const size = N * px;
+  const divider = H - 100 * dpr;                            // final line, the cat's feet rest here
+  const offset = Math.round(f.rise * (H + 40 * dpr));       // page still below, rising
+  const y0 = divider + offset;
+  // mock hero: heading bars above the divider, content bars below
+  ctx.fillStyle = colors.line;
+  const bar = (x, y, w, h) => ctx.fillRect(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+  const left = 16 * dpr;
+  bar(left, y0 - 110 * dpr, Math.min(W * 0.42, 360 * dpr), 22 * dpr);
+  bar(left, y0 - 78 * dpr, Math.min(W * 0.3, 260 * dpr), 22 * dpr);
+  bar(left, y0 - 40 * dpr, Math.min(W * 0.36, 300 * dpr), 8 * dpr);
+  ctx.fillStyle = colors.text;
+  bar(0, y0, W, 2 * dpr);                                   // the hero divider
+  ctx.fillStyle = colors.line;
+  for (let i = 0; i < 3; i++) bar(left + i * (W - 2 * left) / 3, y0 + 18 * dpr, (W - 2 * left) / 3 - 16 * dpr, 60 * dpr);
+  // the cat: fall frames keep the paws (sprite row 37) at the divider line; land and sit frames stand on it
+  const ox = Math.round((W * 0.68 - size / 2) / px) * px;
+  const paws = f.st === 'Fall' ? 38 : 48;
+  const oy = divider - paws * px;
+  drawSprite(ctx, F[f.st][f.fi], ox, oy, px);
+  c.count.textContent = `${f.st.toUpperCase()} ${f.fi + 1} / ${F[f.st].length} · ${f.hold.toFixed(2)} S`;
+  for (const t of c.thumbs) t.el.classList.toggle('on', t.st === f.st && t.i === f.fi);
+}
+
+function drawThumbs() {
+  for (const c of CARDS) for (const t of c.thumbs) {
+    const ctx = t.el.getContext('2d');
+    ctx.clearRect(0, 0, N, N);
+    drawSprite(ctx, F[t.st][t.i], 0, 0, 1);
+  }
+}
+
+function loadKey(c) { const f = loadFrame(c); return f.st + f.fi + ':' + Math.round(f.rise * 400); }
+function advance(c) {
+  if (c.load) { c.clock += 0.1; if (c.clock > LOAD.fall + LOAD.land + LOAD.sit) c.clock = 0; draw(c); return; }
+  const o = c.override;
+  if (o) {
+    o.pos++; o.t = 0;
+    if (o.pos >= o.steps.length) c.override = null;
+  } else {
+    c.pos = (c.pos + 1) % c.steps.length; c.t = 0;
+  }
+  if (c.walk) {   // 3 sprite px per frame, wrap around the lane
+    c.x += 2 * c.px;
+    if (c.x > c.canvas.width) c.x = -N * c.px;
+  }
+  draw(c);
+}
+
+let last = performance.now();
+function tick(now) {
+  const dt = Math.min(0.1, (now - last) / 1000) * speed;
+  last = now;
+  if (playing) for (const c of CARDS) {
+    if (c.load) {
+      const before = loadKey(c);
+      c.clock += dt;
+      if (c.clock > LOAD.fall + LOAD.land + LOAD.sit) c.clock = 0;
+      if (loadKey(c) !== before) draw(c);
+      continue;
+    }
+    const o = c.override;
+    const holder = o || c;
+    holder.t += dt;
+    if (holder.t >= current(c)[2]) advance(c);
+  }
+  requestAnimationFrame(tick);
+}
+
+function relayout() { readColors(); for (const c of CARDS) { layout(c); c.x = null; draw(c); } drawThumbs(); }
+
+// ---- controls ----
+function setPressed(groupId, v) {
+  for (const b of document.querySelectorAll(`#${groupId} button`)) b.setAttribute('aria-pressed', String(b.dataset.v === String(v)));
+}
+function effectiveTheme() {
+  const t = document.documentElement.dataset.theme;
+  if (t) return t;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+document.getElementById('theme').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.documentElement.dataset.theme = b.dataset.v;
+});
+document.getElementById('size').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  scale = +b.dataset.v; store.set('catv2-scale', String(scale)); setPressed('size', scale); relayout();
+});
+document.getElementById('speed').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  speed = +b.dataset.v; setPressed('speed', b.dataset.v);
+});
+const playBtn = document.getElementById('play'), stepBtn = document.getElementById('step');
+function syncPlay() {
+  playBtn.textContent = playing ? 'Pause' : 'Play';
+  stepBtn.disabled = playing;
+  document.getElementById('motion-note').hidden = !(reduce && !playing);
+}
+playBtn.addEventListener('click', () => { playing = !playing; last = performance.now(); syncPlay(); });
+stepBtn.addEventListener('click', () => { for (const c of CARDS) advance(c); });
+
+new MutationObserver(() => { setPressed('theme', effectiveTheme()); relayout(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { setPressed('theme', effectiveTheme()); relayout(); });
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(relayout, 120); });
+
+setPressed('theme', effectiveTheme()); setPressed('size', scale); setPressed('speed', '1'); syncPlay();
+relayout();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+requestAnimationFrame(tick);
+</script>

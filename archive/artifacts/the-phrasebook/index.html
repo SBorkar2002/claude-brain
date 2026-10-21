@@ -1,0 +1,536 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>The Phrasebook</title>
+<style>
+  :root {
+    --paper:      #EDEFEA;
+    --surface:    #F7F8F4;
+    --ink:        #171A16;
+    --ink-soft:   #5C6359;
+    --rule:       #D5D8CE;
+    --rule-soft:  #E2E5DC;
+    --accent:     #14708F;
+    --accent-bg:  rgba(20, 112, 143, 0.08);
+    --risk:       #A2384E;
+    --risk-bg:    rgba(162, 56, 78, 0.07);
+    --yes:        #2F6B4F;
+    --no:         #A2384E;
+
+    --f-display: "Helvetica Neue", Inter, system-ui, -apple-system, sans-serif;
+    --f-body:    Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --f-mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #121410;
+      --surface:    #1A1D16;
+      --ink:        #E6E9DF;
+      --ink-soft:   #949A88;
+      --rule:       #2E3327;
+      --rule-soft:  #23271D;
+      --accent:     #56BCDD;
+      --accent-bg:  rgba(86, 188, 221, 0.10);
+      --risk:       #E28A9C;
+      --risk-bg:    rgba(226, 138, 156, 0.10);
+      --yes:        #7FBF9C;
+      --no:         #E28A9C;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #121410;
+    --surface:    #1A1D16;
+    --ink:        #E6E9DF;
+    --ink-soft:   #949A88;
+    --rule:       #2E3327;
+    --rule-soft:  #23271D;
+    --accent:     #56BCDD;
+    --accent-bg:  rgba(86, 188, 221, 0.10);
+    --risk:       #E28A9C;
+    --risk-bg:    rgba(226, 138, 156, 0.10);
+    --yes:        #7FBF9C;
+    --no:         #E28A9C;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2rem) 6rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3.2rem; }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.2rem, 6.5vw, 3.3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .meta {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: 0.8rem;
+    margin: 0.7rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
+  }
+
+  /* ---------- sections ---------- */
+
+  section {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .sec-num {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.55rem;
+  }
+
+  h2 {
+    font-family: var(--f-display);
+    font-size: clamp(1.4rem, 3.6vw, 1.78rem);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.14;
+    text-wrap: balance;
+    margin: 0 0 1.1rem;
+  }
+
+  h3 {
+    font-family: var(--f-display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 1.9rem 0 0.4rem;
+  }
+
+  p { margin: 0 0 1.05rem; max-width: 66ch; }
+  p:last-child { margin-bottom: 0; }
+
+  em.term { font-style: italic; }
+  strong { font-weight: 600; }
+
+  ul, ol { margin: 0 0 1.05rem; padding-left: 1.35rem; max-width: 66ch; }
+  li { margin-bottom: 0.5rem; }
+  li:last-child { margin-bottom: 0; }
+
+  /* ---------- pitch pull-quote ---------- */
+
+  .pitch {
+    background: var(--accent-bg);
+    border-left: 2px solid var(--accent);
+    padding: 1.4rem 1.5rem;
+    margin: 2rem 0 0;
+  }
+  .pitch .label {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.65rem;
+    font-weight: 600;
+  }
+  .pitch p {
+    font-family: var(--f-display);
+    font-size: 1.14rem;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.012em;
+    margin: 0;
+    max-width: 58ch;
+  }
+
+  /* ---------- filter table ---------- */
+
+  .t-wrap { overflow-x: auto; margin: 0 0 1.05rem; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 420px;
+    font-size: 0.94rem;
+  }
+  th {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: left;
+    font-weight: 600;
+    padding: 0 0.9rem 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  td {
+    padding: 0.62rem 0.9rem 0.62rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.v { font-family: var(--f-mono); font-size: 0.78rem; white-space: nowrap; font-weight: 600; }
+  td.v.y { color: var(--yes); }
+  td.v.n { color: var(--no); }
+
+  /* ---------- derivation list ---------- */
+
+  .deriv { display: flex; flex-direction: column; gap: 0; }
+  .deriv-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 0 1.4rem;
+    padding: 1.05rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .deriv-row:last-child { border-bottom: none; }
+  .deriv-name {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+  .deriv-row p { margin: 0; max-width: 58ch; font-size: 0.97rem; }
+  .tag {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 0.25rem;
+    font-weight: 600;
+  }
+
+  /* ---------- callouts ---------- */
+
+  .risk-box {
+    background: var(--risk-bg);
+    border-left: 2px solid var(--risk);
+    padding: 1.1rem 1.25rem;
+    margin: 0 0 1.05rem;
+  }
+  .risk-box:last-child { margin-bottom: 0; }
+  .risk-box .label {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--risk);
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+  .risk-box p { margin: 0; max-width: 62ch; font-size: 0.97rem; }
+
+  /* ---------- steps ---------- */
+
+  .steps { display: flex; flex-direction: column; gap: 0; counter-reset: s; }
+  .step {
+    display: grid;
+    grid-template-columns: 2.1rem 1fr;
+    gap: 0 0.9rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .step:last-child { border-bottom: none; }
+  .step::before {
+    counter-increment: s;
+    content: counter(s, decimal-leading-zero);
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    padding-top: 0.22rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .step p { margin: 0; max-width: 58ch; }
+
+  /* ---------- open items ---------- */
+
+  .open {
+    border: 1px solid var(--rule);
+    padding: 1.3rem 1.4rem;
+    background: var(--surface);
+  }
+  .open ul { margin: 0; padding-left: 1.2rem; }
+  .open li { max-width: 62ch; font-size: 0.97rem; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 3.4rem;
+    padding-top: 1.1rem;
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 560px) {
+    .deriv-row, .step { grid-template-columns: 1fr; gap: 0.3rem; }
+    .step::before { padding-top: 0; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Employer-brand channel &nbsp;/&nbsp; strategy v1</p>
+    <h1>The Phrasebook</h1>
+    <p class="standfirst">We're not starting a YouTube channel. We're writing the reference nobody has written yet — and using YouTube to make people find it.</p>
+    <p class="meta"><span>Draft for review</span><span>19 Aug 2026</span><span>Open items — see 10</span></p>
+  </header>
+
+  <section style="border-top: none; padding-top: 0; margin-top: 0;">
+    <span class="sec-num">01 — THE SPINE</span>
+    <h2>The thing that ties every video together is a book, not a format</h2>
+
+    <p>There is no plain-English reference for the words engineers are hearing right now. Skill. MCP server. Agent. Context. Eval. Compaction. The information exists, but every version of it has a flex attached — you search for what an MCP server is and get a thread from someone announcing they built five agents last weekend.</p>
+
+    <p>So we write the missing version. A permanent, growing phrasebook, hosted somewhere neutral. Each entry says what the word means, why anyone should care, and one real example you could copy today.</p>
+
+    <p><strong>Every video is one entry, read out loud.</strong> YouTube is the shop window. The book is the product.</p>
+
+    <h3>Why a phrasebook and not a textbook</h3>
+
+    <p>A phrasebook is what you carry when you've landed somewhere and don't yet speak the language. Nobody is embarrassed to carry one. The shame in not knowing something was never about looking it up — it's about having to ask a person. A reference removes the person, and the hierarchy with them.</p>
+
+    <p>Right now every engineer is a tourist in this, from the new grad to the staff engineer with fifteen years behind them. That's why the audience doesn't need narrowing by seniority, employment status, or age. The situation is genuinely shared.</p>
+
+    <div class="pitch">
+      <span class="label">How to say it in the room</span>
+      <p>We're writing the plain-English phrasebook for the words engineers are hearing right now. YouTube is how people find it. Every video is one entry. The channel can change format whenever we like, because the thing holding it together isn't a format — it's the book.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">02 — THE FILTER</span>
+    <h2>One question decides whether an idea belongs</h2>
+
+    <p><em class="term">Does it produce or clarify an entry?</em></p>
+
+    <p>That's the whole test. The point of having a spine isn't to describe what we make — it's to settle arguments about what we don't, without anyone having to win on taste.</p>
+
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>Idea</th><th>Verdict</th><th>Because</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Explaining what a skill file is</td><td class="v y">Yes</td><td>That's an entry</td></tr>
+          <tr><td>Five questions engineers are afraid to ask</td><td class="v y">Yes</td><td>Five entries, and the audience wrote the index</td></tr>
+          <tr><td>A myth about what agents cost</td><td class="v y">Yes</td><td>Correcting an entry people currently have wrong</td></tr>
+          <tr><td>Ranking AI coding tools S to F</td><td class="v n">No</td><td>Produces an opinion, not an entry</td></tr>
+          <tr><td>Reacting to a competitor's launch</td><td class="v n">No</td><td>Nothing to look up afterwards</td></tr>
+          <tr><td>"I built five agents this weekend"</td><td class="v n">No</td><td>That's the thing we exist to replace</td></tr>
+          <tr><td>A format we invent in six months</td><td class="v y">Test it</td><td>If it makes an entry, it fits. No debate needed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">03 — THE OBVIOUS OBJECTION</span>
+    <h2>Why not just film a real person teaching?</h2>
+
+    <p>Because a teacher teaches a syllabus that already exists. This one doesn't. The field is moving faster than anyone can write a textbook, which is precisely why the reference is missing and worth owning. A lecture delivers settled knowledge; we're documenting unsettled knowledge as it settles.</p>
+
+    <p>And a credentialed expert on camera rebuilds the exact hierarchy that stops a senior engineer asking in the first place. A page doesn't have a status problem. A person does.</p>
+
+    <p>To be clear, this doesn't rule out a human presenter — it rules out <strong>the lecture</strong>. Any delivery works, as long as what comes out the other end is an entry.</p>
+  </section>
+
+  <section>
+    <span class="sec-num">04 — THE FORMATS, DERIVED</span>
+    <h2>Four ways of reading a page out loud</h2>
+
+    <p>None of these are chosen because they're interesting. Each one is a different reading of the same object, which is why they hold together — and why a fifth can be added later, or a presenter layered on top, without any of this needing to change.</p>
+
+    <div class="deriv">
+      <div class="deriv-row">
+        <div class="deriv-name">Two Voices<span class="tag">ship first</span></div>
+        <p>One voice asks for the entry, the other reads it. The asker is the viewer's proxy — impatient and sceptical, never slow. Cheapest thing we can make, and it teaches us the channel's voice fastest.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">The Ladder<span class="tag">ship first</span></div>
+        <p>The same entry at three depths — to a ten-year-old, a new grad, a staff engineer. This mirrors how a real reference is built: short definition, then detail, then caveats. Highest depth signal we have, and it maps one-to-one onto the word list.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">Question Compilation<span class="tag">next</span></div>
+        <p>Real, anonymised questions from engineers who feel unable to ask. This is the book's index, written by the audience — it tells us which entries to write next, in their words rather than ours.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">Wrong Answer First<span class="tag">hold</span></div>
+        <p>State an entry the way most people currently have it wrong, then correct it. Corrections are a normal part of maintaining any reference. Supply is finite, so spend it once there's an audience.</p>
+      </div>
+    </div>
+
+    <div class="risk-box">
+      <span class="label">Deliberately not here</span>
+      <p>No presenter — illustrated, synthetic, or human. A presenter is an execution choice that doesn't derive from the spine, so it can be layered on later once the book is proving itself. Deciding it now would mean debating a face instead of the argument.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">05 — LENGTH</span>
+    <h2>Shorts and long form are different units of the same object</h2>
+
+    <p>The argument doesn't come from attention spans. It comes from the book.</p>
+
+    <p><strong>A short is one entry. A long is a cluster of related entries.</strong> Which means a short is never a cut-down of a long video — they're different sizes of the same thing, made for different jobs. Shorts do discovery; longs do depth. Playlists are chapters, ordered by which word you need before you can understand the next one.</p>
+
+    <p>This also settles a question that would otherwise be a hunch: we don't chop long videos into shorts, because an entry isn't a fragment of a chapter. It's a whole unit on its own.</p>
+
+    <div class="risk-box">
+      <span class="label">Not yet decided</span>
+      <p>The ratio between the two. That needs the platform research in 10 before we commit — the reasoning above tells us what each format is <em>for</em>, not how many of each to make.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">06 — BEYOND YOUTUBE</span>
+    <h2>The same spine works on every other surface</h2>
+
+    <ul>
+      <li><strong>Newsletter</strong> — this week's entries. The line already writes itself: <em class="term">even if you never buy our product, here are five things you can learn about AI today.</em></li>
+      <li><strong>LinkedIn</strong> — one entry, text-first, no video needed.</li>
+      <li><strong>Feature and launch videos</strong> — coaching is how an organisation writes its own entries. Same act, at org scale. The channel and the product become one story without the channel ever mentioning the product.</li>
+      <li><strong>Anything we haven't thought of yet</strong> — same filter, section 02.</li>
+    </ul>
+
+    <p>Worth noting for the room: this framing also sits with the existing position that coaching serves the whole distribution rather than extracting from top performers. A reference is by definition for everyone who needs to look something up.</p>
+  </section>
+
+  <section>
+    <span class="sec-num">07 — WHAT HAPPENS FIRST</span>
+    <h2>Sequence</h2>
+
+    <div class="steps">
+      <div class="step"><p><strong>Write the word list.</strong> Fifty terms. Roughly a day's work, and everything else depends on it.</p></div>
+      <div class="step"><p><strong>Put it in dependency order</strong> — which word has to be understood before the next one makes sense. That order becomes both the posting order and the playlist structure.</p></div>
+      <div class="step"><p><strong>Write three entries properly.</strong> Pages, not scripts. If an entry isn't worth reading on its own, it doesn't get filmed.</p></div>
+      <div class="step"><p><strong>Film those three</strong> — one per format, so the room can compare formats on identical content rather than in the abstract.</p></div>
+      <div class="step"><p><strong>Name the book.</strong> It must sound like a reference and must not sound like Tetriz. It's a thing we give away, not a thing we sell.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">08 — THE RISK WE'RE ACCEPTING</span>
+    <h2>Two things that could sink this</h2>
+
+    <div class="risk-box">
+      <span class="label">The book has to be good</span>
+      <p>Good enough that someone bookmarks it and sends it to a colleague. If the videos are polished and the book is thin, we've made adverts for nothing. Mitigation: entries are always written before videos, and an entry that can't stand alone doesn't get filmed.</p>
+    </div>
+
+    <div class="risk-box">
+      <span class="label">The payoff is slow by design</span>
+      <p>This compounds rather than spikes. Every week the book gets thicker whether or not anything performed — which is the reason it's defensible without promising subscriber numbers, but it also means it shouldn't be judged on one video's performance in month one. We should agree the review window before we start.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">09 — THE COMMERCIAL ANSWER</span>
+    <h2>How this connects to the product, when we want it to</h2>
+
+    <p>Someone will ask how a channel that never mentions Tetriz is supposed to sell anything. The answer is one rule and four bridges.</p>
+
+    <div class="pitch">
+      <span class="label">The rule</span>
+      <p>The book never mentions the product. The product may cite the book.</p>
+    </div>
+
+    <p style="margin-top: 1.4rem;">That asymmetry is what keeps the channel credible while still letting it work commercially — and it settles future arguments cheaply, because anyone proposing a product mention inside an entry is proposing to break the one rule.</p>
+
+    <div class="deriv">
+      <div class="deriv-row">
+        <div class="deriv-name">Authorship<span class="tag">from day one</span></div>
+        <p>The book carries a byline: maintained by the engineers at Tetriz. No claims, no CTA. Credibility transfers when someone asks who wrote this — a pull, not a push. This is the only bridge we need for the first three months.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">Sales collateral<span class="tag">anytime</span></div>
+        <p>The newsletter line, pointed outbound: even if you never buy our product, here are five things you can learn about AI today. Different audience, no risk to the channel, and it makes the work earn its keep immediately.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">Entries only we can write<span class="tag">month 3+</span></div>
+        <p>Tetriz reads every engineering session across an org, so some entries can carry real aggregate numbers nobody else has. How long does an agent loop actually run? What does a stuck session look like? Not a pitch — a <strong>better entry</strong>, which happens to be impossible without the product. The product becomes the research instrument behind the reference, the way a lab publishes findings.</p>
+      </div>
+      <div class="deriv-row">
+        <div class="deriv-name">The question the book can't answer<span class="tag">month 6+</span></div>
+        <p>Entries climb in abstraction over time. Eventually we reach <em class="term">how do I know if my org's AI adoption is actually working?</em> — which has no individual answer, because it genuinely needs org-level data. The entry says so honestly. That's the handoff, and it needs no CTA, because the reader arrives at the seam themselves. Individual to org is where the bridge lives.</p>
+      </div>
+    </div>
+
+    <h3>The precedent</h3>
+
+    <p>DORA. A set of metrics defined in a freely-given research report, which then organised an entire product category around itself. Whoever names the problem shapes the market for the solution. That's the ambitious version of this — if the phrasebook becomes canonical, we get to name things, which is worth considerably more than a subscriber count and is a better thing to promise than growth figures.</p>
+
+    <div class="risk-box">
+      <span class="label">What breaks it</span>
+      <p>Product mentions inside entries. Gating an entry behind an email. Timing entries to feature launches. And the real one — <strong>bending the word list to match the roadmap.</strong> The moment the list follows the product instead of the audience, the book is marketing, and this audience can smell that from a distance.</p>
+    </div>
+  </section>
+
+  <section>
+    <span class="sec-num">10 — STILL OPEN</span>
+    <h2>What this needs before it's final</h2>
+
+    <div class="open">
+      <ul>
+        <li><strong>Shorts-to-long ratio.</strong> Needs a survey of five to eight adjacent channels — their actual split, and which side drives their growth — plus current reporting on what YouTube is pushing. Deliberately not decided on a hunch.</li>
+        <li><strong>Reference videos, one per format,</strong> for pace and edit style. Two Voices needs one most urgently; it's the hardest of the five to picture from a written description.</li>
+        <li><strong>Who writes rung three of The Ladder.</strong> The staff-engineer rung can't be written from the outside. Needs a named engineer as a standing input, or the format loses its whole advantage.</li>
+        <li><strong>Where the book lives</strong> — a Tetriz domain or a neutral one. Affects how unbranded the channel can credibly claim to be.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Version 1 — for discussion, not sign-off. Sections 01 to 03 are the argument; if those don't hold, the rest doesn't matter.
+  </footer>
+
+</div>
+
+</body></html>

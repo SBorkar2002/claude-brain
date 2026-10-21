@@ -1,0 +1,580 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>Three Lenses</title>
+<style>
+  :root {
+    --paper:      #EDEFEA;
+    --surface:    #F7F8F4;
+    --ink:        #171A16;
+    --ink-soft:   #5C6359;
+    --rule:       #D5D8CE;
+    --rule-soft:  #E2E5DC;
+    --accent:     #14708F;
+    --accent-bg:  rgba(20, 112, 143, 0.08);
+    --risk:       #A2384E;
+    --risk-bg:    rgba(162, 56, 78, 0.07);
+    --yes:        #2F6B4F;
+    --yes-bg:     rgba(47, 107, 79, 0.07);
+    --no:         #A2384E;
+    --meter-off:  #D3D7CB;
+
+    --f-display: "Helvetica Neue", Inter, system-ui, -apple-system, sans-serif;
+    --f-body:    Charter, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --f-mono:    ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #121410;
+      --surface:    #1A1D16;
+      --ink:        #E6E9DF;
+      --ink-soft:   #949A88;
+      --rule:       #2E3327;
+      --rule-soft:  #23271D;
+      --accent:     #56BCDD;
+      --accent-bg:  rgba(86, 188, 221, 0.10);
+      --risk:       #E28A9C;
+      --risk-bg:    rgba(226, 138, 156, 0.10);
+      --yes:        #7FBF9C;
+      --yes-bg:     rgba(127, 191, 156, 0.09);
+      --no:         #E28A9C;
+      --meter-off:  #2E3327;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #121410;
+    --surface:    #1A1D16;
+    --ink:        #E6E9DF;
+    --ink-soft:   #949A88;
+    --rule:       #2E3327;
+    --rule-soft:  #23271D;
+    --accent:     #56BCDD;
+    --accent-bg:  rgba(86, 188, 221, 0.10);
+    --risk:       #E28A9C;
+    --risk-bg:    rgba(226, 138, 156, 0.10);
+    --yes:        #7FBF9C;
+    --yes-bg:     rgba(127, 191, 156, 0.09);
+    --no:         #E28A9C;
+    --meter-off:  #2E3327;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2rem) 6rem;
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+
+  h1 {
+    font-family: var(--f-display);
+    font-size: clamp(2.2rem, 6.5vw, 3.3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+
+  .standfirst { font-size: 1.1rem; color: var(--ink-soft); max-width: 58ch; margin: 0 0 1.6rem; }
+
+  h2 {
+    font-family: var(--f-display);
+    font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.14;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+
+  h3 {
+    font-family: var(--f-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+  }
+
+  p { margin: 0 0 1rem; max-width: 66ch; }
+  p:last-child { margin-bottom: 0; }
+
+  section { border-top: 1px solid var(--rule); padding-top: 1.5rem; margin-top: 3rem; }
+  .sec-num {
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.55rem;
+  }
+
+  /* ---------- criteria ---------- */
+
+  .crit { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.4rem; }
+  .crit-row {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0 0.9rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    counter-increment: c;
+  }
+  .crit-row:last-child { border-bottom: none; }
+  .crit-row::before {
+    content: counter(c);
+    font-family: var(--f-mono);
+    font-size: 0.76rem;
+    color: var(--accent);
+    padding-top: 0.24rem;
+  }
+  .crit { counter-reset: c; }
+  .crit-row p { margin: 0; max-width: 60ch; }
+
+  .test {
+    background: var(--accent-bg);
+    border-left: 2px solid var(--accent);
+    padding: 1.1rem 1.25rem;
+  }
+  .test .label {
+    font-family: var(--f-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .test p { font-family: var(--f-display); font-weight: 500; font-size: 1.08rem; line-height: 1.45; margin: 0; max-width: 56ch; }
+
+  /* ---------- lens panel ---------- */
+
+  .lens { border-top: 2px solid var(--ink); padding-top: 1.4rem; margin-top: 3.2rem; }
+  .lens-tag {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .lens-name {
+    font-family: var(--f-display);
+    font-size: clamp(1.7rem, 4.5vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
+    margin: 0 0 0.5rem;
+  }
+  .jingle {
+    font-family: var(--f-body);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin: 0 0 1.5rem;
+    max-width: 52ch;
+  }
+
+  .fields { display: flex; flex-direction: column; gap: 1.15rem; margin-bottom: 1.5rem; }
+  .field { display: grid; grid-template-columns: 130px 1fr; gap: 0 1.3rem; align-items: baseline; }
+  .field h3 { margin: 0; padding-top: 0.3rem; }
+  .field p { margin: 0; max-width: 58ch; font-size: 0.99rem; }
+
+  /* ---------- licenses / forbids ---------- */
+
+  .lf { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .lf-col { padding: 1rem 1.1rem; }
+  .lf-col.y { background: var(--yes-bg); border-left: 2px solid var(--yes); }
+  .lf-col.n { background: var(--risk-bg); border-left: 2px solid var(--no); }
+  .lf-col .label {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .lf-col.y .label { color: var(--yes); }
+  .lf-col.n .label { color: var(--no); }
+  .lf-col ul { margin: 0; padding-left: 1.1rem; }
+  .lf-col li { font-size: 0.94rem; margin-bottom: 0.32rem; }
+  .lf-col li:last-child { margin-bottom: 0; }
+
+  /* ---------- format fit ---------- */
+
+  .fit { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.7rem; margin-bottom: 1.4rem; }
+  .fit-cell { background: var(--surface); border: 1px solid var(--rule-soft); padding: 0.7rem 0.8rem; }
+  .fit-cell .n { font-family: var(--f-display); font-weight: 700; font-size: 0.87rem; display: block; letter-spacing: -0.008em; }
+  .fit-cell .m { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.06em; }
+  .fit-cell .m.strong { color: var(--yes); }
+  .fit-cell .m.ok { color: var(--ink-soft); }
+  .fit-cell .m.weak { color: var(--no); }
+
+  .risk-box { background: var(--risk-bg); border-left: 2px solid var(--risk); padding: 1rem 1.15rem; }
+  .risk-box .label {
+    font-family: var(--f-mono);
+    font-size: 0.63rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--risk);
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .risk-box p { margin: 0; max-width: 62ch; font-size: 0.97rem; }
+
+  .verdict {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule-soft);
+    margin-top: 1.3rem;
+    padding-top: 0.8rem;
+  }
+  .verdict b { color: var(--yes); font-weight: 600; }
+
+  /* ---------- matrix ---------- */
+
+  .t-wrap { overflow-x: auto; margin-bottom: 1.2rem; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.93rem; }
+  th {
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: left;
+    font-weight: 600;
+    padding: 0 0.85rem 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  td { padding: 0.6rem 0.85rem 0.6rem 0; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.lbl { font-family: var(--f-display); font-weight: 700; font-size: 0.9rem; }
+  .bar { display: flex; gap: 3px; width: 62px; }
+  .bar i { display: block; height: 7px; flex: 1; background: var(--meter-off); }
+  .bar i.on { background: var(--accent); }
+
+  .open { border: 1px solid var(--rule); background: var(--surface); padding: 1.3rem 1.4rem; }
+  .open ul { margin: 0; padding-left: 1.2rem; }
+  .open li { max-width: 62ch; font-size: 0.97rem; margin-bottom: 0.5rem; }
+  .open li:last-child { margin-bottom: 0; }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 3.4rem;
+    padding-top: 1.1rem;
+    font-family: var(--f-mono);
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 620px) {
+    .lf { grid-template-columns: 1fr; }
+    .field { grid-template-columns: 1fr; gap: 0.15rem; }
+    .field h3 { padding-top: 0; }
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">Employer-brand channel &nbsp;/&nbsp; the lens decision</p>
+  <h1>Three Lenses</h1>
+  <p class="standfirst">The phrasebook was a device, not a lens — it survives the review as a component, but it can't be the thing everything derives from. These are three lenses that can be.</p>
+
+  <section style="border-top: none; padding-top: 0; margin-top: 2.4rem;">
+    <span class="sec-num">00 — WHAT A LENS HAS TO DO</span>
+    <h2>Four questions, and one test</h2>
+
+    <p>The phrasebook answered none of these, which is why it read as brand recall rather than strategy. Any candidate has to answer all four.</p>
+
+    <div class="crit">
+      <div class="crit-row"><p><strong>Who is speaking?</strong> A face, a person, an institution, or nobody — but it has to be decided, not deferred.</p></div>
+      <div class="crit-row"><p><strong>What is their attitude?</strong> Authority, peer, or learner. This sets tone, who we partner with, and every title we write.</p></div>
+      <div class="crit-row"><p><strong>Why does anyone come back tomorrow?</strong> A reference has no cliffhanger. Something else has to supply the pull.</p></div>
+      <div class="crit-row"><p><strong>How does it stay topical?</strong> Everything has to connect to what's happening in AI right now, not to an evergreen list.</p></div>
+    </div>
+
+    <div class="test">
+      <span class="label">The subtractive test</span>
+      <p>Take the lens away. If the content is unchanged, it was a device, not a lens. Remove "music for everyone" and the vernacular billboards stop making sense — that's what passing looks like.</p>
+    </div>
+  </section>
+
+  <!-- ============ LENS 1 ============ -->
+  <div class="lens">
+    <span class="lens-tag">Lens 01</span>
+    <h2 class="lens-name">The Authority</h2>
+    <p class="jingle">"The place engineers check before they believe the hype."</p>
+
+    <div class="fields">
+      <div class="field"><h3>Who speaks</h3><p>An institution, not a person. An editorial desk — can stay faceless, or rotate real senior engineers as guests.</p></div>
+      <div class="field"><h3>Attitude</h3><p>Measured, unimpressed, above the noise. Never excited.</p></div>
+      <div class="field"><h3>Why return</h3><p>You trust one filter more than fifty threads. The pull is reliability, not narrative.</p></div>
+      <div class="field"><h3>Topicality</h3><p>Built in — it <em>is</em> a news function. Strongest of the three on this.</p></div>
+      <div class="field"><h3>Cadence</h3><p>Daily short brief plus a weekly deep dive. High volume, and high input cost per unit.</p></div>
+      <div class="field"><h3>Shorts / long</h3><p>Shorts carry the day's one thing; long form is the weekly synthesis. Brand appears only in long form.</p></div>
+      <div class="field"><h3>Phrasebook</h3><p>Becomes the reference desk — the glossary a publication maintains. Natural, unremarkable fit.</p></div>
+    </div>
+
+    <div class="lf">
+      <div class="lf-col y">
+        <span class="label">Licenses</span>
+        <ul>
+          <li>Daily "what actually shipped" brief</li>
+          <li>Deep dives, whiteboard explainers</li>
+          <li>PhD and senior-engineer collaborations</li>
+          <li>Benchmark and claim scrutiny</li>
+        </ul>
+      </div>
+      <div class="lf-col n">
+        <span class="label">Forbids</span>
+        <ul>
+          <li>Learning in public — an authority can't be a beginner</li>
+          <li>Vlogs, personal narrative</li>
+          <li>Challenges and streaks</li>
+          <li>AI ASMR — an authority does not whisper</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fit">
+      <div class="fit-cell"><span class="n">Wrong Answer First</span><span class="m strong">native — correction is the core job</span></div>
+      <div class="fit-cell"><span class="n">The Ladder</span><span class="m ok">works — expert breaking it down</span></div>
+      <div class="fit-cell"><span class="n">Question Compilation</span><span class="m ok">tone clash with "too scared to ask"</span></div>
+      <div class="fit-cell"><span class="n">Two Voices</span><span class="m weak">undermines it — no naive foil needed</span></div>
+    </div>
+
+    <div class="risk-box">
+      <span class="label">Biggest risk</span>
+      <p>We have no authority yet, and authority is the one thing that can't be bootstrapped by deciding to have it. It also needs senior engineering time <em>daily</em> — the resourcing hole from the v1 doc, multiplied. And it's the most crowded position in the category.</p>
+    </div>
+
+    <p class="verdict">Subtractive test: <b>passes</b> — remove "authority" and the daily brief has no rationale and corrections have no standing.</p>
+  </div>
+
+  <!-- ============ LENS 2 ============ -->
+  <div class="lens">
+    <span class="lens-tag">Lens 02</span>
+    <h2 class="lens-name">The Learner</h2>
+    <p class="jingle">"An engineer learning this in public — including the parts that don't work."</p>
+
+    <div class="fields">
+      <div class="field"><h3>Who speaks</h3><p>One named engineer, consistently. A real person, or at minimum a consistent real voice with a real repo behind it.</p></div>
+      <div class="field"><h3>Attitude</h3><p>Peer, fallible, curious. Competent at their job and openly at the start of this one thing.</p></div>
+      <div class="field"><h3>Why return</h3><p>The arc. You're watching someone get better — and a challenge structure gives you a genuine cliffhanger, which a glossary never can.</p></div>
+      <div class="field"><h3>Topicality</h3><p>Automatic. A learner learns whatever just shipped, so the calendar writes itself.</p></div>
+      <div class="field"><h3>Cadence</h3><p>Daily short (today's step) plus a weekly long (the build, or the failure, in full). The challenge sets the schedule for you.</p></div>
+      <div class="field"><h3>Shorts / long</h3><p>Shorts are the entryway; long form is where the build gets explained and where the brand plugs in naturally — "here's what I used to find where I got stuck."</p></div>
+      <div class="field"><h3>Phrasebook</h3><p><strong>Best fit of the three.</strong> It becomes the notebook they're filling — every term learned is a page, and the sidebar growing <em>is</em> the learning arc made visible.</p></div>
+    </div>
+
+    <div class="lf">
+      <div class="lf-col y">
+        <span class="label">Licenses</span>
+        <ul>
+          <li>100-day and n-day challenges</li>
+          <li>"What I learned today"</li>
+          <li>Failure logs, live attempts, retries</li>
+          <li>Asking real experts for help on camera</li>
+          <li>Building something using only skills</li>
+        </ul>
+      </div>
+      <div class="lf-col n">
+        <span class="label">Forbids</span>
+        <ul>
+          <li>Authoritative pronouncements</li>
+          <li>Tier lists, hot takes, rankings</li>
+          <li>Anything polished or first-try perfect</li>
+          <li>AI ASMR — a learning diary isn't ambient</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fit">
+      <div class="fit-cell"><span class="n">Two Voices</span><span class="m strong">native — the learner <em>is</em> the asker</span></div>
+      <div class="fit-cell"><span class="n">Question Compilation</span><span class="m strong">native — peer to peer, can't condescend</span></div>
+      <div class="fit-cell"><span class="n">Wrong Answer First</span><span class="m strong">"I believed this. I was wrong."</span></div>
+      <div class="fit-cell"><span class="n">The Ladder</span><span class="m ok">works — learner reaching upward</span></div>
+    </div>
+
+    <div class="risk-box">
+      <span class="label">Biggest risk</span>
+      <p>It needs a real, sustained person, so the bus factor is severe — if they leave, the channel dies. And there's a brand tension: does a company selling engineering intelligence want to be publicly "figuring it out"? See the resolution note below, because this is more fixable than it looks.</p>
+    </div>
+
+    <p class="verdict">Subtractive test: <b>passes strongly</b> — remove "the learner" and the challenges have no protagonist and the failures mean nothing.</p>
+  </div>
+
+  <!-- ============ LENS 3 ============ -->
+  <div class="lens">
+    <span class="lens-tag">Lens 03</span>
+    <h2 class="lens-name">The Everyday Coach</h2>
+    <p class="jingle">"One thing a day, for engineers who don't have time to keep up."</p>
+
+    <div class="fields">
+      <div class="field"><h3>Who speaks</h3><p>A warm, patient presence. Slightly senior but never lecturing — a coach meets you where you are rather than delivering a syllabus.</p></div>
+      <div class="field"><h3>Attitude</h3><p>Encouraging, practical, unhurried. Never makes the viewer feel late.</p></div>
+      <div class="field"><h3>Why return</h3><p>Habit, not narrative. The pull is a daily routine — closer to a morning newsletter or a streak than to a story.</p></div>
+      <div class="field"><h3>Topicality</h3><p><strong>Weakest here.</strong> A coach has no obligation to react to news, so topicality needs deliberate scaffolding — the Monday digest from Prashasti is the fix.</p></div>
+      <div class="field"><h3>Cadence</h3><p>Literally daily. Highest volume of the three, lowest cost per unit, because a tip is cheap to make.</p></div>
+      <div class="field"><h3>Shorts / long</h3><p>Shorts dominate; long form is the weekly consolidation. Brand appears only in long form.</p></div>
+      <div class="field"><h3>Phrasebook</h3><p>Becomes the curriculum. The dependency ordering stops being tidiness and becomes pedagogy.</p></div>
+    </div>
+
+    <div class="lf">
+      <div class="lf-col y">
+        <span class="label">Licenses</span>
+        <ul>
+          <li>One concept a day, today's tip</li>
+          <li>Topical reaction with a practical spin</li>
+          <li>Weekly recap and consolidation</li>
+          <li>Small challenges, streaks</li>
+        </ul>
+      </div>
+      <div class="lf-col n">
+        <span class="label">Forbids</span>
+        <ul>
+          <li>Long undirected essays</li>
+          <li>Hype coverage of any kind</li>
+          <li>Anything that implies the viewer is behind</li>
+          <li>AI ASMR — a coach speaks to you, not at ambient</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="fit">
+      <div class="fit-cell"><span class="n">The Ladder</span><span class="m strong">native — three rungs, three coachees</span></div>
+      <div class="fit-cell"><span class="n">Question Compilation</span><span class="m strong">native — coaching is answering</span></div>
+      <div class="fit-cell"><span class="n">Wrong Answer First</span><span class="m ok">works — gentle correction</span></div>
+      <div class="fit-cell"><span class="n">Two Voices</span><span class="m ok">works — coach and coachee</span></div>
+    </div>
+
+    <div class="risk-box">
+      <span class="label">Biggest risk</span>
+      <p>Generic. "Daily tip" channels are everywhere and this is the least differentiated of the three. It's also closest to the product, which cuts both ways — the best commercial tie, and the most likely to read as marketing.</p>
+    </div>
+
+    <p class="verdict">Subtractive test: <b>passes, weakly</b> — remove "coach" and the daily cadence loses its rationale, but the content survives largely intact.</p>
+  </div>
+
+  <!-- ============ COMPARISON ============ -->
+  <section>
+    <span class="sec-num">04 — SIDE BY SIDE</span>
+    <h2>Where they differ</h2>
+
+    <div class="t-wrap">
+      <table>
+        <thead>
+          <tr><th>&nbsp;</th><th>Authority</th><th>Learner</th><th>Coach</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">Differentiation</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+          </tr>
+          <tr>
+            <td class="lbl">Cost to sustain</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+          </tr>
+          <tr>
+            <td class="lbl">Topicality, built in</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+          </tr>
+          <tr>
+            <td class="lbl">Episodic pull</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></td>
+          </tr>
+          <tr>
+            <td class="lbl">Employer-brand fit</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></td>
+          </tr>
+          <tr>
+            <td class="lbl">Survives a person leaving</td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td>
+            <td><div class="bar"><i class="on"></i><i></i><i></i><i></i><i></i></div></td>
+            <td><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Note that cost and bus factor run <em>against</em> the Learner while everything else runs for it. That's the real trade in this decision, and it's a resourcing conversation rather than a creative one.</p>
+  </section>
+
+  <section>
+    <span class="sec-num">05 — RECOMMENDATION</span>
+    <h2>The Learner, but senior</h2>
+
+    <p>The Learner wins on differentiation, episodic pull, topicality, and employer-brand fit — and it's the only lens where the phrasebook becomes native rather than bolted on. Its two weaknesses are real: it needs a sustained person, and there's a tension in a company that sells engineering intelligence being publicly unsure.</p>
+
+    <p>That tension dissolves with one adjustment. <strong>The learner doesn't have to be junior.</strong> A senior engineer learning a genuinely new thing isn't incompetent — it's the most relatable position available, and it's exactly where the audience is standing.</p>
+
+    <div class="test">
+      <span class="label">The line that makes it work</span>
+      <p>"I've shipped for twelve years and I still didn't know what an MCP server was."</p>
+    </div>
+
+    <p style="margin-top: 1.4rem;">That is a far stronger employer-brand signal than claiming expertise, because it says our engineers are allowed to be wrong in public. It also sits cleanly with the existing position that coaching serves the whole distribution rather than extracting from top performers — the same claim, told from the inside.</p>
+
+    <h3 style="margin-top: 2rem;">Do not blend them</h3>
+    <p>A lens works because it forbids things. Running Authority and Learner together forbids nothing, and we'd be back to a list of interesting ideas with no way to reject the next one. Pick one, run it for three months, and let the second exist as a playlist inside it at most.</p>
+  </section>
+
+  <section>
+    <span class="sec-num">06 — STILL OPEN</span>
+    <h2>What has to be settled before this is a pitch</h2>
+
+    <div class="open">
+      <ul>
+        <li><strong>Who is the person,</strong> if it's the Learner. This is the whole lens, and it's a commitment from a real engineer, not a casting decision.</li>
+        <li><strong>Brand channel or separate channel.</strong> Still a hunch. The Learner argues for separate with the brand cited in long form; the Authority argues for the brand channel directly.</li>
+        <li><strong>The creator research.</strong> Ten AI-education creators — what they post, whether shorts carry them, and how they use long form. Early finding already in hand: on educational channels shorts frequently out-perform the long videos they point to.</li>
+        <li><strong>Operating boundaries.</strong> Maximum shorts length, posting frequency, and where the brand may appear. These are the calls nobody will contest once stated, and their absence is what makes a plan feel like a hunch.</li>
+        <li><strong>The name and descriptor</strong> in Casper shape — the name plus the two words that pre-decide what every episode does.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Draft for discussion, 20 Aug 2026. The phrasebook is retained as a component under whichever lens is chosen — it is no longer proposed as the spine.
+  </footer>
+
+</div>
+
+</body></html>

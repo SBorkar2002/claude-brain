@@ -1,0 +1,228 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Job Hunt Workflow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+/* Layout: one vertical flow. Each step is a node on a single spine; side outcomes hang off decisions. Scrolling lights the current node. */
+:root {
+  --bg: #f6f7fa;
+  --fg: #1c2230;
+  --muted: #5a6478;
+  --line: #c9cfdb;
+  --surface: #ffffff;
+  --accent: #2f5bd3;
+  --mac: #ece2ff; --mac-ink: #5a34b5;
+  --site: #e3ecff; --site-ink: #2449b0;
+  --sheet: #d9f4e4; --sheet-ink: #17693e;
+  --you: #ffefcc; --you-ink: #7a4d00;
+  --stop: #eceef3; --stop-ink: #4a5366;
+  --risk: #fde3e1; --risk-ink: #b3261e;
+  --font-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151c; --fg: #e6e9f0; --muted: #9aa3b5; --line: #3a4252; --surface: #1a1e27; --accent: #8aa8ff;
+    --mac: #2b2244; --mac-ink: #c0a8ff; --site: #1f2c4a; --site-ink: #9db6ff;
+    --sheet: #173a28; --sheet-ink: #6fd59c; --you: #3a2e16; --you-ink: #f2c15e;
+    --stop: #252a35; --stop-ink: #9aa3b5; --risk: #3d1d1b; --risk-ink: #ff9b93;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151c; --fg: #e6e9f0; --muted: #9aa3b5; --line: #3a4252; --surface: #1a1e27; --accent: #8aa8ff;
+  --mac: #2b2244; --mac-ink: #c0a8ff; --site: #1f2c4a; --site-ink: #9db6ff;
+  --sheet: #173a28; --sheet-ink: #6fd59c; --you: #3a2e16; --you-ink: #f2c15e;
+  --stop: #252a35; --stop-ink: #9aa3b5; --risk: #3d1d1b; --risk-ink: #ff9b93;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font: 16px/1.55 var(--font-body); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 72px;
+}
+main { max-width: 620px; margin: 0 auto; }
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; }
+p { margin: 0; }
+.eyebrow { font: 600 0.72rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  padding: 10px max(16px, env(safe-area-inset-left, 0px));
+}
+.top-inner { max-width: 620px; margin: 0 auto; display: flex; gap: 10px; align-items: center; }
+.top-inner b { font-size: 0.95rem; margin-right: auto; }
+.count { font: 600 0.75rem/1 var(--font-mono); color: var(--muted); }
+
+.tag { display: inline-block; font: 600 0.72rem/1 var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; padding: 5px 8px; border-radius: 6px; }
+.mac { background: var(--mac); color: var(--mac-ink); }
+.site { background: var(--site); color: var(--site-ink); }
+.sheet { background: var(--sheet); color: var(--sheet-ink); }
+.you { background: var(--you); color: var(--you-ink); }
+.stop { background: var(--stop); color: var(--stop-ink); }
+.risk { background: var(--risk); color: var(--risk-ink); }
+
+.intro { padding-block: 36px 28px; display: grid; gap: 12px; }
+.intro h1 { font-size: 1.9rem; }
+.intro p { color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* The flow */
+.flow { display: grid; }
+.node { display: grid; grid-template-columns: 36px 1fr; column-gap: 12px; }
+.rail { position: relative; display: flex; justify-content: center; }
+.rail::before { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.node:first-child .rail::before { top: 22px; }
+.node:last-child .rail::before { bottom: calc(100% - 22px); }
+.dot {
+  position: relative; margin-top: 12px; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--line);
+  font: 600 0.68rem/18px var(--font-mono); text-align: center; color: var(--muted);
+  transition: background .25s, border-color .25s, color .25s;
+}
+.node.on .dot { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.card {
+  margin-block: 6px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 14px 16px; display: grid; gap: 8px; min-width: 0;
+  transition: border-color .25s, box-shadow .25s;
+}
+.node.on .card { border-color: var(--accent); box-shadow: 0 8px 28px -16px var(--accent); }
+.card h3 { font-size: 1.08rem; }
+.card p { color: var(--muted); font-size: 0.96rem; }
+.card.decision { border-style: dashed; }
+.node.on .card.decision { border-style: solid; }
+.outs { display: grid; gap: 6px; }
+.out { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: baseline; font-size: 0.93rem; }
+.out .tag { white-space: nowrap; }
+.loop { font: 600 0.75rem/1.3 var(--font-mono); color: var(--muted); }
+
+.section { padding-block: 36px 14px; display: grid; gap: 6px; }
+.sites { display: grid; gap: 10px; }
+.siterow { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; }
+.siterow h3 { font-size: 1rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.siterow p { color: var(--muted); font-size: 0.94rem; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="top">
+  <div class="top-inner">
+    <b>Job hunt workflow</b>
+    <span class="tag mac" id="where">Your Mac</span>
+    <span class="count" id="count">Step 1 of 10</span>
+  </div>
+</div>
+
+<main>
+  <header class="intro">
+    <span class="eyebrow">Auto-apply, review in the Sheet</span>
+    <h1>How one run works</h1>
+    <p>Each site runs on its own every hour from 8am to 11pm: Instahyre on the hour, Wellfound at half past. The bot applies to fresh jobs that fit and writes each one to your Sheet. You review the Sheet and tell this chat what to change.</p>
+    <div class="legend">
+      <span class="tag mac">Your Mac</span>
+      <span class="tag site">On the job site</span>
+      <span class="tag sheet">Google Sheet</span>
+      <span class="tag you">You</span>
+    </div>
+  </header>
+
+  <div class="flow" id="flow">
+
+    <div class="node" data-where="mac"><div class="rail"><span class="dot">1</span></div>
+      <div class="card"><span class="tag mac">Your Mac</span><h3>The site's timer starts a run</h3>
+        <p>Your logins live only on your Mac, so it needs to be on.</p>
+        <div class="outs"><div class="out"><span class="tag stop">Mac asleep</span><span>The run happens once when the Mac wakes.</span></div></div>
+      </div></div>
+
+    <div class="node" data-where="site"><div class="rail"><span class="dot">2</span></div>
+      <div class="card decision"><span class="tag site">Start-of-run check</span><h3>Logged in, and the page looks right?</h3>
+        <p>Opens the site in its own Chrome and reads the job list from the site's own data.</p>
+        <div class="outs"><div class="out"><span class="tag you">No</span><span>Stops this site, saves a capture, and the Health tab turns red with what to do.</span></div></div>
+      </div></div>
+
+    <div class="node" data-where="site"><div class="rail"><span class="dot">3</span></div>
+      <div class="card"><span class="tag site">Needs you jobs</span><h3>Did you apply to any yourself?</h3>
+        <p>If a job you were asked to handle now shows as applied, its row turns to Applied.</p>
+      </div></div>
+
+    <div class="node" data-where="sheet"><div class="rail"><span class="dot">4</span></div>
+      <div class="card decision"><span class="tag sheet">Each job</span><h3>Handled before?</h3>
+        <div class="outs"><div class="out"><span class="tag stop">Yes</span><span>Skipped. Never applies twice.</span></div></div>
+      </div></div>
+
+    <div class="node" data-where="site"><div class="rail"><span class="dot">5</span></div>
+      <div class="card decision"><span class="tag site">Filters</span><h3>Does it fit you?</h3>
+        <p>Your titles, 0 to 2 years, Bengaluru or remote, fresh enough, no senior or lead, pay shown not under 6 LPA.</p>
+        <div class="outs">
+          <div class="out"><span class="tag stop">No</span><span>Skipped, with the reason in the Runs tab.</span></div>
+          <div class="out"><span class="tag you">Pay unclear</span><span>A Needs you row, so you decide.</span></div>
+        </div>
+      </div></div>
+
+    <div class="node" data-where="sheet"><div class="rail"><span class="dot">6</span></div>
+      <div class="card decision"><span class="tag sheet">Other sites</span><h3>Applied to the same job elsewhere?</h3>
+        <div class="outs"><div class="out"><span class="tag stop">Yes</span><span>Waits. Applies here only if there is no reply after 7 days.</span></div></div>
+      </div></div>
+
+    <div class="node" data-where="site"><div class="rail"><span class="dot">7</span></div>
+      <div class="card decision"><span class="tag site">On the job site</span><h3>Apply</h3>
+        <p>Up to the site's daily cap, minutes apart, like a person.</p>
+        <div class="outs">
+          <div class="out"><span class="tag you">Needs a note</span><span>Waits until you approve a note drafted in this chat.</span></div>
+          <div class="out"><span class="tag you">Unknown question</span><span>Doesn't guess. A Needs you row.</span></div>
+        </div>
+      </div></div>
+
+    <div class="node" data-where="sheet"><div class="rail"><span class="dot">8</span></div>
+      <div class="card"><span class="tag sheet">Google Sheet</span><h3>Row on the site's tab</h3>
+        <p>Company, role, link, when posted, when applied, exactly what went out (resume, note or None).</p>
+      </div></div>
+
+    <div class="node" data-where="sheet"><div class="rail"><span class="dot">9</span></div>
+      <div class="card"><span class="tag sheet">Runs and Health</span><h3>The run reports itself</h3>
+        <p>One row in Runs (seen, applied, skipped and why). The site's Health line: OK or red, today's count, next run.</p>
+      </div></div>
+
+    <div class="node" data-where="you"><div class="rail"><span class="dot">10</span></div>
+      <div class="card"><span class="tag you">You</span><h3>Review and ask for changes</h3>
+        <p>Check Health, do the Needs you rows, update Status when companies reply. Tell this chat what to change.</p>
+      </div></div>
+  </div>
+
+  <div class="section"><span class="eyebrow">Per site</span><h2>What's different on each site</h2></div>
+  <div class="sites">
+    <div class="siterow"><h3>Instahyre <span class="tag site">On the hour · 10 a day</span></h3>
+      <p>Reads your recommended jobs. "Apply now" is one click and sends your Instahyre profile resume, no note. Applied shows as "Application sent!". No post dates, so no freshness rule.</p></div>
+    <div class="siterow"><h3>Wellfound <span class="tag site">At :30 · 5 a day</span></h3>
+      <p>Reads your saved search (Product Designer, Bengaluru, full time). Jobs from the last 14 days. Sends your Wellfound profile plus a note to "What interests you about this company?", which you approve here first. Applied shows as "✓ Applied". Login is Google, done in a normal Chrome window.</p></div>
+    <div class="siterow"><h3>Cutshort, Naukri, others <span class="tag stop">Not built</span></h3>
+      <p>Each new site goes through the same steps: terms and your OK, profile check, recon, filter check with you, one live application, then the timer.</p></div>
+    <div class="siterow"><h3>LinkedIn <span class="tag risk">Skipped</span></h3>
+      <p>Not automated: LinkedIn bans accounts that do this.</p></div>
+  </div>
+</main>
+
+<script>
+(() => {
+  const nodes = [...document.querySelectorAll(".node")];
+  const where = document.getElementById("where");
+  const count = document.getElementById("count");
+  const names = { mac: "Your Mac", site: "On the job site", sheet: "Google Sheet", you: "You" };
+  const set = n => {
+    nodes.forEach(x => x.classList.toggle("on", x === n));
+    where.className = "tag " + n.dataset.where;
+    where.textContent = names[n.dataset.where];
+    count.textContent = `Step ${nodes.indexOf(n) + 1} of ${nodes.length}`;
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && set(e.target)),
+    { rootMargin: "-40% 0px -55% 0px" });
+  nodes.forEach(n => io.observe(n));
+  set(nodes[0]);
+})();
+</script>
+
+</body></html>
