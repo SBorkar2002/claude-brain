@@ -50,6 +50,8 @@ Now job hunting. Priorities: portfolio, job-search automation, comic and video c
 - **Hero = eyebrow + headline + lede + CTAs only.** No chips/badges/proof rows under CTAs.
 - **Comics hard-cut** between every panel. Comic scripts end on the story, no end cards.
 - **Free tools first.** She won't pay for things on personal work.
+- **No claude.ai artifacts unless she asks.** Durable things go in her repos, since she switches Claude accounts.
+- **Remote Control on and Mac kept awake** for every project chat.
 
 ## Git and PRs
 
@@ -66,6 +68,8 @@ Now job hunting. Priorities: portfolio, job-search automation, comic and video c
 | Need | Read |
 |---|---|
 | Fast orientation, what's live, next moves | `START-HERE.md` |
+| Latest status of every project (23 Oct, newest) | `projects/status-2026-10-23.md` |
+| LinkedIn profile fixes | `projects/linkedin/LINKEDIN-TRACKER.md` |
 | Portfolio site and decisions | `playbooks/portfolio.md` |
 | Job-hunt automation | `playbooks/job-automation.md`, `setup/job-automation-migration.md` |
 | Making a comic episode | `playbooks/comics.md`, `projects/comic-series.md` |

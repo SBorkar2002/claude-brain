@@ -1,4 +1,11 @@
 - [Sejal — Role & Context](user-sejal.md) — GenAI Product Design Intern at Epifi/Fi Money, making AI videos to sell Tetriz (B2B eng intelligence platform)
+- [Video Pipeline — Project State](project-video-pipeline.md) — current pipeline status, tools, gaps, next steps
+- [Launch Storyboard — v4.2](project-launch-storyboard.md) — Transform Launch script v4.2 spine + the 10-frame Figma storyboard built from it (file 30sryhNZr624S6zxJMf6Xz), decisions, node ids, open flags
+- [Landing Page Rebuild](project-landing-page-rebuild.md) — tetriz.ai rebuild: problem-first narrative direction, "reads every session" differentiator, quiz mid-scroll, 3 low-fi wireframe options in Figma (file 86MmIR4gywvxRaobJMAhGf)
+- [Feedback — Anandhi Website Review](feedback-anandhi-website-review.md) — Aug 4 review of v1.5 feature pages: flat/no-story; fix narrative arc, graph axis+interactivity, compare-table categories, visual finesse, contextual interlinking
+- [AI Adoption Page](project-ai-adoption-page.md) — local build of /features/ai-adoption in the Next.js site (Documents/Github/core), route/files/tokens/decisions + deep-dives-grid TODO; humanizing skill = plain-english
+- [Quiz Wireframes](project-quiz-wireframes.md) — AI-Native Index lead-gen quiz redesign (Anandhi handed to Sejal); 5-screen low-fi wireframes in Figma nyj8rbPsYnRozDmtHJgQzq for the GTM call; strip Tetriz, add email capture, define CTA
+- [Quiz App Dev](project-quiz-app-dev.md) — shipped quiz-app PRs #6611/#6649 in workloom-dev/core, LCI merge-gate workflow, backend toolchain now on her Mac
 - [Feedback — Working Style](feedback-working-style.md) — how Sejal likes to collaborate
 - [Feedback — Push Back](feedback-push-back.md) — form a view and defend it; never just endorse whoever spoke last; act as her senior ADVISOR, not assistant (16 Oct)
 - [Feedback — Animation Preferences](feedback-animation-prefs.md) — DORA video animation rules (Page 2 only, Remotion, typewriter terminals, random scatter dots, etc.)
@@ -13,12 +20,18 @@
 - [Feedback — Caption Meta Rules](feedback-caption-meta-rules.md) — emphasis word-by-word (wordDelay=4); bottom CC = full line in ONE GO (wordDelay=0, Aug 14); capitalize first letter, no overlapping sequential captions
 - [Feedback — Typography System](feedback-typography-system.md) — 3 fonts (Mona Sans/Plus Jakarta Sans/Geist Mono), full type scale, color tokens (#0d0d0d, TEAL #03A6CF, CORAL #FF6B6B, etc.)
 - [Feedback — Layout Meta Rules](feedback-layout-meta-rules.md) — comparisons side-by-side; stat card vertical if left/right, horizontal if top/bottom; key words in TEAL
+- [Feedback — Sumit's Messaging Rules](feedback-sumit-messaging-rules.md) — CEO rules: no "Tetriz Transform" as a name, center "AI-native, faster," don't frame coaching as extracting from top performers, AI-native claims need Mohit's input
 - [Feedback — Spine Before Script](feedback-spine-before-script.md) — Anandhi: nail story beats + which real product screen proves each feature before polishing VO prose; visuals can carry depth VO doesn't need to spell out
 - [Feedback — PR Description Format](feedback-pr-description-format.md) — existing branch → Before/After/Why tables per PR #6800; new branch → lead with what & why
+- [Reference — Granola Backup](reference-granola-backup.md) — full archive of 27 Granola meetings (Sep 2025–Jul 2026) saved to a Google Drive folder before the Fi account shutdown
+- [Reference — Product Brain Repo](reference-product-brain-repo.md) — where Tetriz product ground truth lives (PRDs, sales docs), key files for Harness/Coaching features, and the git-clone workaround for repo access
 - [Feedback — Chart Fidelity Bar](feedback-chart-fidelity-bar.md) — chart/dashboard scenes need real product-prototype polish (shadows, icons, smooth curves, pill chips), not wireframe sketches, per manager's reference mockup
 - [Feedback — Continuation Scenes](feedback-continuation-scenes.md) — META RULE: consecutive frames that continue the same layout get NO fade in/out; hard cut with matched positions, only per-element animation bridges
 - [Feedback — Caption System](feedback-caption-system.md) — two tiers: closed captions (small, bottom-center, full VO, always) vs baked-in emphasis (large, anywhere, always ABOVE the CC band)
 - [Feedback — Object Identity](feedback-object-identity.md) — icon carries identity, color carries state; skill=⚡/skill.md, plugin=🧩, dashboard=chrome, screenshot=image; dark bookends + light middle; reusable across scripts
+- [Feedback — Anandhi Storyboard Review](feedback-anandhi-storyboard-review.md) — July 2026: script depth first, persistent 3-pillar map (emphasize current), individual+org framing per feature, attention hierarchy, before/after must visually differ; animate coaching section first as the test
+- [Feedback — Anandhi Cut Review](feedback-anandhi-cut-review.md) — 2026-07-16 review of first full animated cut: fix caption/subtitle clash, vary transition monotony (rules fly in all directions, harness cue), Memory grid must SPREAD (affects everyone), Stack must show compounding; keep DECISIONS.md log across sessions
+- [Feedback — Anandhi VO-Cut Review](feedback-anandhi-vo-cut-review.md) — 2026-07-17, NOT yet actioned: P0s = S2b curve must bend ON the VO word, bridge Prompts→Harness & Loops→Memory transitions, fix Stack repeat+layout, emphasize PERSONALISED COACHING; heart shape may not land for CXOs; ask Sejal before any skill-file update
 - [Feedback — VO Cut Tails](feedback-vo-cut-tails.md) — never cut VO mid-word; whisper ends undershoot, leave ≥0.4s decay tail at segment splits
 - [Feedback — VO Interruptions](feedback-vo-interruptions.md) — an interruption is a CUT not a duck; 4ms fade; find the cut by transcribing candidates
 - [Feedback — Tempo vs Pace](feedback-tempo-vs-pace.md) — same atempo ≠ same delivery; measure syllables/sec per segment
@@ -31,6 +44,7 @@
 - [Generated Art Keying](project-comic-generated-art-keying.md) — ChatGPT art arrives on a solid bg; key it + measure the head (keying.py, sleephead.py) before compositing
 - [Comic Cast Lock](project-comic-cast-lock.md) — art direction DECIDED 4 Sep: neat comic register (crude rejected), greyscale+teal, AI = one six-petal mark with an eye
 - [Feedback — Artifact Stays Lean](feedback-artifact-stays-lean.md) — the series artifact is a script review surface; production history goes in the repo, not on the page
+- [Feedback — Dashboard Split Rule](feedback-dashboard-split-rule.md) — mobile scrollytelling: split lens into per-panel dashboards only if the full hero overflows the stage; measure first, never split by default
 - [Feedback — Comic Hard Cuts](feedback-comic-hard-cuts.md) — comic episode videos are cut-cut-cut; every panel hard-cuts, never a crossfade, even on scene changes
 - [Feedback — AI Mark on Screen](feedback-ai-mark-on-screen.md) — composite the teal six-petal AI mark onto every AI monitor when building the video; plates ship blank on purpose
 - [Reference — ffmpeg VO Cut](reference-ffmpeg-vo-cut.md) — put -ss BEFORE -i when cutting VO with afade or the fade silences the clip; verify with volumedetect
@@ -58,19 +72,5 @@
 - [Studio Plugin](project-personal-skill-kit.md) — 20 Oct: her own /studio plugin (code/figma/flow doctors, shared rules, proof scripts, hooks) in ~/Documents/Github/studio; installed locally, not pushed
 - [Feedback — Studio Push](feedback-studio-push.md) — STANDING 20 Oct: push SBorkar2002/studio commits without asking; other repos keep their own rules
 - [Prompt Engineering Episode](project-prompt-engineering-episode.md) — Script A "Wait, What?" Remotion build PromptEng (20 Oct): files, card re-record splice, flap pairs, open flags
-
-## Archived: Tetriz / Epifi work context (not loaded by default)
-Lessons from these are folded into playbooks/. Read only if the old work comes up.
-- [Video Pipeline — Project State](_epifi/project-video-pipeline.md) — current pipeline status, tools, gaps, next steps
-- [Launch Storyboard — v4.2](_epifi/project-launch-storyboard.md) — Transform Launch script v4.2 spine + the 10-frame Figma storyboard built from it (file 30sryhNZr624S6zxJMf6Xz), decisions, node ids, open flags
-- [Landing Page Rebuild](_epifi/project-landing-page-rebuild.md) — tetriz.ai rebuild: problem-first narrative direction, "reads every session" differentiator, quiz mid-scroll, 3 low-fi wireframe options in Figma (file 86MmIR4gywvxRaobJMAhGf)
-- [Feedback — Anandhi Website Review](_epifi/feedback-anandhi-website-review.md) — Aug 4 review of v1.5 feature pages: flat/no-story; fix narrative arc, graph axis+interactivity, compare-table categories, visual finesse, contextual interlinking
-- [AI Adoption Page](_epifi/project-ai-adoption-page.md) — local build of /features/ai-adoption in the Next.js site (Documents/Github/core), route/files/tokens/decisions + deep-dives-grid TODO; humanizing skill = plain-english
-- [Quiz Wireframes](_epifi/project-quiz-wireframes.md) — AI-Native Index lead-gen quiz redesign (Anandhi handed to Sejal); 5-screen low-fi wireframes in Figma nyj8rbPsYnRozDmtHJgQzq for the GTM call; strip Tetriz, add email capture, define CTA
-- [Quiz App Dev](_epifi/project-quiz-app-dev.md) — shipped quiz-app PRs #6611/#6649 in workloom-dev/core, LCI merge-gate workflow, backend toolchain now on her Mac
-- [Feedback — Sumit's Messaging Rules](_epifi/feedback-sumit-messaging-rules.md) — CEO rules: no "Tetriz Transform" as a name, center "AI-native, faster," don't frame coaching as extracting from top performers, AI-native claims need Mohit's input
-- [Reference — Product Brain Repo](_epifi/reference-product-brain-repo.md) — where Tetriz product ground truth lives (PRDs, sales docs), key files for Harness/Coaching features, and the git-clone workaround for repo access
-- [Feedback — Anandhi Storyboard Review](_epifi/feedback-anandhi-storyboard-review.md) — July 2026: script depth first, persistent 3-pillar map (emphasize current), individual+org framing per feature, attention hierarchy, before/after must visually differ; animate coaching section first as the test
-- [Feedback — Anandhi Cut Review](_epifi/feedback-anandhi-cut-review.md) — 2026-07-16 review of first full animated cut: fix caption/subtitle clash, vary transition monotony (rules fly in all directions, harness cue), Memory grid must SPREAD (affects everyone), Stack must show compounding; keep DECISIONS.md log across sessions
-- [Feedback — Anandhi VO-Cut Review](_epifi/feedback-anandhi-vo-cut-review.md) — 2026-07-17, NOT yet actioned: P0s = S2b curve must bend ON the VO word, bridge Prompts→Harness & Loops→Memory transitions, fix Stack repeat+layout, emphasize PERSONALISED COACHING; heart shape may not land for CXOs; ask Sejal before any skill-file update
-- [Feedback — Dashboard Split Rule](_epifi/feedback-dashboard-split-rule.md) — mobile scrollytelling: split lens into per-panel dashboards only if the full hero overflows the stage; measure first, never split by default
+- [Claude Brain Repo](reference-claude-brain-repo.md) — handoff repo SBorkar2002/claude-brain for the next account; keep it updated and pushed until the shutdown
+- [Feedback — No Artifacts](feedback-no-artifacts.md) — STANDING 23 Oct: never publish claude.ai artifacts unless she asks; reports go in a repo file or on her site
