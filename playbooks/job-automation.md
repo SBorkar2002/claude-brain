@@ -66,6 +66,11 @@ Runner flow per site: open list → logged in? bot check? page as expected? (els
 
 ## Sources and status
 
+**Changes 22 to 23 Oct:**
+- **Bangalore Startup Map** added as a **find-only** source (`startupmap`, dry run so far): it finds roles and logs them, never applies.
+- **Sheet:** typed columns no longer block writes; row colours are driven by Status; a **Skipped** tab now collects skipped jobs, and tabs are sorted.
+- **Wellfound:** Wellfound's own search errors are treated as temporary (retry next run) instead of turning Health red.
+
 | Source | How | Status (22 Oct) |
 |---|---|---|
 | Instahyre | Mac bot, logged in. Reads "recommended" feed JSON (`candidate_opportunities/candidate_matching`), newest job id first. One-click Apply (no note, sends her Instahyre profile resume). In-dialog forms filled from answers. Redirect to company site → Needs you | LIVE on timer since 20 Oct. Cap 10/day, 90 to 180s gaps |

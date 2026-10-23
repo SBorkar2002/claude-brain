@@ -23,6 +23,10 @@ Top: kicker, title, one-liner, meta row (no "Role" tag in a project case study; 
 
 ## 2. Take-home rules she set
 
+**Behance rule (23 Oct):** Behance case studies get their own visual identity from each project's real brand and
+product, never screenshots of the portfolio pages (that made every project look the same, in the portfolio's pixel
+chrome). Style tile per project first, she picks, then the full boards. Never reuse the portfolio chrome on external platforms.
+
 - Never name the hiring company if the brief does not (the #futureofhr page has no Instahyre name or logo; event identity is the hashtag).
 - No invented scarcity, prizes, dates or quotes presented as real. If something is invented (a deadline, a quote, askers' names), it is a flagged placeholder.
 - Timeline logic: a pre-event page cannot show anything as already answered or won.

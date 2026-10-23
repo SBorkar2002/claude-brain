@@ -56,6 +56,13 @@ Each installed `SKILL.md` is a short stub that says: read `<studio>/skills/<name
 
 ## The doctors
 
+**profile-doctor (added 23 Oct, studio 0.3.0):** read-only LinkedIn profile review. Reviews every section for reach
+with recruiters and clients, ranks fixes P0 to P2 in one tracker (`~/Documents/career/linkedin/LINKEDIN-TRACKER.md`,
+copy in `projects/linkedin-tracker.md`), and for "we're covering item N" gives Now / Change to / Keep / Why / Where to
+click / Check after. Never edits the profile or drives LinkedIn. Search words are tied to the job bot's title tracks;
+it checks consistency against resume and portfolio. The router sends LinkedIn work here. A skills checkup doc with
+current vs proposed flowcharts was also added (commit d62c822).
+
 - **code-doctor** (`steps.md`, `mobile.md`, `ship.md`): intake with detect.sh; visual asks turned into exact spec lines read back before building (element · property · value with the site's token, naming both of any swappable pair like belt/bell, left/right); reproduce with headless screenshots, never the in-app pane alone (it pauses rAF and scroll); diagnose one line per item (where, why, fix); smallest fix; verify (typecheck, build, 1440 + 390 in both themes, copy-lint, console); medium/large rounds also get /code-review, the 4-phone x 2-theme sweep and a before/after diff of untouched pages; ship = branch > preview > her OK > fast-forward main > check live; every report ends with a Preview / Live / Waiting status block; up to 3 ranked next ideas when asked. Cat sprite drops from the cat chat are imported without asking her (asset contract in `handoff.md`).
 - **figma-doctor**: load `figma:figma-use` before any `use_figma`; read only the target node; duplicate originals and work side by side; run `figma-qa.js` (overlaps, text spilling, em dashes, off-list fonts, collapsed text boxes, empty frames); known traps (load fonts first, re-set textAutoResize after resizing, confirm exact font style names, re-read nodes after a transport error, stale ids after deletes, no push/slide transitions via API, no Figma AI credits); list exact hotspots/keys for her to test in Present.
 - **flow-doctor** (`steps.md`, `new-site.md`, `run-health.md`): hard limits (no CAPTCHA bypass, no credentials in code or chat, private answers in git-ignored files, unknown form questions marked "Needs you", per-site daily caps, messages to people only drafted, warn about site terms); dry run first, one live item only after her OK; new job sites follow a staged playbook; Sheet values in plain words and IST dates.

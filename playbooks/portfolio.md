@@ -60,6 +60,11 @@ public/images           self-hosted WebP 1x/2x; public/Sejal_Borkar_Resume.pdf; 
 
 ### Pages and content (order is Sejal's call, 18 Oct)
 
+**Update 23 Oct:** every case study (and the comic series on the Motion page) now opens with a summary block
+right under the hero: **the problem, what I did, the result**, using only facts already on the pages and in her
+notes. All section copy is in **first person**; the team line stays where the work was shared. Keep this voice for
+any new case study.
+
 | # | Tile | Tag | Route | Notes |
 |---|---|---|---|---|
 | 1 | Marketing site and a 20-component library | Shipped | /work/marketing-site | Epifi/Tetriz, named; links tetriz.ai feature pages. Captures of live public pages only. |

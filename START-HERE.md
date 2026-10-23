@@ -37,6 +37,7 @@ no tilt, no overlaps, no paid tools, no AI-generic editorial look, After Effects
 | **Job-hunt automation** | Instahyre (hourly) and Wellfound (:30) auto-apply bots on the Mac, logging to a Google Sheet; Apps Script cloud half parses Gmail alerts and career pages. Runs on her personal Google account. Mac half must be reinstalled on the new laptop | `playbooks/job-automation.md`, `setup/job-automation-migration.md` |
 | **Comic shorts** | 5 episodes + a prompt-engineering episode finished for the AI FOMO channel ("I Have No Idea What That Means"). The craft is her portfolio material now | `playbooks/comics.md`, `projects/comic-series.md` |
 | **Case studies / take-homes** | Sourced (done, on the site), #futureofhr / Instahyre take-home (done), AlterOffice cricket comic, UXpective. Green Gallery was DROPPED; do not revive unless she asks | `playbooks/case-studies.md` |
+| **LinkedIn profile** | Read-only review done 23 Oct; About, headline, photo done; Fi entry, Featured, Open-to titles, banner, projects, posting plan left | `projects/linkedin-tracker.md` (live copy: `~/Documents/career/linkedin/`) |
 | **Studio plugin** | Her own Claude Code plugin: `/studio` routes change requests to code/figma/flow doctors, with a progress side panel. Repo SBorkar2002/studio | `setup/studio-plugin.md` |
 
 ## Your first session on the new account: check these
