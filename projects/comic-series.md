@@ -12,8 +12,8 @@ How to build one: `../playbooks/comics.md`. What went wrong before: `../lessons/
 - Reach by late Sep 2026: 4 videos out; the "intern video" (AJ, believed to be EP002 graph
   engineering) passed **30k Instagram views**, others 200 to 1,500; YouTube 500+. Sejal's rule:
   quote only the 30k publicly, never the weak numbers.
-- Build repo: `~/Documents/comics-video` (Remotion, local git, no remote; last commit 9 Sep,
-  everything from EP002 on is uncommitted, 57 changed/untracked paths on 22 Oct). Scripts and skills: `~/Documents/product-brain/video/youtube/comics/`.
+- Build repo: `~/Documents/Work/comics-video` (Remotion, local git, no remote; last commit 9 Sep,
+  everything from EP002 on is uncommitted, 57 changed/untracked paths on 22 Oct). Scripts and skills: `~/Documents/Work/product-brain/video/youtube/comics/`.
 - Figma file `comic` holds every board, one page per episode (work account).
 - The three-bucket system (speed/cost/quality, each with a fixed outro question) shaped EP001 and
   EP002. **Retired from endings on 5 Oct** (no stamp, no outro); buckets are only a tracker label now.
@@ -28,7 +28,7 @@ for every AI) · the date (EP003 only). Voices and looks: playbook section 2.
 
 ## Episode table
 
-All paths relative to `~/Documents/comics-video/`. "Final" = the last render Sejal accepted.
+All paths relative to `~/Documents/Work/comics-video/`. "Final" = the last render Sejal accepted.
 
 | Ep | Term | Final file | Length | Composition | Built |
 |---|---|---|---|---|---|
@@ -73,7 +73,7 @@ Episode numbering past EP005 is unclear from history.
   (`src/intro_mouth.json`). End card in the loop card's style (dark bookend, white text, one teal
   rule). Figma frames under node 499-1483. Built 31.6s (script said ~12s).
 - Also made then: YouTube profile picture (AI mark on dark, 1024px, eye right of centre) and banner
-  (2560x1440, two devs at the corners, "AI FOMO" centred), both in `~/Documents/comic folder`.
+  (2560x1440, two devs at the corners, "AI FOMO" centred), both in `~/Documents/Work/comic folder`.
 - Whether it was published: unclear from history.
 
 ## EP002 `graph engineering`
@@ -200,4 +200,4 @@ who owns the nine-post distribution cascade; Anandhi's "know the next 4 to 10 id
 
 **Note for a future session:** after the account shutdown the Drive, Figma, Slack threads and
 artifacts are likely unreachable. Everything needed to rebuild or extend an episode locally is in
-`~/Documents/comics-video` (plates, VO, SFX, emitters) and the product-brain comics folder clone.
+`~/Documents/Work/comics-video` (plates, VO, SFX, emitters) and the product-brain comics folder clone.

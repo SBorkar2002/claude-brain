@@ -2,7 +2,7 @@
 import json, os, subprocess, sys
 import numpy as np
 from PIL import Image
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 mp4 = sys.argv[1]
 cut = json.load(open(os.path.join(ROOT, "src/s1m_cut.json")))
 out = os.path.join(ROOT, "out/s1m/verify"); os.makedirs(out, exist_ok=True)

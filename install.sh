@@ -31,9 +31,9 @@ done
 echo "   $(ls "$CLAUDE_DIR/skills" | wc -l | tr -d ' ') skills installed"
 
 say "Her studio plugin repo"
-mkdir -p "$HOME/Documents/Github"
-if [ ! -d "$HOME/Documents/Github/studio" ]; then
-  gh repo clone SBorkar2002/studio "$HOME/Documents/Github/studio" || echo "   !! clone failed: run 'gh auth login' as SBorkar2002 and re-run"
+mkdir -p "$HOME/Documents/Personal/Github"
+if [ ! -d "$HOME/Documents/Personal/Github/studio" ]; then
+  gh repo clone SBorkar2002/studio "$HOME/Documents/Personal/Github/studio" || echo "   !! clone failed: run 'gh auth login' as SBorkar2002 and re-run"
 fi
 
 say "Plugins"
@@ -41,7 +41,7 @@ if command -v claude >/dev/null; then
   claude plugin marketplace add anthropics/claude-plugins-official || true
   claude plugin marketplace add pbakaus/impeccable || true
   claude plugin marketplace add Leonxlnx/taste-skill || true
-  [ -d "$HOME/Documents/Github/studio" ] && claude plugin marketplace add "$HOME/Documents/Github/studio" || true
+  [ -d "$HOME/Documents/Personal/Github/studio" ] && claude plugin marketplace add "$HOME/Documents/Personal/Github/studio" || true
   for p in figma context7 code-simplifier chrome-devtools-mcp hookify claude-md-management playground serena; do
     claude plugin install "$p@claude-plugins-official" || true
   done
@@ -54,4 +54,4 @@ else
 fi
 
 say "Done. Manual steps left: see setup/README.md sections 4 to 6 (tools, connectors, app settings)."
-echo "   Then open Claude Code from your home folder and say: read START-HERE.md in ~/Documents/Github/claude-brain"
+echo "   Then open Claude Code from your home folder and say: read START-HERE.md in ~/Documents/Personal/Github/claude-brain"

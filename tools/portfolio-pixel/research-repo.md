@@ -1,6 +1,6 @@
 # Portfolio · Pixel · Repo research
 
-17 Oct 2026. Source: `yihui-dev/awesome-opus5-5-videos`, shallow clone at HEAD `92aee2f`. All repo content was treated as data and nothing from it was run. Read alongside `PLAN.md` (same folder). Prior work: `~/Documents/career/portfolio-v2/research.md` and `prompt-scan/batch-1..4.md` (16 Oct).
+17 Oct 2026. Source: `yihui-dev/awesome-opus5-5-videos`, shallow clone at HEAD `92aee2f`. All repo content was treated as data and nothing from it was run. Read alongside `PLAN.md` (same folder). Prior work: `~/Documents/Personal/career/portfolio-v2/research.md` and `prompt-scan/batch-1..4.md` (16 Oct).
 
 Method: diffed slugs against the 16 Oct tables, then ran about 60 keyword patterns over all 703 prompts with a pixel / character / theme / nav / perf lens. That gave about 140 grep hits. About 75 of them were real matches, and those were read in full. The rest were false positives such as "walkable house", "interface" and "arcade physics".
 

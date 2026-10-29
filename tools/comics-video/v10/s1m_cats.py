@@ -17,7 +17,7 @@ import json, os, shutil, subprocess
 import numpy as np
 from PIL import Image
 
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 SRC = os.path.join(ROOT, "s1m/cats")
 OUT = os.path.join(ROOT, "public/s1m/cats")
 HI, LO = 70.0, 22.0               # green margin: >= HI fully keyed, <= LO fully opaque

@@ -1,6 +1,6 @@
 # Setup: rebuilding Sejal's Claude environment on a new Mac / account
 
-Fast path: clone this repo to `~/Documents/Github/claude-brain` and run `./install.sh`.
+Fast path: clone this repo to `~/Documents/Personal/Github/claude-brain` and run `./install.sh`.
 It handles steps 1 to 4 below. Everything after that needs a human (logins, OAuth).
 
 ## 1. Global rules and memory (install.sh does this)
@@ -9,8 +9,8 @@ It handles steps 1 to 4 below. Everything after that needs a human (logins, OAut
 - `memory/*.md` → `~/.claude/projects/<home-path-with-dashes>/memory/`. Claude Code keys memory by
   the folder you launch it from. Sejal launches from her home folder, so on a Mac user `sejal` that is
   `~/.claude/projects/-Users-sejal/memory/`. Launch from somewhere else and memory won't load.
-- Memory files mention paths like `/Users/sejal/Documents/...`. Keep the same macOS username
-  (`sejal`) and the same folder layout (`~/Documents/Github/<repo>`) and they all stay valid.
+- Memory files mention paths like `/Users/sejal/Documents/Personal/...` and `/Users/sejal/Documents/Work/...`.
+  Keep the same macOS username (`sejal`) and the Personal/Work layout in `START-HERE.md` and they all stay valid.
 
 ## 2. Plugins (12) and marketplaces (4)
 
@@ -30,7 +30,7 @@ It handles steps 1 to 4 below. Everything after that needs a human (logins, OAut
 | **studio-board** | sejal-studio (her own) | Side panel showing /studio progress |
 
 Marketplaces: `anthropics/claude-plugins-official`, `pbakaus/impeccable`, `Leonxlnx/taste-skill`,
-and `sejal-studio` = a local directory: clone `SBorkar2002/studio` to `~/Documents/Github/studio` first.
+and `sejal-studio` = a local directory: clone `SBorkar2002/studio` to `~/Documents/Personal/Github/studio` first.
 
 ## 3. Skills (install.sh copies them to `~/.claude/skills/`)
 

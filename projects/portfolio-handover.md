@@ -246,7 +246,7 @@ that…" tails, and never use the phrase "end to end" more than once on the whol
 
 ## 12. Related files
 
-- `Documents/career/experience-report.md` — full record of the Epifi engagement, with
+- `Documents/Personal/career/experience-report.md` — full record of the Epifi engagement, with
   per-project detail useful for writing the case studies.
 - Resume lives in Figma, file key `NlBw9VEMyRgbexRrmBBUVN`, two variants (generalist and
   narrow product design). Keep site copy consistent with it.

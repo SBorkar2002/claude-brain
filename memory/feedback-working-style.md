@@ -29,7 +29,7 @@ metadata:
   artifacts (scripts, spines, docs); a message that exists only to be copied into Slack isn't one.
 
 - **When a new meta rule is established, update BOTH memory AND the skill md file
-  (`~/Documents/tetriz-content/skills/launch-scene-prompt-generator.md` for launch videos,
+  (`~/Documents/Work/tetriz-content/skills/launch-scene-prompt-generator.md` for launch videos,
   `scene-prompt-generator.md` for SEO) in the same turn.** Sejal checks that the skill files
   stay current — memory alone isn't enough, because the skills are what Divya/Anandhi reuse.
 

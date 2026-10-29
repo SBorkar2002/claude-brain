@@ -8,7 +8,7 @@ metadata:
 ---
 
 - **Repo:** `workloom-dev/product-brain` on GitHub (private org). Cloned locally at
-  `/Users/sejal/Documents/product-brain` as of 2026-07-03 — re-clone/pull if it's missing or stale
+  `/Users/sejal/Documents/Work/product-brain` as of 2026-07-03 — re-clone/pull if it's missing or stale
   in a future session, don't assume it's still there or current.
 - **Key folders:** `docs/prd/` (feature PRDs, each has a Status line — Draft vs. shipped matters,
   don't assume a described feature is live), `docs/sales/` (vetted, board-tested sales copy —

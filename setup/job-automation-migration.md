@@ -16,7 +16,7 @@ Goal: the cloud half keeps running untouched; the Mac half (Instahyre and Wellfo
 | launchd timers `com.sejal.jobbot.{instahyre,wellfound}` | old Mac only | NO: reinstall |
 | clasp auth `~/.clasprc.json` | old Mac only | NO: `npm run clasp:login` again (never copy tokens) |
 | Flow page artifact claude.ai/artifact/9No5UMQKk65HViTicyM6SB | old Claude account | Likely lost with that account. Source is `docs/workflow.html` in the repo: republish from the personal Claude account |
-| Chat history and project memory (`~/.claude/projects/-Users-sejal-Documents-career-automation-scripts/`) | old Claude account / laptop | NO. This brain repo replaces it; the repo README is the real tracker |
+| Chat history and project memory (`~/.claude/projects/-Users-sejal-Documents-Personal-career-automation-scripts/`) | old Claude account / laptop | NO. This brain repo replaces it; the repo README is the real tracker |
 
 **Company-account dependencies found:** none in the Google/GitHub side. Sheet, Apps Script, Gmail alerts, clasp and GitHub are all personal (sejalborkar2002@gmail.com, SBorkar2002). Job alerts were set up to arrive at the personal Gmail (LinkedIn, Glassdoor and Indeed alerts were read there on 21 Oct). Unknown: which email her Instahyre login uses (if it is the Epifi address, that account loses its inbox for OTPs; check). What WILL go stale when Epifi ends is content, not plumbing: see step 9.
 
@@ -24,10 +24,10 @@ Goal: the cloud half keeps running untouched; the Mac half (Instahyre and Wellfo
 
 1. Merge PR #11 (`feat/wellfound-messages`) on GitHub so `main` has the Wellfound Messages code and the `OWNER_EMAIL` email fix. Its Apps Script half is already live; leaving it unmerged means a future `sheet:deploy` from `main` breaks all emails to her.
 2. Copy these three things to a private place (USB drive, AirDrop to the new Mac, or a private personal Drive folder; NOT GitHub, NOT a chat):
-   - `~/Documents/career/automation-scripts/.env`
-   - `~/Documents/career/automation-scripts/private/answers.local.json`
+   - `~/Documents/Personal/career/automation-scripts/.env`
+   - `~/Documents/Personal/career/automation-scripts/private/answers.local.json`
    - the folder `~/.jobbot/state/`
-3. Stop the old timers so the old Mac stops applying: `cd ~/Documents/career/automation-scripts && npm run timer:remove`.
+3. Stop the old timers so the old Mac stops applying: `cd ~/Documents/Personal/career/automation-scripts && npm run timer:remove`.
 4. Expect the Health tab to turn red ("No good run in 3 hours") until the new Mac runs, and `healthAlert` to email her at most every 6 hours (9am to 11pm). That is harmless. The cloud sources keep filling the Sheet meanwhile.
 5. Optional: if she wants a fresh secret (the current one was pasted in the old chat once), skip copying `.env` and do B6 "recreate" instead.
 
@@ -36,11 +36,11 @@ Goal: the cloud half keeps running untouched; the Mac half (Instahyre and Wellfo
 1. **Base tools.** Xcode Command Line Tools (`xcode-select --install`; gives git and python3, both used by `timer.sh` and `sheet-deploy.sh`). Node.js LTS 22+ (old Mac ran v24.16.0 at `/usr/local/bin/node`; `core/status.mjs` uses `import.meta.dirname`, needs Node 20.11+). Google Chrome in `/Applications` (the bots use the installed Chrome via Playwright `channel: 'chrome'`). GitHub CLI `gh`, then `gh auth login` as SBorkar2002.
 2. **Clone.** Keep the old path so docs match:
    ```
-   mkdir -p ~/Documents/career && cd ~/Documents/career
+   mkdir -p ~/Documents/Personal/career && cd ~/Documents/Personal/career
    git clone https://github.com/SBorkar2002/job-hunt-automation automation-scripts
    cd automation-scripts && git checkout main && git pull
    ```
-   Also clone `SBorkar2002/my-portfolio` to `~/Documents/Github/my-portfolio`: `core/fill.mjs` attaches `public/Sejal_Borkar_Resume.pdf` from that exact path (hard-coded).
+   Also clone `SBorkar2002/my-portfolio` to `~/Documents/Personal/Github/my-portfolio`: `core/fill.mjs` attaches `public/Sejal_Borkar_Resume.pdf` from that exact path (hard-coded).
 3. **Install.** `npm install` (installs playwright 1.48.2 and clasp as a project devDependency). Playwright browser download is not needed because it drives installed Chrome; if a launch error asks for it, run `npx playwright install chrome`. If npm fails with EACCES in `~/.npm`, Sejal runs `sudo chown -R $(whoami) ~/.npm` herself.
 4. **`npm run check`** (syntax check of all .mjs).
 5. **Private answers.** Put the copied `answers.local.json` in `private/`, or recreate `private/answers.local.json` (JSON object) with these keys, values from Sejal only, never committed or printed:

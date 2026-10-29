@@ -27,7 +27,7 @@ viewer cannot parse. **Format deliberately drops the IHNIWTM
 signature** — no term drop, no polite blank face, no stamp, no bucket outro.
 
 **Where it lives**
-- Build: `~/Documents/comics-video` — `src/RemoteControl.tsx` + `src/AIMark.tsx`,
+- Build: `~/Documents/Work/comics-video` — `src/RemoteControl.tsx` + `src/AIMark.tsx`,
   data in `src/rc_cut.json`, emitted by `/tmp/emit_rc.py`; audio built by
   `/tmp/build_final.py`. Studio: `remotion studio src/index.ts --port 3000`.
 - Script + prompts: `product-brain/video/youtube/comics/scripts/remote-control.md`

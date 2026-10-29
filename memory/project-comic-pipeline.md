@@ -6,7 +6,7 @@ metadata:
 ---
 
 Pipeline for the comic series (decided 28 Aug 2026, with Sejal). Written up in
-`Documents/product-brain/video/youtube/comics/PIPELINE.md` — read that first,
+`Documents/Work/product-brain/video/youtube/comics/PIPELINE.md` — read that first,
 this is the pointer plus the things not obvious from the file.
 
 **The core rule:** Drive is the review surface, the repo is the frozen record.

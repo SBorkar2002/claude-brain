@@ -4,7 +4,7 @@ Edges come from the measured envelope (s1m/vo_src/*.json word order + 10ms RMS),
 never from whisper's absolute times. Input-side seek only (-ss before -i), or
 afade silences the clip. Interruptions get a 4ms fade, everything else 60ms."""
 import os, subprocess, json
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 SRC = os.path.join(ROOT, "s1m/vo_src")
 OUT = os.path.join(ROOT, "public/s1m/vo")
 

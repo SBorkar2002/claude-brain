@@ -4,7 +4,26 @@ This file is installed as `~/.claude/CLAUDE.md`, so it loads in every session.
 The full context lives in the claude-brain repo. Read `START-HERE.md` there before
 any real work, then the playbook for the task at hand.
 
-Brain repo (local): `~/Documents/Github/claude-brain` (GitHub: SBorkar2002/claude-brain, private)
+Brain repo (local): `~/Documents/Personal/Github/claude-brain` (GitHub: SBorkar2002/claude-brain, private)
+
+## Folders: every chat starts in the right one
+
+Two roots since the 29 Oct 2026 laptop reset. Each has a `CLAUDE.md` with its full map.
+
+| Topic | Folder |
+|---|---|
+| Portfolio site, case studies, resume | `~/Documents/Personal/Github/my-portfolio` |
+| Pixel cat art (cat studio) | `~/Documents/Personal/career/portfolio-pixel` |
+| Job-hunt automation | `~/Documents/Personal/career/automation-scripts` |
+| LinkedIn profile | `~/Documents/Personal/career/linkedin` |
+| Studio skills | `~/Documents/Personal/Github/studio` |
+| Content creation (Twitch, more later) | `~/Documents/Personal/content/<channel>` |
+| This brain repo | `~/Documents/Personal/Github/claude-brain` |
+| Comic shorts | `~/Documents/Work/comics-video` |
+| Product launch video | `~/Documents/Work/tetriz-launch-video-v4.2` |
+
+If a new chat is opened somewhere else (home folder, a scratch folder) and its topic is in this table,
+move the session to that folder before reading or editing anything. Personal and Work never mix.
 
 ## Who Sejal is
 

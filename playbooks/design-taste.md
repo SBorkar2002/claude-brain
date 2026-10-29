@@ -2,7 +2,7 @@
 
 Apply this before showing Sejal ANY design: a web page, a Figma frame, a slide graphic, a chart, a case study. Every rule here came from a correction she made at least once, most of them more than once. A standing rule beats any reference image she or a manager shares ("the reference shows chips" is not permission to add chips).
 
-Sources: memory notes `feedback-*` (Jul to Oct 2026), the Tetriz v1.5 feature-page build (Aug 2026), the quiz redesign (Jul 2026), the Instahyre take-home, Sourced / Green Gallery redesigns, the pixel portfolio (Oct 2026), and her own `studio` plugin rules (`~/Documents/Github/studio/plugins/studio/shared/`, pushed to private repo SBorkar2002/studio).
+Sources: memory notes `feedback-*` (Jul to Oct 2026), the Tetriz v1.5 feature-page build (Aug 2026), the quiz redesign (Jul 2026), the Instahyre take-home, Sourced / Green Gallery redesigns, the pixel portfolio (Oct 2026), and her own `studio` plugin rules (`~/Documents/Personal/Github/studio/plugins/studio/shared/`, pushed to private repo SBorkar2002/studio).
 
 ---
 

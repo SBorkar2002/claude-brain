@@ -20,7 +20,7 @@ Every rule below was learned on a real episode; the parenthetical says which one
 | Look | Greyscale comic + exactly one accent, teal `#03A6CF`. Colour allowed in explainer animation only. |
 | Motion | Panels are still and HARD-CUT. Only things pulled out of the plate move: screens, explainers, captions, SFX words, mouths (by plate swap), the AI mark. |
 | Audio | ElevenLabs VO per character, office/room bed, SFX. Every sound gets a word on screen. |
-| Build | Remotion 4.0.239 in `~/Documents/comics-video`, driven by a Python emitter that writes one JSON per episode. |
+| Build | Remotion 4.0.239 in `~/Documents/Work/comics-video`, driven by a Python emitter that writes one JSON per episode. |
 
 Sejal's standing style rules that apply to everything here: **no em dashes** in any on-screen
 text, Figma text or layer names (check after every build); never overlap elements; never tilt
@@ -32,9 +32,9 @@ cards; never spend paid credits (Figma AI images, Higgsfield) unless she opts in
 
 | What | Where | Survives the account shutdown? |
 |---|---|---|
-| Remotion build, all plates, all audio, all emit scripts | `~/Documents/comics-video` (local git repo, no remote) | Yes, if the Mac does. Not pushed anywhere. |
-| Raw downloads, character sheets, YT banner/profile PNGs | `~/Documents/comic folder` (`CHARACTERS.png`, `peter.png`, `AJ.png`, `Ken.png`, `Sameer.png`, `blank face.png`, `sleep.png`, per-episode subfolders) | Local only |
-| Skill files, cast, appearance prompts, per-episode scripts, PIPELINE, LINKS, DESIGN-SPEC | `~/Documents/product-brain/video/youtube/comics/` (clone of the work org's `product-brain` repo) | Local clone yes; the GitHub remote is the work org's, assume no access |
+| Remotion build, all plates, all audio, all emit scripts | `~/Documents/Work/comics-video` (local git repo, no remote) | Yes, if the Mac does. Not pushed anywhere. |
+| Raw downloads, character sheets, YT banner/profile PNGs | `~/Documents/Work/comic folder` (`CHARACTERS.png`, `peter.png`, `AJ.png`, `Ken.png`, `Sameer.png`, `blank face.png`, `sleep.png`, per-episode subfolders) | Local only |
+| Skill files, cast, appearance prompts, per-episode scripts, PIPELINE, LINKS, DESIGN-SPEC | `~/Documents/Work/product-brain/video/youtube/comics/` (clone of the work org's `product-brain` repo) | Local clone yes; the GitHub remote is the work org's, assume no access |
 | Storyboards, VO takes, cuts, shared SFX, AI mark, character assets | Work Google Drive, series root `I Have No Idea What That Means` (inside `YouTube`) | **No.** Work account. |
 | Panel boards | Figma file `comic` (one page per episode: `loop`, `graph`, `remote control`, `/insights`, `system one model`, `Prompt engieering` [sic]) | Work Figma, assume gone |
 | Script review pages | claude.ai Artifacts | Gone with the account |
@@ -79,7 +79,7 @@ surface, Drive `01 Scripts` = archive. The repo copy is the one production reads
 | The date (EP003 only) | guest | dress darker than Peter's shirt, no lipstick/nails | | **Vanessa** "Beach Girl" | n/a |
 
 Lightest to darkest garment: Ken/Dev 3, Peter, Sameer, AJ. Value, not hue, separates them at
-thumbnail size. Per-character reference sheets (10 Sep) are in `~/Documents/comic folder`.
+thumbnail size. Per-character reference sheets (10 Sep) are in `~/Documents/Work/comic folder`.
 Casting is free: use whoever the joke needs. Voices in the original Character Sheet are the
 source of truth when reachable; the table above is what the shipped takes actually used.
 
@@ -267,7 +267,7 @@ One source of truth. Nothing is typed into the TSX. The emitter computes:
   `pe_emit.py`, `pe_audio.py`) as the template; it carries every current rule.
 - Assets under `public/<ep>/` (plates, vo, vo_n, sfx, fonts). `public/` is the only copy.
 - Studio: run in Sejal's **terminal panel** (macOS TCC stops preview tools reading ~/Documents):
-  `cd ~/Documents/comics-video && ./node_modules/.bin/remotion studio src/index.ts --port 3335`
+  `cd ~/Documents/Work/comics-video && ./node_modules/.bin/remotion studio src/index.ts --port 3335`
   then give her `http://localhost:3335/<CompId>`. Use a fresh port if one is stuck.
 - `remotion.config.ts` must keep `setBrowserExecutable(<Google Chrome>)` and `setConcurrency(1)`
   (bundled headless shell is SIGKILLed; worker pool cannot reach localhost).

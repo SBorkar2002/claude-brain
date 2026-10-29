@@ -64,7 +64,7 @@ Standing constraint: **no paid tools or credits on personal work unless she opts
 
 ### Claude Design (claude.ai/design)
 - Good at deck-style animation and static screen kits; consistently weak at product animation over 2 to 3 months (her and her manager's conclusion, Jun 2026).
-- Produced the DORA intro clip (1280x720 GSAP HTML with a player bar), later distilled into the `educational-video-intro` skill (`~/Documents/skills/educational-video-intro.SKILL.md`): stage letterboxed on `#0e0e13`, Geist/Geist Mono, `back.out(1.4 to 1.5)` pops, `power2.inOut` camera at scale 1.85, 2x2 metric cards staggered 0.35s, wash before title, 2s final hold.
+- Produced the DORA intro clip (1280x720 GSAP HTML with a player bar), later distilled into the `educational-video-intro` skill (`~/Documents/Personal/skills/educational-video-intro.SKILL.md`): stage letterboxed on `#0e0e13`, Geist/Geist Mono, `back.out(1.4 to 1.5)` pops, `power2.inOut` camera at scale 1.85, 2x2 metric cards staggered 0.35s, wash before title, 2s final hold.
 - Gotchas: no CSS initial opacity causes a flash; a localStorage resume made the video start mid-way; it cannot read local files; skill files do not work inside it (give it a merged prompt).
 - Import into Claude Code via the claude_design MCP (`/design-login`) needs a claude.ai login with design scopes; it failed with an OAuth token in a Cowork-style session.
 - Only on web, not in the desktop app (as of Jun 2026).

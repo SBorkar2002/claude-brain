@@ -12,7 +12,7 @@ Last updated: 2026-08-12 (originally 2026-06-26; meeting attendees: Sejal, Divya
 **Video code repo (2026-08-12): the v4.2 Remotion project now lives at
 workloom-dev/tetriz-launch-video (private). PR #1 = frozen baseline of the
 2026-08-10 team-share cut; the self-improving-loop rework (Sumit feedback)
-builds on branches on top of it. Local: ~/Documents/tetriz-launch-video-v4.2.**
+builds on branches on top of it. Local: ~/Documents/Work/tetriz-launch-video-v4.2.**
 
 **Skill files (as of 2026-07-22): all four video skills in product-brain are in
 sync with the repo** — seo-scene-prompt-generator.md (RENAMED from scene-prompt-generator.md, 2026-08-10, PR #433) and seo-script-refiner.md were

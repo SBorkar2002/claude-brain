@@ -12,7 +12,7 @@ The mascot cat. **Approved and live since 17 Oct**: the v2 art is in the Cat com
 - `preview/compare-v1-v2.png`: v1 and v2 side by side, the same layout as the Figma comparison.
 
 ```bash
-cd ~/Documents/career/portfolio-pixel/cat-v2 && python3 render.py && python3 runs.py preview/runs.json
+cd ~/Documents/Personal/career/portfolio-pixel/cat-v2 && python3 render.py && python3 runs.py preview/runs.json
 ```
 
 ## Figma (file hfj2locm0N5bssdEU6NaoH, page "Pixel portfolio · v1")

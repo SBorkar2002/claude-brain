@@ -15,7 +15,7 @@ import json, os, wave, subprocess
 import numpy as np
 
 FPS = 30
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 RAW = os.path.join(ROOT, "public/s1m/vo")
 VO = os.path.join(ROOT, "public/s1m/vo_n")
 SFX = os.path.join(ROOT, "public/s1m/sfx")

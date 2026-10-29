@@ -12,7 +12,7 @@ Built 20 Oct 2026 from Sejal's Figma page `Prompt engieering` (828:3, file UM66o
 and the review artifact claude.ai/artifact/CQdn2a1tiasejEXMzyUV2L (Script A "Wait, What?" recommended over B "Free lunch").
 Repo script `comics/scripts/prompt-engineering.md` is the OLDER free-lunch / five-row version, not what was built.
 
-**Build:** `~/Documents/comics-video`, composition `PromptEng`.
+**Build:** `~/Documents/Work/comics-video`, composition `PromptEng`.
 - `v10/pe_audio.py` cuts the takes in `public/pe/vo_src/` (peter=Eric, aj=Jet, ai=David, ai_card=David re-record), then `v10/pe_emit.py` writes `src/pe_cut.json`.
 - Code: `src/PromptEng.tsx` + `src/PeScreens.tsx`. Plates are in `public/pe/plates`.
 - Studio runs in the terminal panel on port 3335. Render: `out/prompt_engineering_v1.mp4`, 2:12.

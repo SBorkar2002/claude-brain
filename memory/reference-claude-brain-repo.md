@@ -5,7 +5,7 @@ metadata:
   type: reference
 ---
 
-Private repo github.com/SBorkar2002/claude-brain, local ~/Documents/Github/claude-brain. Holds CLAUDE.md (global rules),
+Private repo github.com/SBorkar2002/claude-brain, local ~/Documents/Personal/Github/claude-brain. Holds CLAUDE.md (global rules),
 START-HERE.md, memory/ (Tetriz-only notes moved to memory/_epifi), playbooks/ (portfolio, case-studies, job-automation,
 comics, script-writing, channel-strategy, video-production, tools-evaluated, design-taste, web-build), lessons/,
 projects/, setup/ (skills backup, plugins, connectors, studio plugin, job-bot migration), tools/ (comics-video source,

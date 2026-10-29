@@ -11,7 +11,7 @@ import os, shutil, subprocess
 import numpy as np
 from PIL import Image
 
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 SRC = os.path.join(ROOT, "public/pe/dog_src")
 OUT = os.path.join(ROOT, "public/pe")
 SIZE = 240

@@ -57,17 +57,17 @@ Priority order (from the 25 Sep experience report and her 16 Oct decisions):
 2. Design Engineer / Product Design Engineer (keep "Design Engineer" in the header only on the generalist resume; for pure product postings cut it, since the skills row admits Claude Code).
 3. Secondary: growth/marketing/brand design at B2B SaaS; motion or AI content design at AI-native companies.
 - Avoid leading with Visual/Graphic/UI Designer (crowded, hides code and systems).
-- Concept art: NOT ready (fanart/illustration, not design process; most AI-hostile discipline, and her Pocket FM and comic series roles were AI pipeline work). Competitive now for storyboard artist, character/mascot design, editorial/brand illustration, visual development. If she wants concept art: 12 to 18 months, 3 to 5 fully AI-free design-led projects; first brief is drafted in `~/Documents/career/concept-art-project-01.md`.
+- Concept art: NOT ready (fanart/illustration, not design process; most AI-hostile discipline, and her Pocket FM and comic series roles were AI pipeline work). Competitive now for storyboard artist, character/mascot design, editorial/brand illustration, visual development. If she wants concept art: 12 to 18 months, 3 to 5 fully AI-free design-led projects; first brief is drafted in `~/Documents/Personal/career/concept-art-project-01.md`.
 - Honest screening verdict on the product resume (16 Oct): passes for junior to mid product design at startups; borderline for mid-level at established companies (no outcome numbers, short tenure); not senior.
-- Job-hunt automation applies across tracks (product, visual, art titles), Bengaluru or remote India, no Mumbai, avoids agencies/IT services/contract-only/betting apps; prefers AI products, fintech, consumer apps, design-led startups. Details: `~/Documents/career/automation-scripts/README.md` and the job-automation playbook.
+- Job-hunt automation applies across tracks (product, visual, art titles), Bengaluru or remote India, no Mumbai, avoids agencies/IT services/contract-only/betting apps; prefers AI products, fintech, consumer apps, design-led startups. Details: `~/Documents/Personal/career/automation-scripts/README.md` and the job-automation playbook.
 
 ## 5. Resume files
 
 - Figma `NlBw9VEMyRgbexRrmBBUVN` (Epifi Figma account: duplicate to personal before Nov): **Resume A Generalist / 0 to 1** (4:2, keeps "brand and motion" and the 30k series bullet; for founding/startup generalist roles), **Resume B Product Design** (25:2, nav-restructure bullet and assessment scope numbers instead of the series; for product designer on an established team), **Resume C Comic Artist** (48:2, IBM Plex Sans, Pocket FM, freelance art, Webtoon, pixel game project, Epifi comic series bullets).
 - One page, A4, ATS-friendly (plain section names, no tables for core text), must not read AI-written (vary sentence length, no "so that" tails, no "end to end", "seamless", "leverage").
-- `~/Documents/career/Sejal B Comic Artist (A4).pdf`: exported artist CV, dated 5 Oct. STALE: still says "GenAI Product Design Intern" and "Jun 2026 - Present"; update to Consultant before using.
+- `~/Documents/Personal/career/Sejal B Comic Artist (A4).pdf`: exported artist CV, dated 5 Oct. STALE: still says "GenAI Product Design Intern" and "Jun 2026 - Present"; update to Consultant before using.
 - Live product resume: `my-portfolio/public/Sejal_Borkar_Resume.pdf` (pushed 18 Oct, commit 76ff39f). Contains "Interviewed 25+ artists" (should be surveyed) and "4 days to 1".
-- `~/Documents/career/experience-report.md` (25 Sep): full Epifi record with six work tracks, ready bullets, skills line, interview stories. Treat its "do not target visual designer" advice as the agreed default.
+- `~/Documents/Personal/career/experience-report.md` (25 Sep): full Epifi record with six work tracks, ready bullets, skills line, interview stories. Treat its "do not target visual designer" advice as the agreed default.
 
 Epifi bullets that survived her edits (Resume B, as of 16 Oct):
 1. Redesigned a lead-gen assessment: 19 questions, 6 screens, 5 result states, desktop and mobile. Wireframes and clickable prototype, then the shipped React, merged behind a full CI review gate.

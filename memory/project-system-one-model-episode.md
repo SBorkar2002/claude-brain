@@ -37,7 +37,7 @@ At about 4,000 tokens per ticket, 69,584 tickets take about 46 to 50 minutes, no
 
 Related: [[project-comic-pipeline]], [[feedback-aj-ai-voice]], [[feedback-no-em-dashes]], [[feedback-no-end-cards]]
 
-**Remotion build (9 Oct 2026):** composition `SystemOne` in ~/Documents/comics-video.
+**Remotion build (9 Oct 2026):** composition `SystemOne` in ~/Documents/Work/comics-video.
 - Code: `src/SystemOne.tsx` and `src/S1mExplainers.tsx`. The explainers are drawn in 720-space and the stage is scaled 1.5x to 1080x1920.
 - Data: `src/s1m_cut.json` and `src/s1m_caps.json`.
 - Build steps: `v10/s1m_audio.py` cuts the three ElevenLabs takes into lines, then `v10/s1m_emit.py` handles levels, timeline, syllable flap, typing slices and the baked bed. `v10/ambience.py` now takes an optional output path as its 4th argument.

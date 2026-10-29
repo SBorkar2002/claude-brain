@@ -2,7 +2,7 @@
 
 How Sejal and Claude build sites together: Next.js pages, Figma-to-code, verification, PRs, deploys. Read `playbooks/design-taste.md` first for what things should look like. This file covers how to build them and ship them.
 
-Her own codified version of this lives in her `studio` plugin (`~/Documents/Github/studio/plugins/studio/`, private repo SBorkar2002/studio): `skills/code-doctor/steps.md`, `ship.md`, `mobile.md`, `shared/verify.md`. If that plugin is installed, `/studio` routes to it. This playbook matches it and adds the history behind it.
+Her own codified version of this lives in her `studio` plugin (`~/Documents/Personal/Github/studio/plugins/studio/`, private repo SBorkar2002/studio): `skills/code-doctor/steps.md`, `ship.md`, `mobile.md`, `shared/verify.md`. If that plugin is installed, `/studio` routes to it. This playbook matches it and adds the history behind it.
 
 ---
 

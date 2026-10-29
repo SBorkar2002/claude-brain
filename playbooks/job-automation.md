@@ -8,7 +8,7 @@ Migration steps: `setup/job-automation-migration.md`. Traps and fixes: `lessons/
 | What | Where |
 |---|---|
 | Code (private) | github.com/SBorkar2002/job-hunt-automation, default branch `main` |
-| Local checkout (old laptop) | `~/Documents/career/automation-scripts` |
+| Local checkout (old laptop) | `~/Documents/Personal/career/automation-scripts` |
 | Tracker (single source of truth) | the repo's `README.md`: requirements, her answers, decisions with dates, status. Read it fully first, every session. Write new answers and decisions there, never in extra tracker files |
 | Google Sheet "Job hunt tracker" | https://docs.google.com/spreadsheets/d/1tj34leK-HVtZBhOoofL1ZZaOrc-_eXlE5gfaafy1E68/edit |
 | Apps Script project "Job hunt bot" | https://script.google.com/home/projects/1wpIEesipTmHfU6vfUP5B73G0GZpspTfby8f32XTX-2SvgsuhBGFTT9CQ/edit (scriptId also in `.clasp.json`) |
@@ -96,7 +96,7 @@ Runner flow per site: open list → logged in? bot check? page as expected? (els
 - `dreamCompanies` [] (would bypass excludes, level and pay floor) and `avoidCompanies` [] are empty: list pending from her.
 - **crossSite** `after-days`, 7: same company+role (normalized) applied on one site → on another site logged once as Skipped "Already applied via X", applied there only if no reply after 7 days. Modes: `once`, `after-days`, `always`.
 - **Notes** (both `approved: true`): product `note-v1` "Hi {company} team, I'm Sejal, a product designer at Epifi working on GenAI products. I'd love to bring that to the {role} role. My work is here: {portfolio}"; visual `note-visual-v1` "...a designer who works across product design, illustration and visual design...". `{portfolio}` = `https://sejalborkar.vercel.app/?ref=<site>`. Instahyre one-click sends no note.
-- Resume: Instahyre/Wellfound use the resume on her site profile. `fill` attaches `~/Documents/Github/my-portfolio/public/Sejal_Borkar_Resume.pdf` (repo SBorkar2002/my-portfolio). Public URL sejalborkar.vercel.app/resume.
+- Resume: Instahyre/Wellfound use the resume on her site profile. `fill` attaches `~/Documents/Personal/Github/my-portfolio/public/Sejal_Borkar_Resume.pdf` (repo SBorkar2002/my-portfolio). Public URL sejalborkar.vercel.app/resume.
 - Prefer (not coded): AI products, fintech, consumer apps, design-led startups. Avoid (not coded, avoid list empty): agencies, IT services, unpaid/contract-only, betting apps.
 
 ## Sheet structure

@@ -7,10 +7,10 @@ The one place to check what is done and what is left. Every chat working on the 
 | Chat | Session id | Owns |
 |---|---|---|
 | Main (Figma) | local_633c2f75-4daa-4320-bffb-4a1f299ead17 | Figma file hfj2locm0N5bssdEU6NaoH, page "Pixel portfolio · v1": pages, case studies, copy |
-| Code | local_db62f9af-2f68-49fe-bf70-6ae5741c6604 | Repo SBorkar2002/my-portfolio, clone at ~/Documents/Github/my-portfolio, Vercel deploys |
+| Code | local_db62f9af-2f68-49fe-bf70-6ae5741c6604 | Repo SBorkar2002/my-portfolio, clone at ~/Documents/Personal/Github/my-portfolio, Vercel deploys |
 | Cat studio | local_d9bf54fb-935a-4612-8b8f-dce9e35a64b8 | The pixel cat: sprites, states, cat v1 vs v2 |
-| Automation | local_541ca8a1-3e5e-4344-9e81-c1a398d29f36 | Job-hunt scripts in ~/Documents/career/automation-scripts |
-| Studio skills workshop | local_1b7f89f8-41d6-4559-ac44-b1caf075ff70 | The /studio skills, board and hooks (repo SBorkar2002/studio). Skill feedback goes to ~/Documents/Github/studio/FEEDBACK.md via scripts/feedback.sh |
+| Automation | local_541ca8a1-3e5e-4344-9e81-c1a398d29f36 | Job-hunt scripts in ~/Documents/Personal/career/automation-scripts |
+| Studio skills workshop | local_1b7f89f8-41d6-4559-ac44-b1caf075ff70 | The /studio skills, board and hooks (repo SBorkar2002/studio). Skill feedback goes to ~/Documents/Personal/Github/studio/FEEDBACK.md via scripts/feedback.sh |
 
 ## Done
 

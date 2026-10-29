@@ -21,21 +21,21 @@ Why it exists (from her session insights): the biggest waste in her portfolio ch
 ## Where it lives
 
 - GitHub: `SBorkar2002/studio` (PRIVATE, her personal account), branch `main`. Latest pushed commit 22 Oct: `df89da0` "feat(studio): live skills, so updates reach open chats without a reload". One uncommitted local change: a FEEDBACK.md row (20 Oct, Vercel Analytics steps). Commit and push it.
-- Local: `~/Documents/Github/studio`. Marketplace name `sejal-studio` (`.claude-plugin/marketplace.json`), two plugins: `studio` 0.2.0 (`plugins/studio`) and `studio-board` 0.2.0 (`plugins/studio-board`).
+- Local: `~/Documents/Personal/Github/studio`. Marketplace name `sejal-studio` (`.claude-plugin/marketplace.json`), two plugins: `studio` 0.2.0 (`plugins/studio`) and `studio-board` 0.2.0 (`plugins/studio-board`).
 - Standing rule: commit AND push this repo to `main` without asking her each time; bump the version when stubs, descriptions or the board change. Never force-push. (Other repos keep their own rules: preview first, ask before main.)
 
 ## Install on a new machine
 
 ```bash
 gh auth login                      # as SBorkar2002 (private repo)
-git clone https://github.com/SBorkar2002/studio.git ~/Documents/Github/studio
-claude plugin marketplace add ~/Documents/Github/studio      # local directory marketplace, as on her old Mac
+git clone https://github.com/SBorkar2002/studio.git ~/Documents/Personal/Github/studio
+claude plugin marketplace add ~/Documents/Personal/Github/studio      # local directory marketplace, as on her old Mac
 claude plugin install studio@sejal-studio
 claude plugin install studio-board@sejal-studio
 npm install -g @playwright/cli@latest                        # for shots.mjs / sweep.mjs
 ```
 
-Alternative without cloning: `claude plugin marketplace add SBorkar2002/studio`. Prefer the clone, because the live-skill stubs read from `~/Documents/Github/studio/plugins/studio` when that folder exists.
+Alternative without cloning: `claude plugin marketplace add SBorkar2002/studio`. Prefer the clone, because the live-skill stubs read from `~/Documents/Personal/Github/studio/plugins/studio` when that folder exists.
 
 Then by hand:
 - Recreate `plugins/studio/shared/private.local.md` (git-ignored). It held confidential rules and banned strings (for example: the Epifi consultant title and end date must never appear on anything public). Rewrite it from `projects/career.md` and `playbooks/portfolio.md`; never commit it, never quote it publicly.
@@ -44,7 +44,7 @@ Then by hand:
 
 ## How updates reach chats ("live skills", 0.2.0)
 
-Each installed `SKILL.md` is a short stub that says: read `<studio>/skills/<name>/steps.md` and the shared files, where `<studio>` = `~/Documents/Github/studio/plugins/studio` if it exists, else the installed copy. So editing `steps.md`, a reference file, a shared rule or a script reaches every open chat on its next request. Never tell her to run /reload-plugins for a steps change (she refused to do that in every chat); message the chats instead. For stub/board changes: `claude plugin marketplace update sejal-studio` then `claude plugin update studio@sejal-studio`.
+Each installed `SKILL.md` is a short stub that says: read `<studio>/skills/<name>/steps.md` and the shared files, where `<studio>` = `~/Documents/Personal/Github/studio/plugins/studio` if it exists, else the installed copy. So editing `steps.md`, a reference file, a shared rule or a script reaches every open chat on its next request. Never tell her to run /reload-plugins for a steps change (she refused to do that in every chat); message the chats instead. For stub/board changes: `claude plugin marketplace update sejal-studio` then `claude plugin update studio@sejal-studio`.
 
 ## The router (`skills/studio/steps.md`)
 
@@ -57,7 +57,7 @@ Each installed `SKILL.md` is a short stub that says: read `<studio>/skills/<name
 ## The doctors
 
 **profile-doctor (added 23 Oct, studio 0.3.0):** read-only LinkedIn profile review. Reviews every section for reach
-with recruiters and clients, ranks fixes P0 to P2 in one tracker (`~/Documents/career/linkedin/LINKEDIN-TRACKER.md`,
+with recruiters and clients, ranks fixes P0 to P2 in one tracker (`~/Documents/Personal/career/linkedin/LINKEDIN-TRACKER.md`,
 copy in `projects/linkedin-tracker.md`), and for "we're covering item N" gives Now / Change to / Keep / Why / Where to
 click / Check after. Never edits the profile or drives LinkedIn. Search words are tied to the job bot's title tracks;
 it checks consistency against resume and portfolio. The router sends LinkedIn work here. A skills checkup doc with

@@ -12,4 +12,4 @@ Sejal: "from now on push studio repo updates without asking me each time" (20 Oc
 
 **Why:** she approved every studio push one by one and the repeated asks were friction; the repo is her own private plugin repo.
 
-**How to apply:** after committing to ~/Documents/Github/studio (SBorkar2002/studio), push to main straight away and say so in the report. Still bump the plugin version and run `claude plugin update` so installs pick it up. Scope is only this repo: other repos (my-portfolio, job-hunt-automation) keep their own rules (preview first, ask before main). Never force-push. Related: [[project-personal-skill-kit]], [[feedback-pr-creation]].
+**How to apply:** after committing to ~/Documents/Personal/Github/studio (SBorkar2002/studio), push to main straight away and say so in the report. Still bump the plugin version and run `claude plugin update` so installs pick it up. Scope is only this repo: other repos (my-portfolio, job-hunt-automation) keep their own rules (preview first, ask before main). Never force-push. Related: [[project-personal-skill-kit]], [[feedback-pr-creation]].

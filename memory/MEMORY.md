@@ -3,7 +3,7 @@
 - [Launch Storyboard — v4.2](project-launch-storyboard.md) — Transform Launch script v4.2 spine + the 10-frame Figma storyboard built from it (file 30sryhNZr624S6zxJMf6Xz), decisions, node ids, open flags
 - [Landing Page Rebuild](project-landing-page-rebuild.md) — tetriz.ai rebuild: problem-first narrative direction, "reads every session" differentiator, quiz mid-scroll, 3 low-fi wireframe options in Figma (file 86MmIR4gywvxRaobJMAhGf)
 - [Feedback — Anandhi Website Review](feedback-anandhi-website-review.md) — Aug 4 review of v1.5 feature pages: flat/no-story; fix narrative arc, graph axis+interactivity, compare-table categories, visual finesse, contextual interlinking
-- [AI Adoption Page](project-ai-adoption-page.md) — local build of /features/ai-adoption in the Next.js site (Documents/Github/core), route/files/tokens/decisions + deep-dives-grid TODO; humanizing skill = plain-english
+- [AI Adoption Page](project-ai-adoption-page.md) — local build of /features/ai-adoption in the Next.js site (Documents/Work/Github/core), route/files/tokens/decisions + deep-dives-grid TODO; humanizing skill = plain-english
 - [Quiz Wireframes](project-quiz-wireframes.md) — AI-Native Index lead-gen quiz redesign (Anandhi handed to Sejal); 5-screen low-fi wireframes in Figma nyj8rbPsYnRozDmtHJgQzq for the GTM call; strip Tetriz, add email capture, define CTA
 - [Quiz App Dev](project-quiz-app-dev.md) — shipped quiz-app PRs #6611/#6649 in workloom-dev/core, LCI merge-gate workflow, backend toolchain now on her Mac
 - [Feedback — Working Style](feedback-working-style.md) — how Sejal likes to collaborate
@@ -61,15 +61,15 @@
 - [AlterOffice Design Test](project-alteroffice-design-test.md) — "The Last Over" cricket comic take-home: brief, deliverables, art direction (drums motif, 10-panel plan, helmet-as-identity)
 - [System One Model Episode](project-system-one-model-episode.md) — Prashasti/Mohit/v3 versions, Slack thread, Figma page 761:2, Jev limits from docs, open fixes 8 Oct
 - [Portfolio Figma](project-portfolio-figma.md) — personal portfolio home in Figma HYNlpUpZ9Qt58sdSfOlOI4, "Design / Ship" switch concept, node ids, open flags
-- [Portfolio v3 · Signature](project-portfolio-v3.md) — 16 Oct: from-scratch build in Documents/Github/portfolio-v3, 3D nib-calligraphy hero, six section worlds, dev-server + GSAP gotchas, open flags
-- [Portfolio · Pixel (v4)](project-portfolio-pixel.md) — 17 Oct: pixel chrome + HD work, faceless cat mascot, Figma hfj2locm0N5bssdEU6NaoH, plan/research/inventory in Documents/career/portfolio-pixel
+- [Portfolio v3 · Signature](project-portfolio-v3.md) — 16 Oct: from-scratch build in Documents/Personal/Github/portfolio-v3, 3D nib-calligraphy hero, six section worlds, dev-server + GSAP gotchas, open flags
+- [Portfolio · Pixel (v4)](project-portfolio-pixel.md) — 17 Oct: pixel chrome + HD work, faceless cat mascot, Figma hfj2locm0N5bssdEU6NaoH, plan/research/inventory in Documents/Personal/career/portfolio-pixel
 - [Feedback — Cat Agent Routing](feedback-cat-agent-routing.md) — STANDING: every portfolio pixel-cat tweak goes to the dedicated cat-studio session, not the main one
 - [Shorts Experiment](project-shorts-experiment.md) — 14 Oct: 7-15s looping Reels/Shorts test with AJ; `make it better` script, reuses graph plates, palette-break question open
 - [Sourced Redesign](project-sourced-redesign.md) — human vs AI art + Art Buddy app; 17 hi-fi screens, Lilac/Vermilion dark system, Figma 72tXrfMYH64v0hkxDF1m2n page 8:414
 - [Green Gallery](project-green-gallery.md) — plant adoption revamp (site desktop+mobile, case study); P2P+trust, India, cute/bubbly Fredoka/Nunito, same palette; style tile 92:141 pending
 - [Feedback — AI-Generic Look](feedback-ai-generic-look.md) — STANDING 17 Oct: editorial serif+mono labels+hairlines reads AI-made; act as senior advisor, gate builds with a style tile
 - [Cat v2](project-cat-v2.md) — 48px mascot, APPROVED and live in Cat 8:159 (17 Oct): files, Figma ids (35:564 compare, 34:731 playground, 31:706 set), why 48px, swap caveats; cat tweaks go to the cat session
-- [Studio Plugin](project-personal-skill-kit.md) — 20 Oct: her own /studio plugin (code/figma/flow doctors, shared rules, proof scripts, hooks) in ~/Documents/Github/studio; installed locally, not pushed
+- [Studio Plugin](project-personal-skill-kit.md) — 20 Oct: her own /studio plugin (code/figma/flow doctors, shared rules, proof scripts, hooks) in ~/Documents/Personal/Github/studio; installed locally, not pushed
 - [Feedback — Studio Push](feedback-studio-push.md) — STANDING 20 Oct: push SBorkar2002/studio commits without asking; other repos keep their own rules
 - [Prompt Engineering Episode](project-prompt-engineering-episode.md) — Script A "Wait, What?" Remotion build PromptEng (20 Oct): files, card re-record splice, flap pairs, open flags
 - [Claude Brain Repo](reference-claude-brain-repo.md) — handoff repo SBorkar2002/claude-brain for the next account; keep it updated and pushed until the shutdown

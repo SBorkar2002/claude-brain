@@ -10,7 +10,7 @@ metadata:
 
 Building the **AI Adoption feature page** locally (Anandhi's v1.5 site revamp; Sejal owns the feature pages). Replicating artifact `a11bb75e` but building in CODE run on localhost, NOT another artifact — Anandhi's rule: "locally only, so anyone can play," code lets her experiment with format/motion. Not deployed to Netlify yet.
 
-**Where:** clone `/Users/sejal/Documents/Github/core` (her active branch `sejal/quiz-coverage-stages-nav`), Next.js site at `client/workloom/site`. Route: `src/app/features/ai-adoption/` = `page.tsx` (server) + `dashboards.tsx` (client, animated in-code dashboards) + `faq.tsx`. Run: `pnpm --dir <site> exec next dev --turbopack --port 3001` → localhost:3001/features/ai-adoption/. Preview MCP can't start it (sandbox EPERM on pnpm workspace root); start via background Bash with sandbox disabled.
+**Where:** clone `/Users/sejal/Documents/Work/Github/core` (her active branch `sejal/quiz-coverage-stages-nav`), Next.js site at `client/workloom/site`. Route: `src/app/features/ai-adoption/` = `page.tsx` (server) + `dashboards.tsx` (client, animated in-code dashboards) + `faq.tsx`. Run: `pnpm --dir <site> exec next dev --turbopack --port 3001` → localhost:3001/features/ai-adoption/. Preview MCP can't start it (sandbox EPERM on pnpm workspace root); start via background Bash with sandbox disabled.
 
 **Brand:** site is already teal `#0096BB` (the SITE-DESIGN-SYSTEM.md `#530037` maroon note is STALE), light-only, Mona/Jakarta/Geist. Use site-* tokens (bg-pr, text-pr, bg-site-brand-8, text-fg/fgm/fg2, border-bd), NOT the artifact's raw hexes/dark-mode.
 

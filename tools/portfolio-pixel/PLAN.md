@@ -1,6 +1,6 @@
 # Portfolio · Pixel (v4) · Plan
 
-17 Oct 2026. Supersedes v3 "Signature" as the build direction. v3 repo (`~/Documents/Github/portfolio-v3`) stays untouched; reuse its copy and processed assets where useful.
+17 Oct 2026. Supersedes v3 "Signature" as the build direction. v3 repo (`~/Documents/Personal/Github/portfolio-v3`) stays untouched; reuse its copy and processed assets where useful.
 
 ## Thesis
 
@@ -131,9 +131,9 @@ Components (research-components.md, all MIT): one primitive layer = Space UI (Ba
 - Figma MCP page listing is unreliable: it shows only loaded pages. Nodes on other pages still resolve by id (Sourced night case study 48:414, #futureofhr landing 7:2 both exist).
 - Figma files live in the epifi account (sejal.borkar@epifi.com), which ends with the company in Nov 2026. Anything embedded from it will break. Move files to her personal account first.
 - AFB zips are in ~/Downloads (Buddy Tshirt, Employee Appreciation Cards, Women's Day checklist card) plus Blog Home Page.png. Keychain PNG only in Drive.
-- Sourced night case study exported: ~/Documents/portfolio/Sourced · Case Study (Night).png
-- #futureofhr deliverables: ~/Documents/instahyre-launch-video/out/
-- Comic episodes: ~/Documents/comics-video/out/
+- Sourced night case study exported: ~/Documents/Personal/portfolio/Sourced · Case Study (Night).png
+- #futureofhr deliverables: ~/Documents/Personal/instahyre-launch-video/out/
+- Comic episodes: ~/Documents/Work/comics-video/out/
 - Resumes: Figma NlBw9VEMyRgbexRrmBBUVN (A generalist 4:2, B product 25:2, Artist 48:2).
 - Artist resume lists a college pixel-art game project (map, tiles, character turnaround and walk cycle). Strong tie-in for a pixel portfolio.
 

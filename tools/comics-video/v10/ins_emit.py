@@ -3,7 +3,7 @@ import json, os, wave
 import numpy as np
 
 FPS = 30
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 VO   = os.path.join(ROOT, "public/ins")
 
 def load(name):

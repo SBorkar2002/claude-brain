@@ -3,8 +3,8 @@
 Everything needed to keep evolving Sejal's portfolio. State as of 22 Oct 2026.
 
 **The only portfolio that exists is `my-portfolio`** (the live pixel site). Abandoned directions, not kept:
-- `~/Documents/Github/portfolio` (v2 "Pencils, inks, colours", comic-production language, riso colours) and Figma `HYNlpUpZ9Qt58sdSfOlOI4` (v1 "Design / Ship" toggle). Lesson: v1's off-white + ink + one orange + Geist + toggle turned out to be the viral AI-showreel house style; she called it junior.
-- `~/Documents/Github/portfolio-v3` ("Signature", 3D broad-nib calligraphy ribbon, Apple-premium). Lesson: generic "premium" spectacle without a personal concept got dropped within a day; the pixel cat (personality) is what stuck.
+- `~/Documents/Personal/Github/portfolio` (v2 "Pencils, inks, colours", comic-production language, riso colours) and Figma `HYNlpUpZ9Qt58sdSfOlOI4` (v1 "Design / Ship" toggle). Lesson: v1's off-white + ink + one orange + Geist + toggle turned out to be the viral AI-showreel house style; she called it junior.
+- `~/Documents/Personal/Github/portfolio-v3` ("Signature", 3D broad-nib calligraphy ribbon, Apple-premium). Lesson: generic "premium" spectacle without a personal concept got dropped within a day; the pixel cat (personality) is what stuck.
 
 Do not touch those folders. Do not mine their copy without re-checking it against the truth rules below.
 
@@ -31,7 +31,7 @@ Do not touch those folders. Do not mine their copy without re-checking it agains
 ## 3. Live site and repo
 
 - **Live:** https://sejalborkar.vercel.app (Vercel project `sejalborkar` under `sborkar2002s-projects`).
-- **Repo:** GitHub `SBorkar2002/my-portfolio`, local clone `~/Documents/Github/my-portfolio`. `main` = production. Working branch `revamp` (equal to main at `ce2f4b1` "chore: witch hat from the cat studio", 20 Oct). Other branches (`pixel-v1`, `pixel-cat`, `p0-p3`, `marketing-site`, `afb-and-marketing`) are merged history.
+- **Repo:** GitHub `SBorkar2002/my-portfolio`, local clone `~/Documents/Personal/Github/my-portfolio`. `main` = production. Working branch `revamp` (equal to main at `ce2f4b1` "chore: witch hat from the cat studio", 20 Oct). Other branches (`pixel-v1`, `pixel-cat`, `p0-p3`, `marketing-site`, `afb-and-marketing`) are merged history.
 - **Old site:** React/Vite, frozen on branch `old-portfolio` + annotated tag `old-portfolio-final` (commit `e0dbd46`). Never modify, delete or force-push these. The new site was built as normal commits on top of main (old history still reachable).
 - **Stack:** Next.js 16.3 (App Router, all routes static), React 19.3, Tailwind v4, TypeScript. No animation libraries: CSS, small canvas and SVG pieces. Deps beyond Next: `@vercel/analytics`, `@vercel/speed-insights`. `vercel.json` pins framework nextjs, `npm ci`, `npm run build` (needed because the project used to be Vite).
 - **Vendored free components** (credited in README and code comments only, never on the page: she does not want to reveal tools): Light Lines from Vengeance UI (MIT), zoom story pattern from scroll-craft (MIT), underline link hover skiper40 from Skiper UI (free with credit).
@@ -102,10 +102,10 @@ any new case study.
 
 ## 5. The cat (mascot)
 
-- **Identity:** faceless pixel cat with two big round yellow-ring eyes (black pupils). Black cat in light theme named **Cookie**, white cat in dark theme named **Mimi**; the name in an open bubble must swap the instant the theme changes. Whiskers KEPT. Lime belt (#D9F860, same as CTA) with a yellow bell (eye yellow). Fuller, "kinda squishy" body, not skinny, not fat; head on the front-top of a box body, jutting ~8 px past the chest (from her reference `~/Documents/career/portfolio-pixel/inventory/refs/cat-reference.webp`).
+- **Identity:** faceless pixel cat with two big round yellow-ring eyes (black pupils). Black cat in light theme named **Cookie**, white cat in dark theme named **Mimi**; the name in an open bubble must swap the instant the theme changes. Whiskers KEPT. Lime belt (#D9F860, same as CTA) with a yellow bell (eye yellow). Fuller, "kinda squishy" body, not skinny, not fat; head on the front-top of a box body, jutting ~8 px past the chest (from her reference `~/Documents/Personal/career/portfolio-pixel/inventory/refs/cat-reference.webp`).
 - **Ownership rule (standing):** every cat art tweak goes to a dedicated cat chat/agent, never the main or code chat. The code chat only imports the art. If the old cat session is gone, start a new dedicated cat session with this section as its brief.
-- **Art source (NOT in git, back it up):** `~/Documents/career/portfolio-pixel/cat-v2/`: `sprites.py` (48x48 ASCII stamps + TIMINGS), `accessories.py`, `render.py` (writes `preview/frames.json`, GIFs, sheets), `runs.py`, `research.md`, `audit.md`, `README.md`. Rebuild: `cd ~/Documents/career/portfolio-pixel/cat-v2 && python3 render.py`.
-- **Import into the site:** `node scripts/export-cat-frames.mjs ~/Documents/career/portfolio-pixel/cat-v2/preview/frames.json` > regenerates `lib/cat/frames.ts`. New state names or colour keys must also be added to STATES and PALETTE_VARS in the script/renderer.
+- **Art source (NOT in git, back it up):** `~/Documents/Personal/career/portfolio-pixel/cat-v2/`: `sprites.py` (48x48 ASCII stamps + TIMINGS), `accessories.py`, `render.py` (writes `preview/frames.json`, GIFs, sheets), `runs.py`, `research.md`, `audit.md`, `README.md`. Rebuild: `cd ~/Documents/Personal/career/portfolio-pixel/cat-v2 && python3 render.py`.
+- **Import into the site:** `node scripts/export-cat-frames.mjs ~/Documents/Personal/career/portfolio-pixel/cat-v2/preview/frames.json` > regenerates `lib/cat/frames.ts`. New state names or colour keys must also be added to STATES and PALETTE_VARS in the script/renderer.
 - **Palette keys:** `#` body, `f` far legs (`--cat-body-far`, light #423B54 / dark #BEB7D2, makes diagonal leg pairs read), `Y` eye yellow and bell, `p` pupil, `w` shine, `m`/`M` mouth, `z` Zs, `l` top-light rim (`--cat-body-top`), `s` baked ground shadow (rows 46-47), `g` belt lime, `H` #5B3DD0 hat/tie, `b` #A78BFA band, `k` glasses (opposite of body), `h` bow.
 - **States:** Sit, Idle, Walk, Look (standing), Inspect (low stalking crouch), Yawn (flat shut eyes + small V mouth + 2 fangs), Sleep (z then z+Z), Peek, PeekSide, PeekTop, React (hop, legs straight down), Fall (page-load spin via 8 turnaround drawings, never in-plane rotation), Tumble, Land (reach, compress, low recover, rise, ONE sit), Run, Pounce, Sphinx, SphinxTap, Talk (3/4 head). Feet always on row 47.
 - **Renderer:** one canvas, integer scale in DEVICE pixels (`scale = floor(cssSize * dpr / 48)`), `image-rendering: pixelated`, colours from `--cat-*` tokens so theme swap is a palette swap; rAF only while visible; pauses on tab hide; reduced motion = still cat; nav toggle hides it (remembered).
@@ -130,7 +130,7 @@ any new case study.
 ## 7. How to run, preview and ship
 
 ```bash
-cd ~/Documents/Github/my-portfolio
+cd ~/Documents/Personal/Github/my-portfolio
 npm install          # Node 20+
 npm run dev          # or the launch.json entry "portfolio-dev" on port 3410
 npm run typecheck
@@ -151,7 +151,7 @@ If a permission check blocks the production push, give her the exact command (`g
 ## 8. Truth and content rules for the site
 
 - Epifi/Tetriz: NAMED, public work only (live feature pages, the public quiz, published videos, her own wireframes). Never: internal dashboards, the AIDLC maturity curve, sales collateral, customer data, internal PR numbers or branch names in copy, people's names ("a design review", not "Anandhi").
-- Launch film is unannounced: fragments only, never "Tetriz" on screen; approved stretch = the recommendations table up to the mouse click (~0:45 to 0:58 of `~/Documents/portfolio/tetriz-launch-v5.mp4`).
+- Launch film is unannounced: fragments only, never "Tetriz" on screen; approved stretch = the recommendations table up to the mouse click (~0:45 to 0:58 of `~/Documents/Personal/portfolio/tetriz-launch-v5.mp4`).
 - Sourced survey = "25+" / "more than 25" respondents, never 27 (data is in 1/28 steps); it was a SURVEY, not interviews.
 - Never invent metrics, URLs, dates, quotes. Missing material = TODO. Known unconfirmed claim: video tile says "Storyboards went from 4 days to 1"; sources only show 1 day as the target. Confirm with her or soften to "toward 1".
 - Pocket FM credit: she generated, retouched, lettered and laid out; the "bsw" script art is the client's with light retouching from her. SFW panels only.
@@ -175,16 +175,16 @@ Code:
 
 Figma: case studies 02 marketing, 04 #futureofhr, 05 AFB, 06 video system; Art room page; Cmd+K + ? sheet; 390 layouts; cat 8:159 catch-up.
 
-Before Nov 2026 (urgent): duplicate all Figma files to her personal account; back up `~/Documents/career/portfolio-pixel/` (cat source, inventory, PLAN, TIMELINE; ~500 MB, not in git).
+Before Nov 2026 (urgent): duplicate all Figma files to her personal account; back up `~/Documents/Personal/career/portfolio-pixel/` (cat source, inventory, PLAN, TIMELINE; ~500 MB, not in git).
 
 Resume PDF on the site still says "GenAI Product Designer (Consultant)"; on 20 Oct she said that is fine and declined a re-export. The site copy itself must still never show the consultant title.
 
 ## 10. Where the detail lives
 
-- `~/Documents/career/portfolio-pixel/PLAN.md`: thesis, IA, cat engine spec, curation notes, Figma build log.
-- `~/Documents/career/portfolio-pixel/TIMELINE.md`: the ONE done/left tracker. Update it, never create new status files.
-- `~/Documents/career/portfolio-pixel/inventory/`: external.md, drive.md, downloaded assets, contact sheets, refs.
-- `~/Documents/career/portfolio-pixel/research-repo.md`, `research-components.md`: pixel rendering and component research.
-- `~/Documents/portfolio/`: raw assets (afb/, gamemap.jpeg 1280x671 college pixel game map, dreamfinal1.png "Dream or Nightmare?" 6840x4050, tetriz-launch-v5.mp4).
-- `~/Documents/career/portfolio-handover.md`: the 11 Oct brief (older; superseded where it says "anonymise Epifi" and "hold Instahyre").
+- `~/Documents/Personal/career/portfolio-pixel/PLAN.md`: thesis, IA, cat engine spec, curation notes, Figma build log.
+- `~/Documents/Personal/career/portfolio-pixel/TIMELINE.md`: the ONE done/left tracker. Update it, never create new status files.
+- `~/Documents/Personal/career/portfolio-pixel/inventory/`: external.md, drive.md, downloaded assets, contact sheets, refs.
+- `~/Documents/Personal/career/portfolio-pixel/research-repo.md`, `research-components.md`: pixel rendering and component research.
+- `~/Documents/Personal/portfolio/`: raw assets (afb/, gamemap.jpeg 1280x671 college pixel game map, dreamfinal1.png "Dream or Nightmare?" 6840x4050, tetriz-launch-v5.mp4).
+- `~/Documents/Personal/career/portfolio-handover.md`: the 11 Oct brief (older; superseded where it says "anonymise Epifi" and "hold Instahyre").
 - `my-portfolio/README.md`: shortcuts, stack, structure, credits.

@@ -1,11 +1,11 @@
 ---
 name: project-portfolio-v3
-description: Portfolio v3 "Signature" (16 Oct 2026), built from scratch in ~/Documents/Github/portfolio-v3: 3D broad-nib calligraphy hero, six section worlds, live demos; state, files, flags
+description: Portfolio v3 "Signature" (16 Oct 2026), built from scratch in ~/Documents/Personal/Github/portfolio-v3: 3D broad-nib calligraphy hero, six section worlds, live demos; state, files, flags
 metadata:
   type: project
 ---
 
-Sejal asked for v3 "entirely different" from v1/v2, Apple-premium, motion, calligraphy, 3D, a different interaction per section, flawless scroll and transitions. Repo `~/Documents/Github/portfolio-v3` (git init, NOTHING committed). Next 16.4 + React 19.3 ViewTransition, GSAP ScrollTrigger/Flip, Lenis, R3F/drei, Tailwind v4. Spec: `DIRECTION.md`. v2 repo untouched.
+Sejal asked for v3 "entirely different" from v1/v2, Apple-premium, motion, calligraphy, 3D, a different interaction per section, flawless scroll and transitions. Repo `~/Documents/Personal/Github/portfolio-v3` (git init, NOTHING committed). Next 16.4 + React 19.3 ViewTransition, GSAP ScrollTrigger/Flip, Lenis, R3F/drei, Tailwind v4. Spec: `DIRECTION.md`. v2 repo untouched.
 
 **Concept "Signature":** her name written by a broad-nib engine (`src/lib/nib.ts`, font EMS Allure = single-stroke Allura, OFL, JSON from `scripts/build-nib-font.py`) and swept into a 3D satin ribbon (`src/lib/ribbon.ts`, perspective pre-scaled so the front view is exact calligraphy). Scroll orbits it: front = signature, side = sculpture. Copy beats: "A signature, from the front. / A structure, from the side. / I design products both ways."
 

@@ -14,7 +14,7 @@ Cut points: a requested boundary snaps into the silence that contains it, then s
 import os, subprocess, json
 import numpy as np
 
-ROOT = os.path.expanduser("~/Documents/comics-video")
+ROOT = os.path.expanduser("~/Documents/Work/comics-video")
 SRC = os.path.join(ROOT, "public/pe/vo_src")
 OUT = os.path.join(ROOT, "public/pe/vo")
 

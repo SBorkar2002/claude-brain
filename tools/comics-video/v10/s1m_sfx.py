@@ -13,7 +13,7 @@ not stings. Peaks are set here; the emitter only trims per cue.
 """
 import numpy as np, os, wave
 SR = 44100
-OUT = os.path.expanduser("~/Documents/comics-video/public/s1m/sfx")
+OUT = os.path.expanduser("~/Documents/Work/comics-video/public/s1m/sfx")
 
 def write(name, x, peak_db):
     x = x / (np.abs(x).max() + 1e-12) * 10 ** (peak_db / 20)
